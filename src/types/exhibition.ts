@@ -5,6 +5,8 @@ export type Exhibition = {
   venue: string;
   /** 부제 2줄 (Helvetica Neue Medium) */
   subtitle: [string, string];
+  /** 주제 성경 구절 (모바일 카드에 표시) */
+  verse?: { ref: string; text: string; /** 영문 구절 (전시 목록 PC) */ en?: string };
   /** 본문. emphasis = Pretendard Medium (성경 구절 등) */
   body: { text: string; emphasis?: boolean }[];
   /** 포스터 이미지 URL — 더미는 /images/..., 백엔드 연결 후엔 서버가 주는 URL */

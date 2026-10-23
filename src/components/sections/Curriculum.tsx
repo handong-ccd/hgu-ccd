@@ -3,30 +3,64 @@ import { getTracks } from "@/lib/api/curriculum";
 import { DOWNLOADS } from "@/data/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
+/** Figma 6:371 — ↓ 다운로드 아이콘 (17.846 × 16) */
+function DownloadIcon({ k }: { k: number }) {
+  return (
+    <img
+      src="/icons/download.svg"
+      alt=""
+      aria-hidden
+      className="block shrink-0"
+      width={17.846 * k}
+      height={16.615 * k}
+    />
+  );
+}
+
+/** Figma 171:6900 — 가로 화살표를 -45° 회전시킨 ↗ 아이콘 (17.846 × 16 박스) */
+function ExternalIcon({ k }: { k: number }) {
+  return (
+    <span aria-hidden className="relative block shrink-0" style={{ width: 17.846 * k, height: 16 * k }}>
+      <span
+        className="absolute flex items-center justify-center"
+        style={{ left: -2.86 * k, top: -3.07 * k, width: 23.634 * k, height: 23.634 * k }}
+      >
+        <span className="relative block -rotate-45" style={{ width: 16.323 * k, height: 17.101 * k }}>
+          <img
+            src="/icons/arrow-right-red.svg"
+            alt=""
+            className="absolute block max-w-none"
+            style={{ left: 0, top: "-2.54%", width: "105.32%", height: "105.09%" }}
+          />
+        </span>
+      </span>
+    </span>
+  );
+}
+
 function DownloadLinks({ variant }: { variant: "desktop" | "mobile" }) {
   const desktop = variant === "desktop";
+  const k = desktop ? 1 : 0.8125;
   return (
     <ul className={desktop ? "hidden shrink-0 items-start gap-12 md:flex" : "flex flex-col items-start gap-2 md:hidden"}>
-      {DOWNLOADS.map((item) => (
-        <li key={item.label}>
-          <a
-            href={item.href}
-            download
-            className={`flex items-center font-medium whitespace-nowrap text-accent hover:opacity-70 ${
-              desktop ? "gap-2 text-[16px] leading-[1.4]" : "gap-1.5 text-[14px] leading-[1.4]"
-            }`}
-          >
-            <img
-              src="/icons/download.svg"
-              alt=""
-              className="block shrink-0"
-              width={desktop ? 17.846 : 14.5}
-              height={desktop ? 16.615 : 13.5}
-            />
-            {item.label}
-          </a>
-        </li>
-      ))}
+      {DOWNLOADS.map((item) => {
+        const external = item.kind === "external";
+        return (
+          <li key={item.label}>
+            <a
+              href={item.href}
+              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : { download: true })}
+              className={`flex items-center gap-1 leading-[1.4] font-medium whitespace-nowrap text-accent hover:opacity-70 ${
+                desktop ? "text-[16px]" : "text-[14px]"
+              }`}
+            >
+              <span className={external ? "underline decoration-from-font" : undefined}>{item.label}</span>
+              {external ? <ExternalIcon k={k} /> : <DownloadIcon k={k} />}
+              {external && <span className="sr-only">(새 탭에서 열림)</span>}
+            </a>
+          </li>
+        );
+      })}
     </ul>
   );
 }

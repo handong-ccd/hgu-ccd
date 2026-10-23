@@ -2,7 +2,7 @@ import { Container } from "@/components/ui/Container";
 
 export function Intro() {
   return (
-    <section id="about" aria-label="학부 소개" className="bg-black text-white">
+    <section id="about" aria-label="학부 소개" className="bg-black text-white 2xl:min-h-[960px]">
       <Container className="flex flex-col gap-[100px] pt-10 pb-[90px] md:flex-row md:justify-between md:gap-[60px] md:pt-[60px] md:pb-[100px]">
         <h1 className="font-telegraf text-[36px] leading-[1.2] tracking-[-0.02em] md:min-w-0 md:flex-1 lg:text-[40px] xl:text-[48px] 2xl:w-[716px] 2xl:flex-none 2xl:text-[64px]">
           <span className="underline decoration-from-font underline-offset-auto">

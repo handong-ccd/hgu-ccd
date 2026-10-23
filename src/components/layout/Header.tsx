@@ -1,6 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { NAV_ITEMS, SOCIAL_LINKS } from "@/data/site";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
@@ -59,9 +60,9 @@ export function Header() {
       {/* Desktop (≥1080) */}
       <Container className="hidden h-[82px] items-center justify-between lg:flex">
         <div className="flex items-center gap-[60px]">
-          <a href="#top" aria-label="HGU CCD 홈" className="text-white">
+          <Link href="/" aria-label="HGU CCD 홈" className="text-white">
             <LogoCcd width={55.4848} />
-          </a>
+          </Link>
           <nav aria-label="주요 메뉴">
             <ul className="flex items-center gap-[30px]">
               {NAV_ITEMS.map((item) => (
@@ -79,9 +80,9 @@ export function Header() {
 
       {/* Mobile / Tablet (<1080) */}
       <div className="flex h-[72px] items-center justify-between px-[23px] md:px-[60px] lg:hidden">
-        <a href="#top" aria-label="HGU CCD 홈" className="text-white">
+        <Link href="/" aria-label="HGU CCD 홈" className="text-white">
           <LogoCcd width={44.3855} />
-        </a>
+        </Link>
         <button
           type="button"
           aria-label={open ? "메뉴 닫기" : "메뉴 열기"}
