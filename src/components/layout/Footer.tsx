@@ -37,22 +37,33 @@ function FollowList() {
   );
 }
 
-function Logos({ size }: { size: "lg" | "sm" }) {
+function Logos({ size, dark = false }: { size: "lg" | "sm"; dark?: boolean }) {
   const seal = size === "lg" ? 52 : 44;
   return (
     <div className={`flex items-center ${size === "lg" ? "gap-[17.6px]" : "gap-[10.83px]"}`}>
-      <img src="/images/common/logo-hgu-seal.svg" alt="한동대학교" width={seal} height={seal} className="block" />
-      <LogoCcd width={size === "lg" ? 49.2349 : 41.6601} className="text-black" label="콘텐츠융합디자인학부" />
+      <img
+        src="/images/common/logo-hgu-seal.svg"
+        alt="한동대학교"
+        width={seal}
+        height={seal}
+        className={`block ${dark ? "invert" : ""}`}
+      />
+      <LogoCcd
+        width={size === "lg" ? 49.2349 : 41.6601}
+        className={dark ? "text-white" : "text-black"}
+        label="콘텐츠융합디자인학부"
+      />
     </div>
   );
 }
 
-export function Footer() {
+/** dark: 데스크톱(≥1080)에서 검정 배경 — 전시 상세 페이지 */
+export function Footer({ dark = false }: { dark?: boolean }) {
   return (
-    <footer className="bg-white text-black">
+    <footer className={`bg-white text-black ${dark ? "lg:bg-black lg:text-white" : ""}`}>
       {/* Desktop (≥1080) */}
       <Container className="hidden pt-3 pb-[30px] lg:block">
-        <hr className="border-0 border-t border-line" />
+        <hr className={`border-0 border-t ${dark ? "border-white/50" : "border-line"}`} />
         <div className="mt-2.5 flex flex-col gap-6">
           <div className="flex items-start justify-between gap-10">
             <SchoolName className="w-[235px] shrink-0 text-[14px] tracking-[-0.01em]" />
@@ -71,7 +82,7 @@ export function Footer() {
               <p className="leading-none whitespace-nowrap">{COPYRIGHT}</p>
             </div>
           </div>
-          <Logos size="lg" />
+          <Logos size="lg" dark={dark} />
         </div>
       </Container>
 
