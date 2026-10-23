@@ -4,9 +4,10 @@ import { getExhibitions } from "@/lib/api/exhibitions";
 import type { Exhibition as ExhibitionItem } from "@/types/exhibition";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ExhibitionRail } from "./ExhibitionRail";
+import { ExhibitionRail, RailControls } from "./ExhibitionRail";
 
-const MORE_HREF = "#"; // TODO: 전시 아카이브 페이지
+const MORE_HREF = "/exhibitions";
+const RAIL_ID = "exhibition-rail";
 
 /** 백엔드 응답에 size 가 없을 때 쓰는 기본 포스터 크기 */
 const DEFAULT_SIZE = { width: 480, height: 680 };
@@ -67,32 +68,36 @@ function DesktopCard({ item }: { item: ExhibitionItem }) {
   );
 }
 
-function MobileCard({ item, compact }: { item: ExhibitionItem; compact: boolean }) {
+/** 모바일 카드 — Figma 204:1516. 포스터 폭 160 고정, 높이는 원본 비율 */
+function MobileCard({ item }: { item: ExhibitionItem }) {
+  const { width, height } = item.size ?? DEFAULT_SIZE;
   return (
-    <article className={compact ? "flex gap-4" : "flex flex-col gap-4"}>
-      <div
-        className={`relative shrink-0 overflow-hidden bg-black/20 ${compact ? "h-[244px] w-[144px]" : "h-[414px] w-full"}`}
-      >
+    <article className="flex gap-4">
+      <div className="relative w-[160px] shrink-0 overflow-hidden bg-black/20" style={{ aspectRatio: `${width} / ${height}` }}>
         <Image
           src={item.image}
           alt={`${item.year} 졸업 작품전 ${item.name} 포스터`}
           fill
-          sizes={compact ? "144px" : "100vw"}
+          sizes="160px"
           className="object-cover"
         />
       </div>
-      <div className="flex min-w-0 flex-1 flex-col gap-6">
+      <div className="flex min-w-0 flex-1 flex-col gap-5 font-telegraf uppercase">
         <div className="flex flex-col gap-1.5">
-          <h3 className="font-telegraf text-[36px] leading-none uppercase">
+          <p className="text-[14px] leading-none tracking-[-0.02em]">{item.year}</p>
+          <h3 className="text-[24px] leading-none">
             {item.name}
             <br />
-            {item.date}
+            {item.date}, {item.venue}
           </h3>
-          <p className="font-helvetica text-[18px] leading-normal font-medium tracking-[-0.02em]">
-            {item.subtitle[1]}
-          </p>
+          <p className="text-[16px] leading-[1.2] tracking-[-0.02em]">{item.subtitle[1]}</p>
         </div>
-        <Body body={item.body} />
+        {item.verse && (
+          <div className="flex flex-col gap-1 text-[12px] leading-[1.2] tracking-[-0.02em]">
+            <p>{item.verse.ref}</p>
+            <p className="whitespace-pre-line">{item.verse.text}</p>
+          </div>
+        )}
       </div>
     </article>
   );
@@ -107,33 +112,48 @@ export async function Exhibition() {
         id="exhibitions"
         title="Exhibition"
         aside={
-          <a href={MORE_HREF} className="flex shrink-0 items-center gap-1 hover:opacity-70 md:gap-[5.714px]">
-            <span className="font-telegraf text-[16px] leading-none text-black uppercase [text-box:trim-both_cap_alphabetic] md:text-[22.857px] md:text-accent">
-              More
-            </span>
-            <span className="flex md:hidden">
-              <ArrowUpRight size={14} color="black" />
-            </span>
-            <span className="hidden md:flex">
-              <ArrowUpRight size={20} color="accent" />
-            </span>
-          </a>
+          <>
+            {/* Mobile: MORE ↗ */}
+            <a href={MORE_HREF} className="flex shrink-0 items-center gap-1 hover:opacity-70 md:hidden">
+              <span className="font-telegraf text-[16px] leading-none text-accent uppercase [text-box:trim-both_cap_alphabetic]">
+                More
+              </span>
+              <ArrowUpRight size={14} color="accent" />
+            </a>
+            {/* Tablet+: ‹ › + MORE 버튼 */}
+            <div className="hidden shrink-0 items-center gap-5 md:flex">
+              <RailControls target={RAIL_ID} />
+              <a
+                href={MORE_HREF}
+                className="flex min-w-[160px] items-center justify-center border border-black px-5 py-4 font-telegraf text-[22.857px] leading-none uppercase transition-colors [text-box:trim-both_cap_alphabetic] hover:bg-black hover:text-white"
+              >
+                more
+              </a>
+            </div>
+          </>
         }
       />
 
-      {/* Mobile: 최근 3개 세로 리스트 */}
-      <div className="mt-3 flex flex-col gap-3 md:hidden">
-        {exhibitions.slice(0, 3).map((item, i) => (
-          <Fragment key={item.year}>
-            {i > 0 && <hr className="border-0 border-t border-line" />}
-            <MobileCard item={item} compact={i === 0} />
-          </Fragment>
-        ))}
+      {/* Mobile: 최근 5개 세로 리스트 + 전체보기 */}
+      <div className="mt-3 flex flex-col gap-6 md:hidden">
+        <ul className="flex flex-col gap-2">
+          {exhibitions.slice(0, 5).map((item) => (
+            <li key={item.year} className="flex flex-col gap-2 border-b border-line pb-2">
+              <MobileCard item={item} />
+            </li>
+          ))}
+        </ul>
+        <a
+          href={MORE_HREF}
+          className="flex w-full items-center justify-center border border-black px-5 py-4 font-telegraf text-[16px] leading-none uppercase [text-box:trim-both_cap_alphabetic]"
+        >
+          전체보기
+        </a>
       </div>
 
       {/* Tablet+: 가로 스크롤 */}
       <div className="mt-5 hidden md:block">
-        <ExhibitionRail>
+        <ExhibitionRail id={RAIL_ID}>
           {exhibitions.map((item, i) => (
             <Fragment key={item.year}>
               {i > 0 && <span aria-hidden className="w-px shrink-0 self-stretch bg-line-soft" />}

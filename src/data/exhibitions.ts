@@ -11,6 +11,7 @@ const RETURN_TO_NEW =
 export const EXHIBITIONS: Exhibition[] = [
   {
     year: 2026,
+    verse: { ref: "출애굽기 31:3", text: "그에게 하나님의 영을 채워 주어,\n지혜와 총명과 지식과 온갖 기술을 갖게 하셨다." },
     name: "Filling to Flow",
     date: "2026.11.4—11.15",
     venue: "genesis lab, hgu",
@@ -21,6 +22,7 @@ export const EXHIBITIONS: Exhibition[] = [
   },
   {
     year: 2025,
+    verse: { ref: "빌립보서 4:13", text: "내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라" },
     name: "where the light begins",
     date: "2025.11.05—11.11",
     venue: "genesis lab, hgu",
@@ -31,6 +33,7 @@ export const EXHIBITIONS: Exhibition[] = [
   },
   {
     year: 2024,
+    verse: { ref: "로마서 12:5", text: "이와 같이 우리 많은 사람이 그리스도 안에서 한 몸이 되어 서로 지체가 되었느니라" },
     name: "ONE IN CHRIST",
     date: "2024.10.21— 10.28",
     venue: "genesis lab, hgu",
@@ -41,8 +44,9 @@ export const EXHIBITIONS: Exhibition[] = [
   },
   {
     year: 2023,
+    verse: { ref: "요한복음 8:32", text: "진리를 알지니 진리가 너희를 자유롭게 하리라." },
     name: "THE TRUTH SHALL SET YOU FREE",
-    date: "2024.10.25—10.30",
+    date: "2023.10.25—10.30",
     venue: "grace School, hgu",
     subtitle: [
       "2023 한동대학교 콘텐츠융합디자인학부 졸업 작품전",
@@ -54,6 +58,7 @@ export const EXHIBITIONS: Exhibition[] = [
   },
   {
     year: 2022,
+    verse: { ref: "고린도후서 4:16", text: "우리가 낙심하지 아니함은 우리의 겉사람은 낡아지나 속사람은 날로 새로워짐이라." },
     name: "Return to New",
     date: "2022.10.26—11.3",
     venue: "grace School, hgu",
