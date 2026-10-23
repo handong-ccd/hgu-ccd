@@ -1,0 +1,152 @@
+// 더미 데이터 — USE_MOCK 모드에서 src/lib/api 가 반환. 백엔드 연결 후엔 참고용.
+import type { Exhibition } from "@/types/exhibition";
+
+// TODO: 2025년 이전 전시 소개 문구 교체 (현재 2026 문구가 시안에 복붙돼 있음)
+const PLACEHOLDER =
+  "배움과 경험으로 채워진 시간은 각자의 생각과 시선을 만나 새로운 흐름이 됩니다. ‘FILLING TO FLOWING’은 학생들이 쌓아 온 고민과 가능성이 세상을 향해 흘러가기 시작하는 순간을 담은 전시입니다.";
+
+const RETURN_TO_NEW =
+  "우리가 과거를 동경하는 이유는, 곧 그 안에서 실재하는 새로움을 볼 수 있기 때문이다. 현재에서 느낄 수 없는 순수와 본질을 발견할 수 있다. 그럼에도 우리는 미래에 동경하게 될 순수를 만들어가고 있으며, 새로움을 창조하고 있다. 새로움으로 돌아가는 과정은 뫼비우스의 띠와 같은 확장과 수렴의 반복일지 모른다. 우리는 현재의 형태를 확인할 수 없지만 무한히 새로움으로 돌아가는 과정의 한 프레임으로 기록될 미래이다.";
+
+export const EXHIBITIONS: Exhibition[] = [
+  {
+    year: 2026,
+    name: "Filling to Flow",
+    date: "2026.11.4—11.15",
+    venue: "genesis lab, hgu",
+    subtitle: ["2026 한동대학교 콘텐츠융합디자인학부 졸업 작품전", "Filling to Flow: 채우심으로 말미암아"],
+    body: [{ text: PLACEHOLDER }],
+    image: "/images/exhibitions/01.png",
+    size: { width: 400, height: 579 },
+  },
+  {
+    year: 2025,
+    name: "where the light begins",
+    date: "2025.11.05—11.11",
+    venue: "genesis lab, hgu",
+    subtitle: ["2025 한동대학교 콘텐츠융합디자인학부 졸업 작품전", "Where the Light Begins : 능력의 서막"],
+    body: [{ text: PLACEHOLDER }],
+    image: "/images/exhibitions/02.png",
+    size: { width: 515, height: 723 },
+  },
+  {
+    year: 2024,
+    name: "ONE IN CHRIST",
+    date: "2024.10.21— 10.28",
+    venue: "genesis lab, hgu",
+    subtitle: ["2024 한동대학교 콘텐츠융합디자인학부 졸업 작품전", "ONE IN CHRIST : 그리스도 안에서 하나되는 공동체"],
+    body: [{ text: PLACEHOLDER }],
+    image: "/images/exhibitions/03.png",
+    size: { width: 384, height: 385 },
+  },
+  {
+    year: 2023,
+    name: "THE TRUTH SHALL SET YOU FREE",
+    date: "2024.10.25—10.30",
+    venue: "grace School, hgu",
+    subtitle: [
+      "2023 한동대학교 콘텐츠융합디자인학부 졸업 작품전",
+      "THE TRUTH SHALL SET YOU FREE : 진리가 너희를 자유케하리라",
+    ],
+    body: [{ text: PLACEHOLDER }],
+    image: "/images/exhibitions/04.png",
+    size: { width: 454, height: 641 },
+  },
+  {
+    year: 2022,
+    name: "Return to New",
+    date: "2022.10.26—11.3",
+    venue: "grace School, hgu",
+    subtitle: ["2022 한동대학교 콘텐츠융합디자인학부 졸업 작품전", "Return to New : 영원한 초심"],
+    body: [
+      {
+        text: "우리가 낙심하지 아니함은 우리의 겉사람은 낡아지나 속사람은 날로 새로워짐이라. (고린도후서 4:16)",
+        emphasis: true,
+      },
+      { text: RETURN_TO_NEW },
+    ],
+    image: "/images/exhibitions/05.jpg",
+    size: { width: 522, height: 808 },
+  },
+  {
+    year: 2021,
+    name: "designations",
+    date: "2021.10.29—11.3",
+    venue: "grace School, hgu",
+    subtitle: ["2021 한동대학교 콘텐츠융합디자인학부 졸업 작품전", "Designations"],
+    body: [
+      {
+        text: "“But ye shall receive power, after that the Holy Ghost is come upon you: and ye shall be witnesses unto me both in Jerusalem, and in all Judaea, and in Samaria, and unto the uttermost part of the earth.” Acts 1:8",
+        emphasis: true,
+      },
+      {
+        text: "우리가 낙심하지 아니함은 우리의 겉사람은 낡아지나 속사람은 날로 새로워짐이라. (사도행전 1장 8절)",
+        emphasis: true,
+      },
+      { text: RETURN_TO_NEW },
+    ],
+    image: "/images/exhibitions/06.png",
+    size: { width: 640, height: 359 },
+  },
+  {
+    year: 2020,
+    name: "They are meal for us",
+    date: "2020.10.29—11.2",
+    venue: "lounge, hgu",
+    subtitle: ["2020 한동대학교 콘텐츠융합디자인학부 졸업 작품전", "They are meal for us: 그들은 우리의 먹이라"],
+    body: [{ text: PLACEHOLDER }],
+    image: "/images/exhibitions/07.jpg",
+    size: { width: 536, height: 759 },
+  },
+  {
+    year: 2019,
+    name: "Go to the Land",
+    date: "2019.10.17—10.22",
+    venue: "hongik art center",
+    subtitle: ["2019 한동대학교 콘텐츠융합디자인학부 졸업 작품전", "여정: 네게 지시할 땅으로 가라"],
+    body: [{ text: PLACEHOLDER }],
+    image: "/images/exhibitions/08.png",
+    size: { width: 559, height: 712 },
+  },
+  {
+    year: 2018,
+    name: "Design Again",
+    date: "2018.10.17—10.22",
+    venue: "GALLERY IANG",
+    subtitle: ["2018 한동대학교 콘텐츠융합디자인학부 졸업 작품전", "회복(恢復) — Design Again!"],
+    body: [{ text: PLACEHOLDER }],
+    image: "/images/exhibitions/09.png",
+    size: { width: 449, height: 896 },
+  },
+  {
+    year: 2017,
+    name: "SPREAD YOUR WINGS",
+    date: "2017.9.20—9.25",
+    venue: "GALLERY IANG",
+    subtitle: ["2017 한동대학교 콘텐츠융합디자인학부 졸업 작품전", "Spread your wings : 청춘을 독수리같이"],
+    body: [{ text: PLACEHOLDER }],
+    image: "/images/exhibitions/10.png",
+    size: { width: 473, height: 663 },
+  },
+  {
+    year: 2016,
+    name: "healing in the light",
+    date: "2016.10.20—10.24",
+    venue: "ARA ART CENTER",
+    venueOnNewLine: true,
+    subtitle: ["2016 한동대학교 콘텐츠융합디자인학부 졸업 작품전", "Healing in the Light: 빛으로 나음이라"],
+    body: [{ text: PLACEHOLDER }],
+    image: "/images/exhibitions/11.jpg",
+    size: { width: 556, height: 788 },
+  },
+  {
+    year: 2015,
+    name: "Make it Neue",
+    date: "2015.10.28—11.2",
+    venue: "ARA ART CENTER",
+    subtitle: ["2015 한동대학교 산업정보디자인학부 졸업전시", "Make it Neue(new), 새롭게 하소서"],
+    body: [{ text: PLACEHOLDER }],
+    image: "/images/exhibitions/12.jpg",
+    size: { width: 473, height: 670 },
+  },
+];
