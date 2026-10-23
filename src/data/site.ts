@@ -1,9 +1,10 @@
+/** 서브 페이지에서도 메인 섹션으로 이동하도록 "/#id" 형태 */
 export const NAV_ITEMS = [
-  { label: "About", href: "#about" },
-  { label: "Curriculum", href: "#curriculum" },
-  { label: "Faculties", href: "#faculties" },
-  { label: "Exhibitions", href: "#exhibitions" },
-  { label: "Networks", href: "#networks" },
+  { label: "About", href: "/#about" },
+  { label: "Curriculum", href: "/#curriculum" },
+  { label: "Faculties", href: "/#faculties" },
+  { label: "Exhibitions", href: "/#exhibitions" },
+  { label: "Networks", href: "/#networks" },
 ] as const;
 
 // TODO: 실제 채널 주소로 교체
