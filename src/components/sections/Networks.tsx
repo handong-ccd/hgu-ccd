@@ -1,11 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import { NETWORKS_HREF } from "@/data/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function Networks() {
   return (
     <section aria-labelledby="networks" className="scroll-mt-4">
-      <a href={NETWORKS_HREF} className="group flex flex-col gap-2.5">
+      <Link href={NETWORKS_HREF} className="group flex flex-col gap-2.5">
         <SectionHeading id="networks" title="NETWORKS" />
         <div className="relative aspect-[370/202] w-full overflow-hidden md:aspect-[1579/594]">
           <Image
@@ -19,7 +20,7 @@ export function Networks() {
             CCD Networks
           </span>
         </div>
-      </a>
+      </Link>
     </section>
   );
 }
