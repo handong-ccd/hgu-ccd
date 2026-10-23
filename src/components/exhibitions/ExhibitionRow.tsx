@@ -33,7 +33,9 @@ export function ExhibitionRow({ item, reverse }: { item: Exhibition; reverse: bo
             {item.verse.text} ({item.verse.ref})
           </p>
         )}
-        {item.verse?.en && <p className="text-[16px] leading-[1.4] font-medium xl:text-[18px]">{item.verse.en}</p>}
+        {item.verse?.en && (
+          <p className="text-[16px] leading-[1.4] font-medium xl:text-[18px]">“{item.verse.en.text}”</p>
+        )}
         {paragraphs.map((p) => (
           <p key={p.text} className="text-[16px] leading-[1.4] xl:text-[18px]">
             {p.text}
