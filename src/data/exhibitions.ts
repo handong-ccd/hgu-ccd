@@ -58,7 +58,11 @@ export const EXHIBITIONS: Exhibition[] = [
   },
   {
     year: 2022,
-    verse: { ref: "고린도후서 4:16", text: "우리가 낙심하지 아니함은 우리의 겉사람은 낡아지나 속사람은 날로 새로워짐이라." },
+    verse: {
+      ref: "고린도후서 4:16",
+      text: "우리가 낙심하지 아니함은 우리의 겉사람은 낡아지나 속사람은 날로 새로워짐이라.",
+      en: "“Therefore we do not lose heart. Though outwardly we are wasting away, yet inwardly we are being renewed day by day.”",
+    },
     name: "Return to New",
     date: "2022.10.26—11.3",
     venue: "grace School, hgu",
@@ -75,6 +79,7 @@ export const EXHIBITIONS: Exhibition[] = [
   },
   {
     year: 2021,
+    verse: { ref: "사도행전 1:8", text: "오직 성령이 너희에게 임하시면 너희가 권능을 받고 예루살렘과 온 유대와 사마리아와 땅끝까지 이르러 내 증인이 되리라 하시니라" },
     name: "designations",
     date: "2021.10.29—11.3",
     venue: "grace School, hgu",
@@ -95,6 +100,7 @@ export const EXHIBITIONS: Exhibition[] = [
   },
   {
     year: 2020,
+    verse: { ref: "민수기 14:9", text: "그 땅의 백성을 두려워하지 말라 그들은 우리의 먹이라, 그들의 보호자는 그들에게서 떠났고 여호와는 우리와 함께 하시느니라" },
     name: "They are meal for us",
     date: "2020.10.29—11.2",
     venue: "lounge, hgu",
@@ -105,6 +111,7 @@ export const EXHIBITIONS: Exhibition[] = [
   },
   {
     year: 2019,
+    verse: { ref: "창세기 12:1-2", text: "여호와께서 아브람에게 이르시되, 너는 너의 본토 친척 아비집을 떠나 내가 네게 지시할 땅으로 가라" },
     name: "Go to the Land",
     date: "2019.10.17—10.22",
     venue: "hongik art center",
@@ -115,6 +122,7 @@ export const EXHIBITIONS: Exhibition[] = [
   },
   {
     year: 2018,
+    verse: { ref: "전도서 12:1", text: "너는 청년의 때에 너의 창조주를 기억하라 곧 곤고한 날이 이르기 전에, 나는 아무 낙이 없다고 할 해들이 가깝기 전에" },
     name: "Design Again",
     date: "2018.10.17—10.22",
     venue: "GALLERY IANG",
@@ -125,6 +133,7 @@ export const EXHIBITIONS: Exhibition[] = [
   },
   {
     year: 2017,
+    verse: { ref: "시편 103:5", text: "좋은 것으로 네 소원을 만족하게 하사 네 청춘을 독수리같이 새롭게 하시는 도다" },
     name: "SPREAD YOUR WINGS",
     date: "2017.9.20—9.25",
     venue: "GALLERY IANG",
@@ -135,6 +144,7 @@ export const EXHIBITIONS: Exhibition[] = [
   },
   {
     year: 2016,
+    verse: { ref: "말라기 4:2", text: "내 이름을 경외하는 너희에게는 공의로운 해가 떠올라서 치료하는 광선을 비추리니 너희가 나가서 외양간에서 나온 송아지 같이 뛰리라" },
     name: "healing in the light",
     date: "2016.10.20—10.24",
     venue: "ARA ART CENTER",
@@ -146,6 +156,7 @@ export const EXHIBITIONS: Exhibition[] = [
   },
   {
     year: 2015,
+    verse: { ref: "시편 51:10", text: "내 속에 정한 마음을 창조하시고 내 안에 정직한 영을 새롭게 하소서" },
     name: "Make it Neue",
     date: "2015.10.28—11.2",
     venue: "ARA ART CENTER",
