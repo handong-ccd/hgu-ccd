@@ -11,4 +11,24 @@ export type Faculty = {
   image: string;
   /** [프론트 전용] 사진 위치 보정 (object-position) */
   objectPosition?: string;
+  /** 상세 모달 정보 */
+  detail?: FacultyDetail;
+};
+
+/** CV 한 줄 — 왼쪽 연도 칸 + 내용 */
+export type CvEntry = { year?: string; text: string };
+
+/** 교수 상세(모달) 정보. 없는 항목은 화면에서 생략 */
+export type FacultyDetail = {
+  contact?: { office?: string; phone?: string; email?: string };
+  /** 소개 문단 */
+  intro?: string;
+  /** 없으면 카드의 education 한 줄을 표시 */
+  major?: string[];
+  researchInterest?: string;
+  biography?: CvEntry[];
+  awards?: CvEntry[];
+  patents?: CvEntry[];
+  publications?: { label: string; entries: CvEntry[]; note?: string }[];
+  works?: CvEntry[];
 };

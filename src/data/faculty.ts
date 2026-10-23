@@ -1,8 +1,9 @@
 // 더미 데이터 — USE_MOCK 모드에서 src/lib/api 가 반환. 백엔드 연결 후엔 참고용.
 // 순서·직함·학력: Figma 메인(6:485) 기준 / 사진: 드라이브 '교수진 사진/정리본' (최수신 교수님은 Figma 원본)
 import type { Faculty } from "@/types/faculty";
+import { FACULTY_DETAILS } from "./faculty-detail";
 
-export const FACULTY: Faculty[] = [
+const LIST: Omit<Faculty, "detail">[] = [
   {
     slug: "lee-joongsup", nameEn: "Joongsup Lee", nameKo: "이중섭", position: "부교수 / 학부장",
     education: "Graphic Design M.F.A., Iowa State Univ., IA, US.",
@@ -134,3 +135,5 @@ export const FACULTY: Faculty[] = [
     image: "/images/faculty/pyeon-yunsang.jpg",
   },
 ];
+
+export const FACULTY: Faculty[] = LIST.map((f) => ({ ...f, detail: FACULTY_DETAILS[f.slug] }));
