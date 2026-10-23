@@ -31,16 +31,23 @@ function DesktopCard({ item }: { item: ExhibitionItem }) {
   const { width, height } = item.size ?? DEFAULT_SIZE;
   return (
     <article className="flex shrink-0 flex-col gap-4" style={{ width }}>
-      <div className="relative shrink-0 overflow-hidden bg-neutral-100" style={{ width, height }}>
+      {/* 포스터 클릭 → 전시 상세 (드래그로 스크롤한 경우 클릭은 ExhibitionRail 이 막음) */}
+      <Link
+        href={`/exhibitions/${item.year}`}
+        draggable={false}
+        aria-label={`${item.year} ${item.name} 전시 상세 보기`}
+        className="group relative block shrink-0 overflow-hidden bg-neutral-100"
+        style={{ width, height }}
+      >
         <Image
           src={item.image}
-          alt={`${item.year} 졸업 작품전 ${item.name} 포스터`}
+          alt=""
           fill
           sizes={`${width}px`}
-          className="pointer-events-none object-cover"
+          className="pointer-events-none object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           draggable={false}
         />
-      </div>
+      </Link>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-1.5">
           <h3 className="font-telegraf text-[44px] leading-none uppercase 2xl:text-[48px]">
