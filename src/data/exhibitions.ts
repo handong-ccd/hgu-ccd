@@ -1,4 +1,5 @@
 // 더미 데이터 — USE_MOCK 모드에서 src/lib/api 가 반환. 백엔드 연결 후엔 참고용.
+// TODO: 온라인 전시 링크(archiveUrl)·졸업생 명단(alumni) 받으면 추가
 import type { Exhibition } from "@/types/exhibition";
 
 // TODO: 2025년 이전 전시 소개 문구 교체 (현재 2026 문구가 시안에 복붙돼 있음)
@@ -61,7 +62,10 @@ export const EXHIBITIONS: Exhibition[] = [
     verse: {
       ref: "고린도후서 4:16",
       text: "우리가 낙심하지 아니함은 우리의 겉사람은 낡아지나 속사람은 날로 새로워짐이라.",
-      en: "“Therefore we do not lose heart. Though outwardly we are wasting away, yet inwardly we are being renewed day by day.”",
+      en: {
+        ref: "2 Corinthians 4:16",
+        text: "Therefore we do not lose heart. Though outwardly we are wasting away, yet inwardly we are being renewed day by day.",
+      },
     },
     name: "Return to New",
     date: "2022.10.26—11.3",

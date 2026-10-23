@@ -12,3 +12,13 @@ export async function getExhibitions(): Promise<Exhibition[]> {
   if (USE_MOCK) return EXHIBITIONS;
   return apiGet<Exhibition[]>("/exhibitions");
 }
+
+export async function getExhibition(year: number): Promise<Exhibition | null> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag("exhibitions", `exhibition-${year}`);
+
+  if (USE_MOCK) return EXHIBITIONS.find((e) => e.year === year) ?? null;
+  // TODO(백엔드): 404 처리 방식 맞추기
+  return apiGet<Exhibition>(`/exhibitions/${year}`).catch(() => null);
+}
