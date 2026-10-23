@@ -30,7 +30,41 @@ export const DOWNLOADS = [
   },
 ] as const;
 
-export const NETWORKS_HREF = "#";
+export const NETWORKS_HREF = "/networks";
+
+/**
+ * 네트웍스 페이지 링크 허브 — Figma 6:817
+ * TODO: 주소가 "#" 인 항목은 실제 링크 받으면 교체
+ */
+export const NETWORK_GROUPS: { title: string; links: { label: string; href: string }[] }[] = [
+  {
+    title: "Official",
+    links: [
+      { label: "CCD Instagram", href: SOCIAL_LINKS.instagram },
+      { label: "CCD YouTube", href: SOCIAL_LINKS.youtube },
+      { label: "Contact CCD", href: SOCIAL_LINKS.email },
+    ],
+  },
+  {
+    title: "Archive",
+    links: [
+      { label: "Graduation Exhibition", href: "/exhibitions" },
+      { label: "Seoul Design Festival", href: "#" },
+      { label: "Student Projects", href: "#" },
+      { label: "Regional Collaboration", href: "#" },
+    ],
+  },
+  {
+    title: "About the School",
+    links: [
+      { label: "HGU Official", href: SOCIAL_LINKS.hgu },
+      { label: "HGU Admissions", href: "#" },
+      { label: "HGU Alumni", href: "#" },
+      { label: "HGU Instagram", href: "#" },
+      { label: "HGU YouTube", href: "#" },
+    ],
+  },
+];
 
 export const ADDRESS = {
   en: "2F, Nehemiah Hall, 558 Handong-ro, Heunghae-eup, Buk-gu, Pohang-si, Gyeongsangbuk-do, Republic of Korea",
