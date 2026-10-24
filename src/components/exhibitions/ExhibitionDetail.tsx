@@ -3,6 +3,7 @@ import type { Exhibition } from "@/types/exhibition";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { Container } from "@/components/ui/Container";
 import { DEFAULT_SIZE } from "@/components/sections/ExhibitionMobileCard";
+import { dateVenue } from "@/lib/exhibition";
 
 /** 온라인 전시로 가는 버튼 — archiveUrl 이 있을 때만 */
 function ArchiveLink({ href, tone }: { href: string; tone: "light" | "dark" }) {
@@ -27,31 +28,53 @@ function ArchiveLink({ href, tone }: { href: string; tone: "light" | "dark" }) {
   );
 }
 
-/** Alumni — Figma 251:1807. 트랙별 지도교수 + 졸업생 4열 */
-function Alumni({ alumni }: { alumni: NonNullable<Exhibition["alumni"]> }) {
+/** 이름 목록 칸 (지도교수 / 졸업생) — 위에 라벨 + 구분선 */
+function NameColumn({
+  label,
+  names,
+  cols = 1,
+  className = "",
+}: {
+  label: string;
+  names: string[];
+  cols?: 1 | 4;
+  className?: string;
+}) {
+  return (
+    <div className={`flex flex-col gap-1.5 ${className}`}>
+      <p className="border-b border-white/30 pb-1.5">{label}</p>
+      <ul className={cols === 4 ? "grid grid-cols-4 gap-x-1.5" : undefined}>
+        {names.map((name, i) => (
+          <li key={`${name}-${i}`}>{name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/**
+ * Alumni — Figma 251:1807. 트랙별 지도교수 + 졸업생 4열
+ * 트랙 구분 없이 기록된 해(advisors)는 학부 지도교수를 먼저 보여주고 트랙엔 졸업생만
+ */
+function Alumni({ advisors, alumni = [] }: { advisors?: string[]; alumni?: Exhibition["alumni"] }) {
   return (
     <section className="flex flex-col gap-1.5">
       <h2 className="font-telegraf text-[40px] leading-none tracking-[-0.03em]">Alumni</h2>
+      {advisors?.length ? (
+        <div className="border-t border-white/50 pt-1.5 text-[16px] leading-[1.6]">
+          <NameColumn label="지도교수" names={advisors} />
+        </div>
+      ) : null}
       {alumni.map((group) => (
         <div key={group.track} className="flex flex-col gap-1.5 border-t border-white/50 pt-1.5">
           <h3 className="border-b border-white/50 pb-1.5 font-telegraf text-[22px] leading-[1.4]">{group.track}</h3>
           <div className="flex gap-5 text-[16px] leading-[1.6]">
-            <div className="flex w-[180px] shrink-0 flex-col gap-1.5">
-              <p className="border-b border-white/30 pb-1.5">지도교수</p>
-              <ul>
-                {group.advisors.map((name) => (
-                  <li key={name}>{name}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-              <p className="border-b border-white/30 pb-1.5">졸업생</p>
-              <ul className="grid grid-cols-4 gap-x-1.5">
-                {group.graduates.map((name, i) => (
-                  <li key={`${name}-${i}`}>{name}</li>
-                ))}
-              </ul>
-            </div>
+            {group.advisors.length > 0 && (
+              <NameColumn label="지도교수" names={group.advisors} className="w-[180px] shrink-0" />
+            )}
+            {group.graduates.length > 0 && (
+              <NameColumn label="졸업생" names={group.graduates} cols={4} className="min-w-0 flex-1" />
+            )}
           </div>
         </div>
       ))}
@@ -76,8 +99,12 @@ export function ExhibitionDetail({ item }: { item: Exhibition }) {
           <header className="flex flex-col gap-4 border-b border-line pb-4">
             <h1 className="font-telegraf text-[40px] leading-none uppercase">
               {item.name}
-              <br />
-              {item.date}, {item.venue}
+              {dateVenue(item) && (
+                <>
+                  <br />
+                  {dateVenue(item)}
+                </>
+              )}
             </h1>
             <div className="flex flex-col gap-2 font-telegraf">
               <p className="text-[14px] tracking-[-0.02em]">{item.subtitle[0]}</p>
@@ -114,8 +141,12 @@ export function ExhibitionDetail({ item }: { item: Exhibition }) {
             <div className="flex flex-col gap-10">
               <h1 className="font-telegraf text-[48px] leading-none uppercase 2xl:text-[72px]">
                 {item.name}
-                <br />
-                {item.date}, {item.venue}
+                {dateVenue(item) && (
+                  <>
+                    <br />
+                    {dateVenue(item)}
+                  </>
+                )}
               </h1>
               <p className="font-helvetica text-[20px] leading-[1.2] font-medium tracking-[-0.02em] 2xl:text-[24px]">
                 {item.subtitle[0]}
@@ -137,7 +168,9 @@ export function ExhibitionDetail({ item }: { item: Exhibition }) {
               ))}
               {item.archiveUrl && <ArchiveLink href={item.archiveUrl} tone="dark" />}
             </div>
-            {item.alumni?.length ? <Alumni alumni={item.alumni} /> : null}
+            {item.alumni?.length || item.advisors?.length ? (
+              <Alumni advisors={item.advisors} alumni={item.alumni} />
+            ) : null}
           </div>
           <div
             className="relative w-1/2 max-w-[600px] shrink-0 bg-neutral-900"

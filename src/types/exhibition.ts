@@ -1,8 +1,9 @@
 export type Exhibition = {
   year: number;
   name: string;
-  date: string;
-  venue: string;
+  /** 기간·장소 — 오래된 전시는 기록이 없어 비어 있을 수 있음 */
+  date?: string;
+  venue?: string;
   /** 부제 2줄 (Helvetica Neue Medium) */
   subtitle: [string, string];
   /** 주제 성경 구절 (모바일 카드에 표시) */
@@ -14,7 +15,9 @@ export type Exhibition = {
   };
   /** 온라인 전시 페이지 주소 — 있으면 상세에 GO TO ARCHIVE 버튼 표시 */
   archiveUrl?: string;
-  /** 졸업생 명단 (트랙별) */
+  /** 트랙 구분 없이 학부 전체로 기록된 지도교수 (2007년 이전 등) */
+  advisors?: string[];
+  /** 졸업생 명단 (트랙별). advisors 가 비면 졸업생만 표시 */
   alumni?: { track: string; advisors: string[]; graduates: string[] }[];
   /** 본문. emphasis = Pretendard Medium (성경 구절 등) */
   body: { text: string; emphasis?: boolean }[];

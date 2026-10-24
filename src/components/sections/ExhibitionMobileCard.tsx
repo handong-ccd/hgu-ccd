@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Exhibition } from "@/types/exhibition";
+import { dateVenue } from "@/lib/exhibition";
 
 /** 백엔드 응답에 size 가 없을 때 쓰는 기본 포스터 크기 */
 export const DEFAULT_SIZE = { width: 480, height: 680 };
@@ -9,7 +10,10 @@ export function ExhibitionMobileCard({ item }: { item: Exhibition }) {
   const { width, height } = item.size ?? DEFAULT_SIZE;
   return (
     <article className="flex gap-4">
-      <div className="relative w-[160px] shrink-0 self-start overflow-hidden bg-black/20" style={{ aspectRatio: `${width} / ${height}` }}>
+      <div
+        className="relative w-[160px] shrink-0 self-start overflow-hidden bg-black/20"
+        style={{ aspectRatio: `${width} / ${height}` }}
+      >
         <Image
           src={item.image}
           alt={`${item.year} 졸업 작품전 ${item.name} 포스터`}
@@ -23,8 +27,12 @@ export function ExhibitionMobileCard({ item }: { item: Exhibition }) {
           <p className="text-[14px] leading-none tracking-[-0.02em]">{item.year}</p>
           <h3 className="text-[24px] leading-none">
             {item.name}
-            <br />
-            {item.date}, {item.venue}
+            {dateVenue(item) && (
+              <>
+                <br />
+                {dateVenue(item)}
+              </>
+            )}
           </h3>
           <p className="text-[16px] leading-[1.2] tracking-[-0.02em]">{item.subtitle[1]}</p>
         </div>

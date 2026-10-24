@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Exhibition } from "@/types/exhibition";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { DEFAULT_SIZE } from "@/components/sections/ExhibitionMobileCard";
+import { dateVenue } from "@/lib/exhibition";
 
 export function exhibitionHref(year: number) {
   return `/exhibitions/${year}`;
@@ -20,8 +21,12 @@ export function ExhibitionRow({ item, reverse }: { item: Exhibition; reverse: bo
       <div className="flex w-1/2 max-w-[600px] min-w-0 flex-col gap-10">
         <h2 className="font-telegraf text-[40px] leading-none uppercase 2xl:text-[72px]">
           {item.name}
-          <br />
-          {item.date}, {item.venue}
+          {dateVenue(item) && (
+            <>
+              <br />
+              {dateVenue(item)}
+            </>
+          )}
         </h2>
         <p className="font-helvetica text-[20px] leading-[1.2] font-medium tracking-[-0.02em] 2xl:text-[24px]">
           {item.subtitle[0]}
@@ -51,7 +56,10 @@ export function ExhibitionRow({ item, reverse }: { item: Exhibition; reverse: bo
           <ArrowUpRight size={20} color="black" />
         </Link>
       </div>
-      <div className="relative w-1/2 max-w-[600px] shrink-0 bg-neutral-100" style={{ aspectRatio: `${width} / ${height}` }}>
+      <div
+        className="relative w-1/2 max-w-[600px] shrink-0 bg-neutral-100"
+        style={{ aspectRatio: `${width} / ${height}` }}
+      >
         <Image
           src={item.image}
           alt={`${item.year} 졸업 작품전 ${item.name} 포스터`}
