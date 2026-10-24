@@ -18,7 +18,7 @@ export default async function ExhibitionsPage() {
 
   return (
     <>
-      <Header />
+      <Header tone="light" />
       <main className="flex-1">
         <Container>
           {/* Mobile */}
