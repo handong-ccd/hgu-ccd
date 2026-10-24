@@ -17,8 +17,8 @@
      md 768 : 태블릿 이상 (모바일 레이아웃 종료)
      lg 1080: 데스크톱 헤더 / 푸터
      xl 1280: 1367 프레임 타이포
-     2xl 1280: 1920 프레임 레이아웃. 1280~1919px 는 layout.tsx 의 스크립트가
-               html zoom(화면 너비 / 1920)으로 1920 시안을 비율 그대로 축소해서 보여줌 */
+     2xl 1280: 1920 프레임 레이아웃. 1280~1919px 는 layout.tsx 의 스크립트가 정한
+               --page-zoom(화면 너비 / 1920)으로 body 를 축소해서 1920 시안 비율 그대로 보여줌 */
   --breakpoint-lg: 67.5rem;
   --breakpoint-2xl: 80rem;
 
@@ -46,6 +46,7 @@
   }
 
   body {
+    zoom: var(--page-zoom, 1);
     background: #fff;
     color: #000;
     font-family: var(--font-pretendard);
