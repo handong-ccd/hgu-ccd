@@ -5,12 +5,12 @@ import { getExhibitions } from "@/lib/api/exhibitions";
 import type { Exhibition as ExhibitionItem } from "@/types/exhibition";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { dateVenue } from "@/lib/exhibition";
 import { ExhibitionRail, RailControls } from "./ExhibitionRail";
 import { DEFAULT_SIZE, ExhibitionMobileCard } from "./ExhibitionMobileCard";
 
 const MORE_HREF = "/exhibitions";
 const RAIL_ID = "exhibition-rail";
-
 
 function Body({ body }: { body: ExhibitionItem["body"] }) {
   if (body.length === 1) {
@@ -52,15 +52,20 @@ function DesktopCard({ item }: { item: ExhibitionItem }) {
         <div className="flex flex-col gap-1.5">
           <h3 className="font-telegraf text-[44px] leading-none uppercase 2xl:text-[48px]">
             {item.name}
-            <br />
             {item.venueOnNewLine ? (
               <>
+                <br />
                 {item.date}
                 <br />
                 {item.venue}
               </>
             ) : (
-              `${item.date}, ${item.venue}`
+              dateVenue(item) && (
+                <>
+                  <br />
+                  {dateVenue(item)}
+                </>
+              )
             )}
           </h3>
           <p className="font-helvetica text-[18px] leading-[1.2] font-medium tracking-[-0.02em]">
