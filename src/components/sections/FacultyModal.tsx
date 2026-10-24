@@ -21,9 +21,11 @@ function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactN
 }
 
 /** 왼쪽 100px 연도 칸 + 내용 */
-function EntryList({ entries }: { entries: CvEntry[] }) {
+function EntryList({ entries, large = false }: { entries: CvEntry[]; large?: boolean }) {
   return (
-    <ul className="flex flex-col text-[14px] leading-[1.6] md:text-[16px]">
+    <ul
+      className={`flex flex-col text-[14px] leading-[1.6] ${large ? "md:text-[20px] md:leading-[1.4]" : "md:text-[16px]"}`}
+    >
       {entries.map((e, i) => (
         <li key={i} className="flex gap-3 md:gap-[37px]">
           <span className="w-[100px] shrink-0">{e.year}</span>
@@ -34,9 +36,9 @@ function EntryList({ entries }: { entries: CvEntry[] }) {
   );
 }
 
-function Section({ title, children }: { title: string; children: ReactNode }) {
+function Section({ title, children, className = "" }: { title: string; children: ReactNode; className?: string }) {
   return (
-    <section className="flex flex-col gap-2">
+    <section className={`flex flex-col gap-2 ${className}`}>
       <SectionTitle>{title}</SectionTitle>
       {children}
     </section>
@@ -106,7 +108,14 @@ function Detail({ person }: { person: Faculty }) {
               <h2 className="font-telegraf text-[28px] leading-[1.06] md:text-[34px]">{person.nameEn}</h2>
               <p className="text-[24px] font-medium">{person.nameKo}</p>
             </div>
-            {person.position && <p className="text-[16px] font-medium md:text-[20px]">{person.position}</p>}
+            {d.title ? (
+              <>
+                {person.position && <p className="text-[16px] font-medium md:hidden">{person.position}</p>}
+                <p className="hidden text-[20px] font-medium md:block">{d.title}</p>
+              </>
+            ) : (
+              person.position && <p className="text-[16px] font-medium md:text-[20px]">{person.position}</p>
+            )}
           </div>
         </div>
 
@@ -146,7 +155,8 @@ function Detail({ person }: { person: Faculty }) {
           </ul>
         </Section>
         {d.researchInterest && (
-          <Section title="Research Interest">
+          // PC 시안(6:264)은 Research Interest가 맨 위, 모바일 시안(6:2285)은 Major 다음
+          <Section title="Research Interest" className="md:-order-1">
             <p className="text-[14px] leading-[1.4] md:text-[16px]">{d.researchInterest}</p>
           </Section>
         )}
@@ -162,7 +172,8 @@ function Detail({ person }: { person: Faculty }) {
         ) : null}
         {d.patents?.length ? (
           <Section title="Patent">
-            <EntryList entries={d.patents} />
+            {/* PC 시안: Patent만 20px */}
+            <EntryList entries={d.patents} large />
           </Section>
         ) : null}
         {d.publications?.length ? (
@@ -199,6 +210,8 @@ export function FacultyModal({ person, onClose }: { person: Faculty | null; onCl
     if (person && !el.open) {
       el.showModal();
       el.scrollTop = 0;
+      // 열릴 때 닫기 버튼 대신 모달 자체에 포커스 (닫기 버튼에 포커스 테두리가 생기지 않게)
+      el.focus();
     }
     if (!person && el.open) el.close();
   }, [person]);
@@ -217,9 +230,10 @@ export function FacultyModal({ person, onClose }: { person: Faculty | null; onCl
   return (
     <dialog
       ref={ref}
+      tabIndex={-1}
       aria-label={person ? `${person.nameKo} 교수 상세` : undefined}
       onClose={onClose}
-      className="m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto overscroll-contain bg-black p-0 text-white backdrop:bg-black/60"
+      className="m-0 h-dvh outline-none max-h-none w-full max-w-none overflow-y-auto overscroll-contain bg-black p-0 text-white backdrop:bg-black/60"
     >
       {person && (
         <>
