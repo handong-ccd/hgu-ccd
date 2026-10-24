@@ -5,47 +5,49 @@ import { Container } from "@/components/ui/Container";
 import { DEFAULT_SIZE } from "@/components/sections/ExhibitionMobileCard";
 import { dateVenue } from "@/lib/exhibition";
 
-/** 온라인 전시로 가는 버튼 — archiveUrl 이 있을 때만 */
-function ArchiveLink({ href, tone }: { href: string; tone: "light" | "dark" }) {
-  const dark = tone === "dark";
+/** 온라인 전시로 가는 버튼 — archiveUrl 이 있을 때만. 모바일은 전체 너비 */
+function ArchiveLink({ href, full = false }: { href: string; full?: boolean }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`flex items-center justify-center gap-[5.714px] border px-5 py-4 transition-opacity hover:opacity-70 ${
-        dark ? "self-start border-white" : "w-full border-black"
+      className={`flex items-center justify-center gap-[5.714px] border border-white px-5 py-4 transition-opacity hover:opacity-70 ${
+        full ? "w-full" : "self-start"
       }`}
     >
       <span
-        className={`font-telegraf leading-none uppercase [text-box:trim-both_cap_alphabetic] ${dark ? "text-[22.857px]" : "text-[20px]"}`}
+        className={`font-telegraf leading-none uppercase [text-box:trim-both_cap_alphabetic] ${full ? "text-[20px]" : "text-[22.857px]"}`}
       >
         Go to archive
       </span>
-      <ArrowUpRight size={20} color={dark ? "white" : "black"} />
+      <ArrowUpRight size={20} color="white" />
       <span className="sr-only">(온라인 전시, 새 탭에서 열림)</span>
     </a>
   );
 }
 
-/** 이름 목록 칸 (지도교수 / 졸업생) — 위에 라벨 + 구분선 */
+/** 이름 목록 칸 (지도교수 / 졸업생) — 위에 라벨 + 구분선. 여러 열이면 세로 방향으로 채움 (가나다 순이 열 따라 내려감) */
 function NameColumn({
   label,
   names,
-  cols = 1,
+  multi = false,
   className = "",
 }: {
   label: string;
   names: string[];
-  cols?: 1 | 4;
+  /** 졸업생: 모바일 3열 / PC 4열 */
+  multi?: boolean;
   className?: string;
 }) {
   return (
     <div className={`flex flex-col gap-1.5 ${className}`}>
-      <p className="border-b border-white/30 pb-1.5">{label}</p>
-      <ul className={cols === 4 ? "grid grid-cols-4 gap-x-1.5" : undefined}>
+      <p className="border-b border-white pb-1.5 lg:border-white/30">{label}</p>
+      <ul className={multi ? "columns-3 gap-x-1.5 lg:columns-4" : undefined}>
         {names.map((name, i) => (
-          <li key={`${name}-${i}`}>{name}</li>
+          <li key={`${name}-${i}`} className="break-inside-avoid">
+            {name}
+          </li>
         ))}
       </ul>
     </div>
@@ -53,27 +55,38 @@ function NameColumn({
 }
 
 /**
- * Alumni — Figma 251:1807. 트랙별 지도교수 + 졸업생 4열
+ * Alumni — PC 251:1807 / 모바일 6:2393 등. 트랙별 지도교수 + 졸업생 (모바일 3열 / PC 4열)
  * 트랙 구분 없이 기록된 해(advisors)는 학부 지도교수를 먼저 보여주고 트랙엔 졸업생만
  */
 function Alumni({ advisors, alumni = [] }: { advisors?: string[]; alumni?: Exhibition["alumni"] }) {
+  const line = "border-white lg:border-white/50";
+  const text = "text-[14px] leading-[1.4] lg:text-[16px] lg:leading-[1.6]";
   return (
     <section className="flex flex-col gap-1.5">
-      <h2 className="font-telegraf text-[40px] leading-none tracking-[-0.03em]">Alumni</h2>
+      <h2
+        className={`border-b pb-1.5 font-telegraf text-[24px] leading-none tracking-[-0.03em] lg:border-b-0 lg:pb-0 lg:text-[40px] ${line}`}
+      >
+        Alumni
+      </h2>
       {advisors?.length ? (
-        <div className="border-t border-white/50 pt-1.5 text-[16px] leading-[1.6]">
+        <div className={`pt-1.5 lg:border-t ${line} ${text}`}>
           <NameColumn label="지도교수" names={advisors} />
         </div>
       ) : null}
-      {alumni.map((group) => (
-        <div key={group.track} className="flex flex-col gap-1.5 border-t border-white/50 pt-1.5">
-          <h3 className="border-b border-white/50 pb-1.5 font-telegraf text-[22px] leading-[1.4]">{group.track}</h3>
-          <div className="flex gap-5 text-[16px] leading-[1.6]">
+      {alumni.map((group, i) => (
+        <div
+          key={group.track}
+          className={`flex flex-col gap-1.5 pt-1.5 lg:border-t ${i > 0 || advisors?.length ? "border-t" : ""} ${line}`}
+        >
+          <h3 className={`border-b pb-1.5 font-telegraf text-[14px] leading-[1.4] lg:text-[22px] ${line}`}>
+            {group.track}
+          </h3>
+          <div className={`flex gap-5 ${text}`}>
             {group.advisors.length > 0 && (
-              <NameColumn label="지도교수" names={group.advisors} className="w-[180px] shrink-0" />
+              <NameColumn label="지도교수" names={group.advisors} className="w-[103px] shrink-0 lg:w-[180px]" />
             )}
             {group.graduates.length > 0 && (
-              <NameColumn label="졸업생" names={group.graduates} cols={4} className="min-w-0 flex-1" />
+              <NameColumn label="졸업생" names={group.graduates} multi className="min-w-0 flex-1" />
             )}
           </div>
         </div>
@@ -82,7 +95,7 @@ function Alumni({ advisors, alumni = [] }: { advisors?: string[]; alumni?: Exhib
   );
 }
 
-/** 전시 상세 — Figma PC 46:8026(링크 있음) / 46:8183(링크 없음), 모바일 6:1937 */
+/** 전시 상세 — Figma PC 46:8026(링크 있음) / 46:8183(링크 없음), 모바일 6:2393 등 연도별 시안 (검정 배경) */
 export function ExhibitionDetail({ item }: { item: Exhibition }) {
   const { width, height } = item.size ?? DEFAULT_SIZE;
   const paragraphs = item.body.filter((p) => !p.emphasis);
@@ -90,13 +103,13 @@ export function ExhibitionDetail({ item }: { item: Exhibition }) {
 
   return (
     <>
-      {/* Mobile / Tablet (<1080): 흰 배경 */}
-      <article className="lg:hidden">
-        <div className="relative w-full bg-neutral-100" style={{ aspectRatio: `${width} / ${height}` }}>
+      {/* Mobile / Tablet (<1080) */}
+      <article className="bg-black text-white lg:hidden">
+        <div className="relative w-full bg-neutral-900" style={{ aspectRatio: `${width} / ${height}` }}>
           <Image src={item.image} alt={alt} fill sizes="100vw" className="object-cover" priority />
         </div>
         <Container className="flex flex-col gap-[51px] py-10">
-          <header className="flex flex-col gap-4 border-b border-line pb-4">
+          <header className="flex flex-col gap-4 border-b border-white pb-4">
             <h1 className="font-telegraf text-[40px] leading-none uppercase">
               {item.name}
               {dateVenue(item) && (
@@ -130,7 +143,10 @@ export function ExhibitionDetail({ item }: { item: Exhibition }) {
               {p.text}
             </p>
           ))}
-          {item.archiveUrl && <ArchiveLink href={item.archiveUrl} tone="light" />}
+          {item.archiveUrl && <ArchiveLink href={item.archiveUrl} full />}
+          {item.alumni?.length || item.advisors?.length ? (
+            <Alumni advisors={item.advisors} alumni={item.alumni} />
+          ) : null}
         </Container>
       </article>
 
@@ -166,7 +182,7 @@ export function ExhibitionDetail({ item }: { item: Exhibition }) {
                   {p.text}
                 </p>
               ))}
-              {item.archiveUrl && <ArchiveLink href={item.archiveUrl} tone="dark" />}
+              {item.archiveUrl && <ArchiveLink href={item.archiveUrl} />}
             </div>
             {item.alumni?.length || item.advisors?.length ? (
               <Alumni advisors={item.advisors} alumni={item.alumni} />
