@@ -3,40 +3,11 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { NAV_ITEMS, SOCIAL_LINKS } from "@/data/site";
-import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
+import { NAV_ITEMS } from "@/data/site";
 import { Container } from "@/components/ui/Container";
 import { LogoCcd } from "@/components/ui/LogoCcd";
 
 const linkText = "font-pretendard text-[14px] uppercase leading-none tracking-[-0.02em] text-white";
-
-function ExternalLinks({ className = "" }: { className?: string }) {
-  return (
-    <ul className={`flex items-center gap-[30px] ${className}`}>
-      <li>
-        <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noreferrer" className={`${linkText} hover:opacity-60`}>
-          Youtube
-        </a>
-      </li>
-      <li>
-        <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer" className={`${linkText} hover:opacity-60`}>
-          Instagram
-        </a>
-      </li>
-      <li>
-        <a
-          href={SOCIAL_LINKS.hgu}
-          target="_blank"
-          rel="noreferrer"
-          className={`${linkText} flex items-center gap-1 hover:opacity-60`}
-        >
-          HGU
-          <ArrowUpRight color="white" />
-        </a>
-      </li>
-    </ul>
-  );
-}
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -58,7 +29,7 @@ export function Header() {
   return (
     <header className="relative z-50 bg-black text-white">
       {/* Desktop (≥1080) */}
-      <Container className="hidden h-[82px] items-center justify-between lg:flex">
+      <Container className="hidden h-[82px] items-center lg:flex">
         <div className="flex items-center gap-[60px]">
           <Link href="/" aria-label="HGU CCD 홈" className="text-white">
             <LogoCcd width={55.4848} />
@@ -75,7 +46,6 @@ export function Header() {
             </ul>
           </nav>
         </div>
-        <ExternalLinks />
       </Container>
 
       {/* Mobile / Tablet (<1080) */}
@@ -118,7 +88,6 @@ export function Header() {
                 </li>
               ))}
             </ul>
-            <ExternalLinks className="mt-8" />
           </nav>
         </div>
       )}
