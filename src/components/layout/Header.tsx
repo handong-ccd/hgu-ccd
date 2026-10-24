@@ -1,15 +1,18 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { NAV_ITEMS } from "@/data/site";
 import { Container } from "@/components/ui/Container";
 import { LogoCcd } from "@/components/ui/LogoCcd";
 
-const linkText = "font-pretendard text-[14px] uppercase leading-none tracking-[-0.02em] text-white";
+const linkText = "font-pretendard text-[14px] uppercase leading-none tracking-[-0.02em]";
 
-export function Header() {
+/** dark: 검정 배경(기본, 메인·전시 상세) / light: 흰 배경(전시 목록) */
+type Tone = "dark" | "light";
+
+export function Header({ tone = "dark" }: { tone?: Tone }) {
+  const light = tone === "light";
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -27,11 +30,11 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="relative z-50 bg-black text-white">
+    <header className={`relative z-50 ${light ? "bg-white text-black" : "bg-black text-white"}`}>
       {/* Desktop (≥1080) */}
       <Container className="hidden h-[82px] items-center lg:flex">
         <div className="flex items-center gap-[60px]">
-          <Link href="/" aria-label="HGU CCD 홈" className="text-white">
+          <Link href="/" aria-label="HGU CCD 홈" className="text-current">
             <LogoCcd width={55.4848} />
           </Link>
           <nav aria-label="주요 메뉴">
@@ -50,7 +53,7 @@ export function Header() {
 
       {/* Mobile / Tablet (<1080) */}
       <div className="flex h-[72px] items-center justify-between px-[23px] md:px-[60px] lg:hidden">
-        <Link href="/" aria-label="HGU CCD 홈" className="text-white">
+        <Link href="/" aria-label="HGU CCD 홈" className="text-current">
           <LogoCcd width={44.3855} />
         </Link>
         <button
@@ -63,21 +66,29 @@ export function Header() {
         >
           {open ? (
             <span aria-hidden className="relative block h-5 w-[25px]">
-              <span className="absolute top-1/2 left-0 h-0.5 w-full -translate-y-1/2 rotate-45 bg-white" />
-              <span className="absolute top-1/2 left-0 h-0.5 w-full -translate-y-1/2 -rotate-45 bg-white" />
+              <span className="absolute top-1/2 left-0 h-0.5 w-full -translate-y-1/2 rotate-45 bg-current" />
+              <span className="absolute top-1/2 left-0 h-0.5 w-full -translate-y-1/2 -rotate-45 bg-current" />
             </span>
           ) : (
-            <img src="/icons/menu.svg" alt="" width={25} height={22} className="block h-[22px] w-[25px]" />
+            // 햄버거 — menu.svg 와 같은 25×22, 2px 선 3개 (색은 헤더 글자색)
+            <span aria-hidden className="flex h-[22px] w-[25px] flex-col justify-between">
+              <span className="h-0.5 w-full bg-current" />
+              <span className="h-0.5 w-full bg-current" />
+              <span className="h-0.5 w-full bg-current" />
+            </span>
           )}
         </button>
       </div>
 
       {open && (
-        <div id="mobile-menu" className="fixed inset-x-0 top-[72px] bottom-0 overflow-y-auto bg-black lg:hidden">
+        <div
+          id="mobile-menu"
+          className={`fixed inset-x-0 top-[72px] bottom-0 overflow-y-auto lg:hidden ${light ? "bg-white" : "bg-black"}`}
+        >
           <nav aria-label="주요 메뉴" className="px-4 pt-6 pb-10 md:px-[60px]">
             <ul className="flex flex-col">
               {NAV_ITEMS.map((item) => (
-                <li key={item.href} className="border-b border-white/20">
+                <li key={item.href} className={`border-b ${light ? "border-black/20" : "border-white/20"}`}>
                   <a
                     href={item.href}
                     onClick={() => setOpen(false)}
