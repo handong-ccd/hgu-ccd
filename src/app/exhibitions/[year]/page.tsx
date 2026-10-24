@@ -28,7 +28,7 @@ export default async function ExhibitionPage({ params }: PageProps<"/exhibitions
   return (
     <>
       <Header />
-      <main className="flex-1 lg:bg-black">
+      <main className="flex-1 bg-black">
         <ExhibitionDetail item={item} />
       </main>
       <Footer dark />

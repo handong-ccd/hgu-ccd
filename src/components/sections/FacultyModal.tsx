@@ -87,7 +87,7 @@ function Detail({ person }: { person: Faculty }) {
     : [];
 
   return (
-    <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-[60px] 2xl:gap-[180px]">
+    <div className="flex flex-col gap-[100px] lg:flex-row lg:items-start lg:gap-[60px] 2xl:gap-[180px]">
       {/* 왼쪽: 프로필 */}
       <div className="flex w-full flex-col gap-10 lg:w-[320px] lg:shrink-0 2xl:w-[420px]">
         <div className="flex flex-col gap-[22.873px]">
@@ -266,7 +266,7 @@ export function FacultyModal({ person, onClose }: { person: Faculty | null; onCl
             <img src="/icons/close.svg" alt="" className="block size-[52px]" />
           </button>
 
-          <Container className="pt-0 pb-20 md:pt-[124px] md:pb-[100px]">
+          <Container className="pt-0 pb-[90px] md:pt-[124px] md:pb-[100px]">
             <Detail key={person.slug} person={person} />
           </Container>
         </>

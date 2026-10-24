@@ -57,10 +57,10 @@ function Logos({ size, dark = false }: { size: "lg" | "sm"; dark?: boolean }) {
   );
 }
 
-/** dark: 데스크톱(≥1080)에서 검정 배경 — 전시 상세 페이지 */
+/** dark: 검정 배경 — 전시 상세 페이지 (PC·모바일 모두) */
 export function Footer({ dark = false }: { dark?: boolean }) {
   return (
-    <footer className={`relative z-[1] bg-white text-black ${dark ? "lg:bg-black lg:text-white" : ""}`}>
+    <footer className={`relative z-[1] ${dark ? "bg-black text-white" : "bg-white text-black"}`}>
       {/* Desktop (≥1080) */}
       <Container className="hidden pt-3 pb-[30px] lg:block">
         <hr className={`border-0 border-t ${dark ? "border-white/50" : "border-line"}`} />
@@ -88,25 +88,25 @@ export function Footer({ dark = false }: { dark?: boolean }) {
 
       {/* Mobile / Tablet (<1080) */}
       <Container className="pt-2 pb-[30px] lg:hidden">
-        <hr className="border-0 border-t border-line" />
+        <hr className={`border-0 border-t ${dark ? "border-white" : "border-line"}`} />
         <div className="mt-3 flex flex-col gap-5">
           <SchoolName className="text-[18px] tracking-[-0.01em]" />
           <div className="flex gap-6">
             <address className="flex min-w-0 flex-1 flex-col gap-1 font-telegraf not-italic">
               <span className="text-[12px] leading-none tracking-[-0.01em]">Address</span>
-              <hr className="border-0 border-t border-line" />
+              <hr className={`border-0 border-t ${dark ? "border-white" : "border-line"}`} />
               <span lang="ko" className="text-[11px] leading-[1.4] tracking-[-0.01em]">
                 {ADDRESS.ko}
               </span>
             </address>
             <div className="flex min-w-0 flex-1 flex-col gap-1 font-telegraf">
               <span className="text-[12px] leading-none tracking-[-0.01em]">Follow CCD</span>
-              <hr className="border-0 border-t border-line" />
+              <hr className={`border-0 border-t ${dark ? "border-white" : "border-line"}`} />
               <FollowList />
             </div>
           </div>
           <div className="flex items-end justify-between gap-4">
-            <Logos size="sm" />
+            <Logos size="sm" dark={dark} />
             <p className="font-telegraf text-[10px] leading-none tracking-[-0.01em]">{COPYRIGHT}</p>
           </div>
         </div>
