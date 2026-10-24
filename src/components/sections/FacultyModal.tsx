@@ -12,7 +12,7 @@ function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactN
   return (
     <div className="flex flex-col gap-1.5 md:gap-2">
       <div className="flex items-center gap-1.5 md:gap-2">
-        <h3 className="flex-1 font-telegraf text-[22px] leading-normal md:text-[26px]">{children}</h3>
+        <h3 className="flex-1 font-telegraf text-[22px] leading-[1.06] md:text-[26px]">{children}</h3>
         {aside}
       </div>
       <hr className="border-0 border-t border-white/50 md:border-white" />
@@ -101,9 +101,9 @@ function Detail({ person }: { person: Faculty }) {
               style={{ objectPosition: person.objectPosition ?? "center" }}
             />
           </div>
-          <div className="flex flex-col gap-3 leading-normal">
+          <div className="flex flex-col gap-3 leading-[1.2]">
             <div className="flex flex-col gap-1">
-              <h2 className="font-telegraf text-[28px] md:text-[34px]">{person.nameEn}</h2>
+              <h2 className="font-telegraf text-[28px] leading-[1.06] md:text-[34px]">{person.nameEn}</h2>
               <p className="text-[24px] font-medium">{person.nameKo}</p>
             </div>
             {person.position && <p className="text-[16px] font-medium md:text-[20px]">{person.position}</p>}
@@ -169,7 +169,7 @@ function Detail({ person }: { person: Faculty }) {
           <Collapsible title="Publications">
             {d.publications.map((group) => (
               <div key={group.label} className="flex flex-col gap-2">
-                <h4 className="font-telegraf text-[14px] leading-normal uppercase md:text-[16px]">{group.label}</h4>
+                <h4 className="font-telegraf text-[14px] leading-[1.06] uppercase md:text-[16px]">{group.label}</h4>
                 <EntryList entries={group.entries} />
                 {group.note && <p className="text-[14px] leading-[1.6] md:text-[16px]">{group.note}</p>}
               </div>

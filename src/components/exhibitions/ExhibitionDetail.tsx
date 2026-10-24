@@ -117,7 +117,7 @@ export function ExhibitionDetail({ item }: { item: Exhibition }) {
                 <br />
                 {item.date}, {item.venue}
               </h1>
-              <p className="font-helvetica text-[20px] leading-normal font-medium tracking-[-0.02em] xl:text-[24px]">
+              <p className="font-helvetica text-[20px] leading-[1.2] font-medium tracking-[-0.02em] xl:text-[24px]">
                 {item.subtitle[0]}
                 <br />
                 {item.subtitle[1]}
