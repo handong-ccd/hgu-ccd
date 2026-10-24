@@ -14,7 +14,7 @@ const RAIL_ID = "exhibition-rail";
 
 function Body({ body }: { body: ExhibitionItem["body"] }) {
   if (body.length === 1) {
-    return <p className="text-[14px] leading-normal">{body[0].text}</p>;
+    return <p className="text-[14px] leading-[1.2]">{body[0].text}</p>;
   }
   return (
     <div className="flex flex-col gap-2 text-[14px] leading-[1.4]">
@@ -63,7 +63,7 @@ function DesktopCard({ item }: { item: ExhibitionItem }) {
               `${item.date}, ${item.venue}`
             )}
           </h3>
-          <p className="font-helvetica text-[18px] leading-normal font-medium tracking-[-0.02em]">
+          <p className="font-helvetica text-[18px] leading-[1.2] font-medium tracking-[-0.02em]">
             {item.subtitle[0]}
             <br />
             {item.subtitle[1]}

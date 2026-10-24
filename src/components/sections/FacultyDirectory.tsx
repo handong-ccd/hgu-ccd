@@ -26,9 +26,9 @@ function FacultyCard({ person, onOpen }: { person: Faculty; onOpen: () => void }
           style={{ objectPosition: person.objectPosition ?? "center" }}
         />
       </span>
-      <span className="flex flex-col gap-2 leading-normal">
+      <span className="flex flex-col gap-2 leading-[1.2]">
         <span className="flex flex-col gap-1">
-          <span className="font-telegraf text-[16px] md:text-[24px]">{person.nameEn}</span>
+          <span className="font-telegraf text-[16px] leading-[1.06] md:text-[24px]">{person.nameEn}</span>
           <span className="text-[14px] font-medium md:text-[20px]">
             {person.position ? `${person.nameKo}, ${person.position}` : person.nameKo}
           </span>
