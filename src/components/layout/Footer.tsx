@@ -60,7 +60,7 @@ function Logos({ size, dark = false }: { size: "lg" | "sm"; dark?: boolean }) {
 /** dark: 데스크톱(≥1080)에서 검정 배경 — 전시 상세 페이지 */
 export function Footer({ dark = false }: { dark?: boolean }) {
   return (
-    <footer className={`bg-white text-black ${dark ? "lg:bg-black lg:text-white" : ""}`}>
+    <footer className={`relative z-[1] bg-white text-black ${dark ? "lg:bg-black lg:text-white" : ""}`}>
       {/* Desktop (≥1080) */}
       <Container className="hidden pt-3 pb-[30px] lg:block">
         <hr className={`border-0 border-t ${dark ? "border-white/50" : "border-line"}`} />
