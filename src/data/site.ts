@@ -4,7 +4,6 @@ export const NAV_ITEMS = [
   { label: "Curriculum", href: "/#curriculum" },
   { label: "Faculties", href: "/#faculties" },
   { label: "Exhibitions", href: "/#exhibitions" },
-  { label: "Networks", href: "/#networks" },
 ] as const;
 
 // TODO: 실제 채널 주소로 교체

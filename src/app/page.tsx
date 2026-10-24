@@ -23,7 +23,8 @@ export default function Home() {
         <Container className="pt-10 pb-10 md:pt-0 md:pb-[100px]">
           <Exhibition />
         </Container>
-        <Container className="pt-10 md:pt-0">
+        {/* Figma: PC(6:328)는 NETWORKS 섹션 숨김, 모바일(6:2071)은 유지 */}
+        <Container className="pt-10 md:pt-0 lg:hidden">
           <Networks />
         </Container>
       </main>
