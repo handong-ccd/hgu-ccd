@@ -112,26 +112,26 @@ export function ExhibitionDetail({ item }: { item: Exhibition }) {
         <Container className="flex items-start justify-between gap-10 py-[100px]">
           <div className="flex w-1/2 max-w-[600px] min-w-0 flex-col gap-[100px]">
             <div className="flex flex-col gap-10">
-              <h1 className="font-telegraf text-[48px] leading-none uppercase xl:text-[56px] 2xl:text-[72px]">
+              <h1 className="font-telegraf text-[48px] leading-none uppercase 2xl:text-[72px]">
                 {item.name}
                 <br />
                 {item.date}, {item.venue}
               </h1>
-              <p className="font-helvetica text-[20px] leading-[1.2] font-medium tracking-[-0.02em] xl:text-[24px]">
+              <p className="font-helvetica text-[20px] leading-[1.2] font-medium tracking-[-0.02em] 2xl:text-[24px]">
                 {item.subtitle[0]}
                 <br />
                 {item.subtitle[1]}
               </p>
               {item.verse && (
-                <p className="text-[16px] leading-[1.4] font-medium xl:text-[18px]">
+                <p className="text-[16px] leading-[1.4] font-medium 2xl:text-[18px]">
                   {item.verse.text} ({item.verse.ref})
                 </p>
               )}
               {item.verse?.en && (
-                <p className="text-[16px] leading-[1.4] font-medium xl:text-[18px]">“{item.verse.en.text}”</p>
+                <p className="text-[16px] leading-[1.4] font-medium 2xl:text-[18px]">“{item.verse.en.text}”</p>
               )}
               {paragraphs.map((p) => (
-                <p key={p.text} className="text-[16px] leading-[1.4] xl:text-[18px]">
+                <p key={p.text} className="text-[16px] leading-[1.4] 2xl:text-[18px]">
                   {p.text}
                 </p>
               ))}
@@ -143,7 +143,7 @@ export function ExhibitionDetail({ item }: { item: Exhibition }) {
             className="relative w-1/2 max-w-[600px] shrink-0 bg-neutral-900"
             style={{ aspectRatio: `${width} / ${height}` }}
           >
-            <Image src={item.image} alt={alt} fill sizes="(min-width: 1699px) 600px, 50vw" className="object-cover" />
+            <Image src={item.image} alt={alt} fill sizes="(min-width: 1280px) 600px, 50vw" className="object-cover" />
           </div>
         </Container>
       </article>
