@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import type { Faculty } from "@/types/faculty";
 import { FacultyModal } from "./FacultyModal";
 
-const SIZES = "(min-width: 1699px) 376px, (min-width: 768px) 33vw, 50vw";
+const SIZES = "(min-width: 1280px) 376px, (min-width: 768px) 33vw, 50vw";
 const HASH_PREFIX = "#faculty-";
 
 function FacultyCard({ person, onOpen }: { person: Faculty; onOpen: () => void }) {

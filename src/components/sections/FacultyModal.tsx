@@ -98,7 +98,7 @@ function Detail({ person }: { person: Faculty }) {
               src={person.image}
               alt=""
               fill
-              sizes="(min-width: 1699px) 420px, (min-width: 1080px) 320px, 100vw"
+              sizes="(min-width: 1280px) 420px, (min-width: 1080px) 320px, 100vw"
               className="object-cover"
               style={{ objectPosition: person.objectPosition ?? "center" }}
             />
@@ -233,7 +233,7 @@ export function FacultyModal({ person, onClose }: { person: Faculty | null; onCl
       tabIndex={-1}
       aria-label={person ? `${person.nameKo} 교수 상세` : undefined}
       onClose={onClose}
-      className="m-0 h-dvh outline-none max-h-none w-full max-w-none overflow-y-auto overscroll-contain bg-black p-0 text-white backdrop:bg-black/60"
+      className="inset-0 m-0 h-full max-h-none w-full outline-none max-w-none overflow-y-auto overscroll-contain bg-black p-0 text-white backdrop:bg-black/60"
     >
       {person && (
         <>

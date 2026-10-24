@@ -13,7 +13,7 @@ export function Networks() {
             src="/images/common/networks.png"
             alt="한동대학교 느헤미야홀 전경"
             fill
-            sizes="(min-width: 1699px) 1579px, 100vw"
+            sizes="(min-width: 1280px) 1579px, 100vw"
             className="object-cover object-center md:object-[50%_10%] transition-transform duration-700 group-hover:scale-[1.02]"
           />
           <span className="absolute right-[15px] bottom-[15px] border border-white px-3 py-2 font-telegraf text-[16px] leading-none tracking-[-0.03em] text-white md:right-10 md:bottom-[35px] md:text-[24px]">

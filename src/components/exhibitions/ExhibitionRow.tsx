@@ -15,29 +15,29 @@ export function ExhibitionRow({ item, reverse }: { item: Exhibition; reverse: bo
 
   return (
     <article
-      className={`flex items-start justify-between gap-10 py-[60px] xl:py-[100px] ${reverse ? "flex-row-reverse" : ""}`}
+      className={`flex items-start justify-between gap-10 py-[60px] 2xl:py-[100px] ${reverse ? "flex-row-reverse" : ""}`}
     >
       <div className="flex w-1/2 max-w-[600px] min-w-0 flex-col gap-10">
-        <h2 className="font-telegraf text-[40px] leading-none uppercase xl:text-[56px] 2xl:text-[72px]">
+        <h2 className="font-telegraf text-[40px] leading-none uppercase 2xl:text-[72px]">
           {item.name}
           <br />
           {item.date}, {item.venue}
         </h2>
-        <p className="font-helvetica text-[20px] leading-[1.2] font-medium tracking-[-0.02em] xl:text-[24px]">
+        <p className="font-helvetica text-[20px] leading-[1.2] font-medium tracking-[-0.02em] 2xl:text-[24px]">
           {item.subtitle[0]}
           <br />
           {item.subtitle[1]}
         </p>
         {item.verse && (
-          <p className="text-[16px] leading-[1.4] font-medium xl:text-[18px]">
+          <p className="text-[16px] leading-[1.4] font-medium 2xl:text-[18px]">
             {item.verse.text} ({item.verse.ref})
           </p>
         )}
         {item.verse?.en && (
-          <p className="text-[16px] leading-[1.4] font-medium xl:text-[18px]">“{item.verse.en.text}”</p>
+          <p className="text-[16px] leading-[1.4] font-medium 2xl:text-[18px]">“{item.verse.en.text}”</p>
         )}
         {paragraphs.map((p) => (
-          <p key={p.text} className="text-[16px] leading-[1.4] xl:text-[18px]">
+          <p key={p.text} className="text-[16px] leading-[1.4] 2xl:text-[18px]">
             {p.text}
           </p>
         ))}
@@ -56,7 +56,7 @@ export function ExhibitionRow({ item, reverse }: { item: Exhibition; reverse: bo
           src={item.image}
           alt={`${item.year} 졸업 작품전 ${item.name} 포스터`}
           fill
-          sizes="(min-width: 1699px) 600px, 50vw"
+          sizes="(min-width: 1280px) 600px, 50vw"
           className="object-cover"
         />
       </div>
