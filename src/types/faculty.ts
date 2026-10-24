@@ -20,6 +20,8 @@ export type CvEntry = { year?: string; text: string };
 
 /** 교수 상세(모달) 정보. 없는 항목은 화면에서 생략 */
 export type FacultyDetail = {
+  /** PC 모달 직함 줄 (없으면 카드 직함) */
+  title?: string;
   contact?: { office?: string; phone?: string; email?: string };
   /** 소개 문단 */
   intro?: string;

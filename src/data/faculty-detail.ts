@@ -4,6 +4,7 @@ import type { FacultyDetail } from "@/types/faculty";
 
 export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
   "lee-joongsup": {
+    "title": "학부장, 부교수/ 시각디자인, 서비스디자인",
     "contact": {
       "office": "느헤미야홀 213호",
       "phone": "054-260-1463",
