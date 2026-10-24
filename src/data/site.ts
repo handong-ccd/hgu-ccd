@@ -15,9 +15,9 @@ export const SOCIAL_LINKS = {
 } as const;
 
 /**
- * 커리큘럼 섹션 링크
- * - download: 파일 다운로드 (↓ 아이콘)
- * - external: 새 탭으로 열기 (↗ 아이콘, 밑줄)
+ * 커리큘럼 섹션 링크 — 둘 다 새 탭으로 열림 (href 가 "#" 이면 비활성)
+ * - download: ↓ 아이콘 (PDF 파일)
+ * - external: ↗ 아이콘, 밑줄
  */
 export const DOWNLOADS = [
   // TODO: 입학안내 책자 PDF 경로로 교체 (예: /files/admission-guide.pdf)
