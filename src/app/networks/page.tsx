@@ -32,7 +32,7 @@ function NetworkLink({ href, label }: { href: string; label: string }) {
 export default function NetworksPage() {
   return (
     <>
-      <Header />
+      <Header tone="light" />
       <main className="flex-1">
         <div className="relative aspect-[402/582] w-full overflow-hidden bg-neutral-200 md:aspect-[1919/706]">
           <Image
