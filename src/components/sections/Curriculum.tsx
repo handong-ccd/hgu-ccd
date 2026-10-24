@@ -45,19 +45,31 @@ function DownloadLinks({ variant }: { variant: "desktop" | "mobile" }) {
     <ul className={desktop ? "hidden shrink-0 items-start gap-12 md:flex" : "flex flex-col items-start gap-2 md:hidden"}>
       {DOWNLOADS.map((item) => {
         const external = item.kind === "external";
+        const ready = item.href !== "#";
+        const className = `flex items-center gap-1 leading-[1.4] font-medium whitespace-nowrap text-accent ${
+          desktop ? "text-[16px]" : "text-[14px]"
+        }`;
+        const content = (
+          <>
+            <span className={external ? "underline decoration-from-font" : undefined}>{item.label}</span>
+            {external ? <ExternalIcon k={k} /> : <DownloadIcon k={k} />}
+          </>
+        );
         return (
           <li key={item.label}>
-            <a
-              href={item.href}
-              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : { download: true })}
-              className={`flex items-center gap-1 leading-[1.4] font-medium whitespace-nowrap text-accent hover:opacity-70 ${
-                desktop ? "text-[16px]" : "text-[14px]"
-              }`}
-            >
-              <span className={external ? "underline decoration-from-font" : undefined}>{item.label}</span>
-              {external ? <ExternalIcon k={k} /> : <DownloadIcon k={k} />}
-              {external && <span className="sr-only">(새 탭에서 열림)</span>}
-            </a>
+            {ready ? (
+              // 파일도 강제 다운로드하지 않고 새 탭에서 열기
+              <a href={item.href} target="_blank" rel="noopener noreferrer" className={`${className} hover:opacity-70`}>
+                {content}
+                <span className="sr-only">(새 탭에서 열림)</span>
+              </a>
+            ) : (
+              // 파일 주소가 아직 없으면 링크 비활성 (예전엔 "#" + download 로 페이지 HTML이 받아졌음)
+              <span aria-disabled="true" title="준비 중" className={`${className} cursor-default`}>
+                {content}
+                <span className="sr-only">(준비 중)</span>
+              </span>
+            )}
           </li>
         );
       })}
