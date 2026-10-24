@@ -1,6 +1,6 @@
 // 더미 데이터 — USE_MOCK 모드에서 src/lib/api 가 반환. 백엔드 연결 후엔 참고용.
 // 전시 정보·졸업생 명단: 전시 정보 스프레드시트 기준 (졸업생은 가나다 순 정렬)
-// 포스터: 2015~2026 Figma 시안 / 2014 이전 드라이브 '졸전 포스터 이미지'. 온라인 전시 링크(archiveUrl)는 아직 없음
+// 포스터: 드라이브 '역대 디그리 도록 정보/졸전 포스터 이미지'. 온라인 전시 링크(archiveUrl)는 아직 없음
 import type { Exhibition } from "@/types/exhibition";
 
 export const EXHIBITIONS: Exhibition[] = [
@@ -47,9 +47,9 @@ export const EXHIBITIONS: Exhibition[] = [
         "text": "‘Filling to Flow’는 하나님께 받은 지혜와 재능이 세상으로 흘러가 새로운 가치를 만드는 과정을 담은 전시입니다. 학생들은 배움과 경험으로 자신을 채우고, 이를 각자의 디자인 언어로 확장했습니다. 출애굽기 31장 3절의 말씀처럼 지혜와 총명, 지식과 기술로 충만해져 사람과 사회를 이롭게 하는 디자인을 만들어 갈 예비 디자이너들의 흐름을 선보입니다."
       }
     ],
-    "image": "/images/exhibitions/01.png",
+    "image": "/images/exhibitions/2026.jpg",
     "size": {
-      "width": 400,
+      "width": 384,
       "height": 579
     }
   },
@@ -174,9 +174,9 @@ export const EXHIBITIONS: Exhibition[] = [
         "text": "‘Where the Light Begins’는 빛이 시작되는 지점에서 새로운 가능성과 능력을 발견하는 전시입니다. 학생들은 배움과 도전의 시간을 지나며 자신만의 시선과 디자인 역량을 작품에 담았습니다. 빌립보서 4장 13절의 말씀처럼 힘을 주시는 그리스도 안에서 한계를 넘어, 세상을 밝히는 창의적인 변화를 시작할 예비 디자이너들의 첫걸음을 보여줍니다."
       }
     ],
-    "image": "/images/exhibitions/02.png",
+    "image": "/images/exhibitions/2025.jpg",
     "size": {
-      "width": 515,
+      "width": 513,
       "height": 723
     }
   },
@@ -213,7 +213,7 @@ export const EXHIBITIONS: Exhibition[] = [
         "text": "‘One in Christ’는 서로 다른 사람들이 그리스도 안에서 하나의 공동체를 이루는 모습을 담은 전시입니다. 학생들은 각자의 개성과 전문성을 존중하면서 협력과 연결이 만들어 내는 가치를 탐구했습니다. 로마서 12장 5절의 말씀처럼 서로가 서로에게 필요한 존재임을 기억하며, 다양한 생각과 표현이 조화를 이루어 완성된 디자인을 선보입니다."
       }
     ],
-    "image": "/images/exhibitions/03.png",
+    "image": "/images/exhibitions/2024.jpg",
     "size": {
       "width": 384,
       "height": 385
@@ -252,9 +252,9 @@ export const EXHIBITIONS: Exhibition[] = [
         "text": "‘The Truth Shall Set You Free’는 수많은 정보와 기준 속에서 진정한 가치와 방향을 찾는 과정을 담은 전시입니다. 학생들은 익숙한 관점에 질문을 던지고, 디자인을 통해 자신이 발견한 진실을 표현했습니다. 요한복음 8장 32절의 말씀처럼 진리가 주는 자유를 바탕으로 세상과 사람을 새롭게 바라보며, 각자의 신념과 가능성을 담아낸 작품을 선보입니다."
       }
     ],
-    "image": "/images/exhibitions/04.png",
+    "image": "/images/exhibitions/2023.jpg",
     "size": {
-      "width": 454,
+      "width": 453,
       "height": 641
     }
   },
@@ -292,9 +292,9 @@ export const EXHIBITIONS: Exhibition[] = [
         "text": "‘Return to New’는 익숙함을 벗어나 처음의 마음으로 돌아가 새로움을 발견하는 과정을 담은 전시입니다. 학생들은 지나온 시간을 돌아보며 자신의 관점과 디자인 언어를 다시 정립했습니다. 고린도후서 4장 16절의 말씀처럼 날마다 새로워지는 마음으로 현재를 바라보고, 끊임없는 탐구와 성찰을 통해 앞으로 만들어 갈 새로운 가능성을 제안합니다."
       }
     ],
-    "image": "/images/exhibitions/05.jpg",
+    "image": "/images/exhibitions/2022.jpg",
     "size": {
-      "width": 522,
+      "width": 523,
       "height": 808
     }
   },
@@ -332,7 +332,7 @@ export const EXHIBITIONS: Exhibition[] = [
         "text": "‘Designations’는 각자에게 주어진 이름과 자리, 그리고 디자이너로서의 부르심을 탐구하는 전시입니다. 서로 다른 관심과 경험에서 출발한 학생들은 자신만의 역할과 방향을 디자인으로 구체화했습니다. 사도행전 1장 8절의 말씀을 바탕으로, 세상과 소통하며 긍정적인 변화를 만들어 갈 예비 디자이너들의 다양한 관점과 가능성을 한자리에 담았습니다."
       }
     ],
-    "image": "/images/exhibitions/06.png",
+    "image": "/images/exhibitions/2021.jpg",
     "size": {
       "width": 640,
       "height": 359
@@ -360,7 +360,7 @@ export const EXHIBITIONS: Exhibition[] = [
         "text": "‘They Are Meal for Us’는 두려움과 한계를 성장의 자양분으로 전환하는 태도를 이야기합니다. 예상하지 못한 변화와 어려움 속에서도 학생들은 각자의 질문을 멈추지 않고 디자인의 가능성을 탐구했습니다. 민수기 14장 9절의 말씀처럼 눈앞의 장벽에 머무르지 않고, 도전을 새로운 힘으로 삼아 앞으로 나아간 예비 디자이너들의 시선과 결과물을 선보입니다."
       }
     ],
-    "image": "/images/exhibitions/07.jpg",
+    "image": "/images/exhibitions/2020.jpg",
     "size": {
       "width": 536,
       "height": 759
@@ -402,7 +402,7 @@ export const EXHIBITIONS: Exhibition[] = [
         "text": "“네게 지시할 땅으로 가라”는 말은 미래완료형 시제의 한가지로서 아직 일어나지 않은 일이며 이에 대한 믿음과 신뢰를 요구합니다. 땅이라는 말은 목적지이며, 현재는 정확히 그곳을 볼 수 없습니다. 그래서, 늘 깨어 방향을 인지하고 매순간있을 지시를 잘 분별하여 정확히 한발씩 내딛어야 할 것입니다. 창세기 12장 1–2절의 말씀처럼 목적지를 모두 알 수 없는 순간에도 창조주의 인도하심을 신뢰하며, 자신만의 관점과 가능성을 발견해 가는 디자이너들의 여정을 보여줍니다."
       }
     ],
-    "image": "/images/exhibitions/08.png",
+    "image": "/images/exhibitions/2019.jpg",
     "size": {
       "width": 559,
       "height": 712
@@ -440,9 +440,9 @@ export const EXHIBITIONS: Exhibition[] = [
         "text": "‘Design Again’은 창조의 본질을 돌아보고 디자인의 의미를 다시 묻는 전시입니다. 학생들은 매일 다른 모습으로 떠오르는 달처럼 익숙한 세상과 일상을 새롭게 바라보았습니다. 전도서 12장 1절의 말씀을 바탕으로, 창조주를 기억하며 아름다움과 질서를 발견하고 이를 각자의 언어와 방식으로 재해석한 디자인을 선보입니다."
       }
     ],
-    "image": "/images/exhibitions/09.png",
+    "image": "/images/exhibitions/2018.jpg",
     "size": {
-      "width": 449,
+      "width": 448,
       "height": 896
     }
   },
@@ -478,7 +478,7 @@ export const EXHIBITIONS: Exhibition[] = [
         "text": "‘Spread Your Wings’는 새로운 세상을 향해 날개를 펼치는 청춘의 도전과 성장을 이야기합니다. 불확실함 속에서도 각자의 가능성을 믿고 앞으로 나아가는 학생들의 여정을 담았습니다. 시편 103편 5절의 말씀처럼, 하나님 안에서 새 힘을 얻어 더 넓은 세상으로 비상하고자 하는 예비 디자이너들의 시선과 열정을 작품으로 펼쳐 보입니다. 이 전시를 통해 관람자와 디자이너 모두 자신의 꿈을 되찾는 ‘꿈의 나래’, 미래의 도약을 위한 ‘상상의 나래’, 새로운 세상에 대한 ‘희망의 나래’를 펼쳐 나갈 것을 기대합니다."
       }
     ],
-    "image": "/images/exhibitions/10.png",
+    "image": "/images/exhibitions/2017.jpg",
     "size": {
       "width": 473,
       "height": 663
@@ -516,9 +516,9 @@ export const EXHIBITIONS: Exhibition[] = [
         "text": "‘Healing in the Light’는 세상의 상처와 어둠을 비추고 치유하는 빛의 의미를 담은 전시입니다. 학생들은 디자인이 사람과 사회에 건넬 수 있는 위로와 회복의 가능성을 탐구했습니다. 말라기 4장 2절의 말씀처럼, 각자의 자리에서 발견한 문제를 새로운 관점으로 조명하고 그 안에 따뜻한 변화와 희망을 전하는 작품을 선보입니다."
       }
     ],
-    "image": "/images/exhibitions/11.jpg",
+    "image": "/images/exhibitions/2016.jpg",
     "size": {
-      "width": 556,
+      "width": 557,
       "height": 788
     },
     "venueOnNewLine": true
@@ -555,7 +555,7 @@ export const EXHIBITIONS: Exhibition[] = [
         "text": "‘Make it Neue’는 ‘새롭게 하소서’라는 의미를 담은 전시입니다. 익숙한 생각과 표현에 머무르지 않고, 디자인을 통해 세상을 바라보는 새로운 시선과 가능성을 제안합니다. “내 안에 정한 마음을 창조하시고 내 안에 정직한 영을 새롭게 하소서”라는 시편 51편 10절의 말씀처럼, 창조주 안에서 새로워진 마음으로 완성한 졸업 작품을 선보입니다."
       }
     ],
-    "image": "/images/exhibitions/12.jpg",
+    "image": "/images/exhibitions/2015.jpg",
     "size": {
       "width": 473,
       "height": 670
