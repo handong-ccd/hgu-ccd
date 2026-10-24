@@ -6,8 +6,9 @@ type ContainerProps<T extends ElementType> = {
 
 /**
  * 콘텐츠 최대 1579px.
- * 1699px 이상: 좌우 여백이 늘어남 (1920 기준 170px)
- * 768~1699px: 좌우 여백 60px 고정, 콘텐츠 너비가 줄어듦
+ * 1920px 이상: 좌우 여백이 늘어남 (1920 기준 170px)
+ * 1280~1919px: 1920 레이아웃을 html zoom 으로 축소 (layout.tsx)
+ * 768~1279px: 좌우 여백 60px 고정, 콘텐츠 너비가 줄어듦
  * 768px 미만: 모바일 여백 16px
  */
 export function Container<T extends ElementType = "div">({
