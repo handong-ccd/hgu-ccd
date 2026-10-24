@@ -10,16 +10,17 @@ export const metadata: Metadata = {
 };
 
 /**
- * 1280~1919px 화면에서는 1920 시안을 화면 너비에 맞춰 비율 그대로 축소 (html zoom).
- * 첫 화면이 그려지기 전에 적용되도록 <head> 에서 바로 실행.
+ * 1280~1919px 화면에서는 1920 시안을 화면 너비에 맞춰 비율 그대로 축소.
+ * <html> 에 zoom 을 걸면 일부 Chrome 에서 미디어 쿼리까지 축소된 너비로 계산돼서
+ * 2xl 스타일이 빠지므로, <head> 에서는 CSS 변수(--page-zoom)만 정하고 zoom 은 <body> 에 건다 (globals.css).
  * 1920px 이상은 여백만 늘어나고, 1280px 미만은 반응형 레이아웃 그대로.
  */
 const FIT_DESIGN_SCRIPT = `(function(){
   var MIN = 1280, DESIGN = 1920, d = document.documentElement;
   function fit(){
     var w = window.innerWidth;
-    d.style.removeProperty("zoom"); // zoom 이 걸린 상태의 clientWidth 는 축소 전 값이 아니므로 먼저 해제
-    if (w >= MIN && w < DESIGN) d.style.zoom = String(d.clientWidth / DESIGN);
+    if (w >= MIN && w < DESIGN) d.style.setProperty("--page-zoom", String(d.clientWidth / DESIGN));
+    else d.style.removeProperty("--page-zoom");
   }
   fit();
   window.addEventListener("resize", fit);
@@ -29,7 +30,7 @@ const FIT_DESIGN_SCRIPT = `(function(){
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    // 스크립트가 html style(zoom)을 바꾸므로 hydration 경고 무시
+    // 스크립트가 html style(--page-zoom)을 바꾸므로 hydration 경고 무시
     <html lang="ko" className="h-full antialiased" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: FIT_DESIGN_SCRIPT }} />
