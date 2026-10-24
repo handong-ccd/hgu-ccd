@@ -10,6 +10,8 @@ import { DEFAULT_SIZE, ExhibitionMobileCard } from "./ExhibitionMobileCard";
 
 const MORE_HREF = "/exhibitions";
 const RAIL_ID = "exhibition-rail";
+/** 메인 PC 레일에 보여줄 최신 작품 수 (전체는 /exhibitions) */
+const RAIL_LIMIT = 10;
 
 
 function Body({ body }: { body: ExhibitionItem["body"] }) {
@@ -123,10 +125,10 @@ export async function Exhibition() {
         </Link>
       </div>
 
-      {/* Tablet+: 가로 스크롤 */}
+      {/* Tablet+: 가로 스크롤 — 최신 10개 */}
       <div className="mt-5 hidden md:block">
         <ExhibitionRail id={RAIL_ID}>
-          {exhibitions.map((item, i) => (
+          {exhibitions.slice(0, RAIL_LIMIT).map((item, i) => (
             <Fragment key={item.year}>
               {i > 0 && <span aria-hidden className="w-px shrink-0 self-stretch bg-line-soft" />}
               <DesktopCard item={item} />
