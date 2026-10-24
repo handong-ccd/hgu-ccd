@@ -20,14 +20,12 @@ function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactN
   );
 }
 
-/** 왼쪽 100px 연도 칸 + 내용 */
-function EntryList({ entries, large = false }: { entries: CvEntry[]; large?: boolean }) {
+/** 왼쪽 100px 연도 칸 + 내용 (간격 12px) — 연도가 빈 줄은 위 연도에 이어지는 항목 */
+function EntryList({ entries }: { entries: CvEntry[] }) {
   return (
-    <ul
-      className={`flex flex-col text-[14px] leading-[1.6] ${large ? "md:text-[20px] md:leading-[1.4]" : "md:text-[16px]"}`}
-    >
+    <ul className="flex flex-col text-[14px] leading-[1.6] md:text-[16px]">
       {entries.map((e, i) => (
-        <li key={i} className="flex gap-3 md:gap-[37px]">
+        <li key={i} className="flex gap-3">
           <span className="w-[100px] shrink-0">{e.year}</span>
           <span className="min-w-0 flex-1">{e.text}</span>
         </li>
@@ -147,16 +145,24 @@ function Detail({ person }: { person: Faculty }) {
 
       {/* 오른쪽: CV */}
       <div className="flex min-w-0 flex-1 flex-col gap-10 md:gap-[60px]">
+        {/* 시안 44:2926: Major → Research Interest → Biography → Awards → (기타) → Publications → Patent → Works */}
         <Section title="Major">
-          <ul className="text-[14px] leading-[1.6] md:text-[16px]">
-            {(d.major ?? [person.education]).map((m) => (
-              <li key={m}>{m}</li>
-            ))}
-          </ul>
+          {d.major?.length ? (
+            d.major.some((m) => m.year) ? (
+              <EntryList entries={d.major} />
+            ) : (
+              <ul className="text-[14px] leading-[1.6] md:text-[16px]">
+                {d.major.map((m) => (
+                  <li key={m.text}>{m.text}</li>
+                ))}
+              </ul>
+            )
+          ) : (
+            <p className="text-[14px] leading-[1.6] md:text-[16px]">{person.education}</p>
+          )}
         </Section>
         {d.researchInterest && (
-          // PC 시안(6:264)은 Research Interest가 맨 위, 모바일 시안(6:2285)은 Major 다음
-          <Section title="Research Interest" className="md:-order-1">
+          <Section title="Research Interest">
             <p className="text-[14px] leading-[1.4] md:text-[16px]">{d.researchInterest}</p>
           </Section>
         )}
@@ -170,21 +176,27 @@ function Detail({ person }: { person: Faculty }) {
             <EntryList entries={d.awards} />
           </Section>
         ) : null}
-        {d.patents?.length ? (
-          <Section title="Patent">
-            {/* PC 시안: Patent만 20px */}
-            <EntryList entries={d.patents} large />
+        {d.extra?.map((sec) => (
+          <Section key={sec.title} title={sec.title}>
+            <EntryList entries={sec.entries} />
           </Section>
-        ) : null}
+        ))}
         {d.publications?.length ? (
           <Collapsible title="Publications">
-            {d.publications.map((group) => (
-              <div key={group.label} className="flex flex-col gap-2">
-                <h4 className="font-telegraf text-[14px] leading-[1.06] uppercase md:text-[16px]">{group.label}</h4>
+            {d.publications.map((group, i) => (
+              <div key={group.label ?? i} className="flex flex-col gap-2">
+                {group.label && (
+                  <h4 className="font-telegraf text-[14px] leading-[1.06] uppercase md:text-[16px]">{group.label}</h4>
+                )}
                 <EntryList entries={group.entries} />
                 {group.note && <p className="text-[14px] leading-[1.6] md:text-[16px]">{group.note}</p>}
               </div>
             ))}
+          </Collapsible>
+        ) : null}
+        {d.patents?.length ? (
+          <Collapsible title="Patent">
+            <EntryList entries={d.patents} />
           </Collapsible>
         ) : null}
         {d.works?.length ? (
