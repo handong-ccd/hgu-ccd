@@ -8,21 +8,16 @@ import { FacultyModal } from "./FacultyModal";
 const SIZES = "(min-width: 1280px) 376px, (min-width: 768px) 33vw, 50vw";
 const HASH_PREFIX = "#faculty-";
 
-function FacultyCard({ person, onOpen }: { person: Faculty; onOpen: () => void }) {
+function CardBody({ person, interactive }: { person: Faculty; interactive: boolean }) {
   return (
-    <button
-      type="button"
-      onClick={onOpen}
-      aria-haspopup="dialog"
-      className="group flex w-full flex-col gap-2 text-left md:gap-4"
-    >
+    <>
       <span className="relative block aspect-[1122/1402] w-full overflow-hidden bg-neutral-100">
         <Image
           src={person.image}
           alt=""
           fill
           sizes={SIZES}
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          className={`object-cover ${interactive ? "transition-transform duration-500 group-hover:scale-[1.02]" : ""}`}
           style={{ objectPosition: person.objectPosition ?? "center" }}
         />
       </span>
@@ -33,8 +28,26 @@ function FacultyCard({ person, onOpen }: { person: Faculty; onOpen: () => void }
             {person.position ? `${person.nameKo}, ${person.position}` : person.nameKo}
           </span>
         </span>
-        <span className="text-[12px] font-medium md:text-[16px]">{person.education}</span>
+        {person.education && <span className="text-[12px] font-medium md:text-[16px]">{person.education}</span>}
       </span>
+    </>
+  );
+}
+
+const CARD = "group flex w-full flex-col gap-2 text-left md:gap-4";
+
+/** 상세 정보가 있는 교수님만 버튼(모달 열기), 없으면 클릭 안 되는 카드 */
+function FacultyCard({ person, onOpen }: { person: Faculty; onOpen: () => void }) {
+  if (!person.detail) {
+    return (
+      <div className={CARD}>
+        <CardBody person={person} interactive={false} />
+      </div>
+    );
+  }
+  return (
+    <button type="button" onClick={onOpen} aria-haspopup="dialog" className={CARD}>
+      <CardBody person={person} interactive />
     </button>
   );
 }
@@ -42,7 +55,8 @@ function FacultyCard({ person, onOpen }: { person: Faculty; onOpen: () => void }
 /** 교수진 그리드 + 상세 모달. 열린 교수는 URL 해시(#faculty-slug)로 공유 가능 */
 export function FacultyDirectory({ faculty }: { faculty: Faculty[] }) {
   const [slug, setSlug] = useState<string | null>(null);
-  const selected = faculty.find((f) => f.slug === slug) ?? null;
+  // 상세 정보 없는 교수님은 해시로 들어와도 열지 않음
+  const selected = faculty.find((f) => f.slug === slug && f.detail) ?? null;
 
   const open = useCallback((next: string) => {
     setSlug(next);

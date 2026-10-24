@@ -26,11 +26,14 @@ export type FacultyDetail = {
   /** 소개 문단 */
   intro?: string;
   /** 없으면 카드의 education 한 줄을 표시 */
-  major?: string[];
+  major?: CvEntry[];
   researchInterest?: string;
   biography?: CvEntry[];
   awards?: CvEntry[];
   patents?: CvEntry[];
-  publications?: { label: string; entries: CvEntry[]; note?: string }[];
+  /** label: 소분류 (Peer-reviewed Journal Articles 등). 없으면 제목 없이 목록만 */
+  publications?: { label?: string; entries: CvEntry[]; note?: string }[];
   works?: CvEntry[];
+  /** 시트에 자유롭게 추가된 항목 (Affiliations, Teaching 등) — Awards 다음에 표시 */
+  extra?: { title: string; entries: CvEntry[] }[];
 };
