@@ -25,15 +25,15 @@ const LIST: Omit<Faculty, "detail">[] = [
     education: "Communication Design, M.S., Pratt Institute, NY, US",
     image: "/images/faculty/yi-jaesun.jpg",
   },
+    {
+    slug: "ju-youngmin", nameEn: "Youngmin Ju", nameKo: "주영민", position: "부교수",
+    education: "Hongik University, Industrial Design, M.F.A.",
+    image: "/images/faculty/ju-youngmin.jpg",
+  },
   {
     slug: "choi-inwook", nameEn: "InWook Choi", nameKo: "최인욱", position: "교수/ HUSS미래디자인 사업단 단장",
     education: "Computer Graphics Design, M.F.A., Rochester Inst. of Tech., NY, US.",
     image: "/images/faculty/choi-inwook.jpg",
-  },
-  {
-    slug: "ju-youngmin", nameEn: "Youngmin Ju", nameKo: "주영민", position: "부교수",
-    education: "Hongik University, Industrial Design, M.F.A.",
-    image: "/images/faculty/ju-youngmin.jpg",
   },
   {
     slug: "lee-joohyun", nameEn: "Joohyun Lee", nameKo: "이주현", position: "초빙교수",
