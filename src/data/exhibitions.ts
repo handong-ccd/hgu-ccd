@@ -1,6 +1,6 @@
 // 더미 데이터 — USE_MOCK 모드에서 src/lib/api 가 반환. 백엔드 연결 후엔 참고용.
 // 전시 정보·졸업생 명단: 전시 정보 스프레드시트 기준 (졸업생은 가나다 순 정렬)
-// 포스터: 드라이브 '역대 디그리 도록 정보/졸전 포스터 이미지'. 온라인 전시 링크(archiveUrl)는 아직 없음
+// 포스터: 드라이브 '역대 디그리 도록 정보/졸전 포스터 이미지'. 온라인 전시 링크(archiveUrl)는 2026만 있음
 import type { Exhibition } from "@/types/exhibition";
 
 export const EXHIBITIONS: Exhibition[] = [
@@ -47,6 +47,7 @@ export const EXHIBITIONS: Exhibition[] = [
         "text": "‘Filling to Flow’는 하나님께 받은 지혜와 재능이 세상으로 흘러가 새로운 가치를 만드는 과정을 담은 전시입니다. 학생들은 배움과 경험으로 자신을 채우고, 이를 각자의 디자인 언어로 확장했습니다. 출애굽기 31장 3절의 말씀처럼 지혜와 총명, 지식과 기술로 충만해져 사람과 사회를 이롭게 하는 디자인을 만들어 갈 예비 디자이너들의 흐름을 선보입니다."
       }
     ],
+    "archiveUrl": "https://harlo-ii.github.io/hgu-filling-to-flowing-comingsoon/",
     "image": "/images/exhibitions/2026.jpg",
     "size": {
       "width": 384,

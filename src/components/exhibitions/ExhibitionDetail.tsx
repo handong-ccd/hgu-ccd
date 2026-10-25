@@ -7,11 +7,12 @@ import { dateVenue } from "@/lib/exhibition";
 
 /** 온라인 전시로 가는 버튼 — archiveUrl 이 있을 때만. 모바일은 전체 너비 */
 function ArchiveLink({ href, full = false }: { href: string; full?: boolean }) {
+  // 외부 주소만 새 탭으로 (임시 "#" 은 그냥 링크)
+  const external = /^https?:\/\//.test(href);
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      {...(external && { target: "_blank", rel: "noopener noreferrer" })}
       className={`flex items-center justify-center gap-[5.714px] border border-white px-5 py-4 transition-opacity hover:opacity-70 ${
         full ? "w-full" : "self-start"
       }`}
@@ -22,7 +23,7 @@ function ArchiveLink({ href, full = false }: { href: string; full?: boolean }) {
         Go to archive
       </span>
       <ArrowUpRight size={20} color="white" />
-      <span className="sr-only">(온라인 전시, 새 탭에서 열림)</span>
+      {external && <span className="sr-only">(온라인 전시, 새 탭에서 열림)</span>}
     </a>
   );
 }
