@@ -12,17 +12,14 @@ function CardBody({ person, interactive }: { person: Faculty; interactive: boole
   return (
     <>
       <span className="relative block aspect-[1122/1402] w-full overflow-hidden bg-neutral-100">
-        {/* 사진 없는 교수님(백엔드에 미등록)은 회색 배경만 */}
-        {person.image && (
-          <Image
-            src={person.image}
-            alt=""
-            fill
-            sizes={SIZES}
-            className={`object-cover ${interactive ? "transition-transform duration-500 group-hover:scale-[1.02]" : ""}`}
-            style={{ objectPosition: person.objectPosition ?? "center" }}
-          />
-        )}
+        <Image
+          src={person.image}
+          alt=""
+          fill
+          sizes={SIZES}
+          className={`object-cover ${interactive ? "transition-transform duration-500 group-hover:scale-[1.02]" : ""}`}
+          style={{ objectPosition: person.objectPosition ?? "center" }}
+        />
       </span>
       <span className="flex flex-col gap-2 leading-[1.2]">
         <span className="flex flex-col gap-1">

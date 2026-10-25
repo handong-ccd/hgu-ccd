@@ -92,16 +92,14 @@ function Detail({ person }: { person: Faculty }) {
       <div className="flex w-full flex-col gap-10 lg:w-[320px] lg:shrink-0 2xl:w-[420px]">
         <div className="flex flex-col gap-[22.873px]">
           <div className="relative aspect-[1122/1402] w-full overflow-hidden bg-neutral-800">
-            {person.image && (
-              <Image
-                src={person.image}
-                alt=""
-                fill
-                sizes="(min-width: 1280px) 420px, (min-width: 1080px) 320px, 100vw"
-                className="object-cover"
-                style={{ objectPosition: person.objectPosition ?? "center" }}
-              />
-            )}
+            <Image
+              src={person.image}
+              alt=""
+              fill
+              sizes="(min-width: 1280px) 420px, (min-width: 1080px) 320px, 100vw"
+              className="object-cover"
+              style={{ objectPosition: person.objectPosition ?? "center" }}
+            />
           </div>
           <div className="flex flex-col gap-3 leading-[1.2]">
             <div className="flex flex-col gap-1">
