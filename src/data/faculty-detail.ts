@@ -7,7 +7,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
   "lee-joongsup": {
     "title": "학부장, 부교수/ 그래픽디자인, 서비스디자인",
     "contact": {
-      "office": "느헤미야홀 213호",
+      "office": "느헤미야홀(NHM) 213호",
       "phone": "054-260-1463",
       "email": "joongsup@handong.edu"
     },
@@ -221,7 +221,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
   "park-chansong": {
     "title": "조교수 / 모빌리티디자인, 인간공학디자인",
     "contact": {
-      "office": "느헤미야홀 216호",
+      "office": "느헤미야홀(NHM) 216호",
       "phone": "054-260-1437",
       "email": "cspark@handong.edu"
     },
@@ -814,7 +814,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
   "choi-inwook": {
     "title": "교수 / 제품디자인, 컴퓨터그래픽디자인",
     "contact": {
-      "office": "NMH 218A",
+      "office": "느헤미야홀(NHM) 218A호",
       "phone": "054 260 1467",
       "email": "faithful@handong.edu"
     },
