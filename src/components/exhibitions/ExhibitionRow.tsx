@@ -51,7 +51,7 @@ export function ExhibitionRow({ item, reverse }: { item: Exhibition; reverse: bo
           className="flex items-center gap-[5.714px] self-start border border-black px-5 py-4 transition-colors hover:bg-black hover:text-white [&:hover_img]:invert"
         >
           <span className="font-telegraf text-[22.857px] leading-none uppercase [text-box:trim-both_cap_alphabetic]">
-            Go to archive
+            Online Exhibition
           </span>
           <ArrowUpRight size={20} color="black" />
         </Link>
