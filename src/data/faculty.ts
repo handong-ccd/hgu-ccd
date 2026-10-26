@@ -1,10 +1,10 @@
 // 더미 데이터 — USE_MOCK 모드에서 src/lib/api 가 반환. 백엔드 연결 후엔 참고용.
-// 국문 이름·직책·학력: 교수진 정보 스프레드시트 '메인페이지' 시트 기준
-// 영문 이름은 '이름 성' 형식, 순서는 드라이브 사진 순서 기준
+// 이름·직책·학력·순서: 교수진 정보 스프레드시트 '메인페이지' 시트 기준 (직책별 가나다 순, 학부장 맨 앞)
 // 사진: 드라이브 '교수진 사진_1차 생성본' (최수신 교수님은 사진 준비 중이라 Figma 원본 유지)
 import type { Faculty } from "@/types/faculty";
 import { FACULTY_DETAILS } from "./faculty-detail";
 
+// 영문 이름은 '이름 성' 형식, 노출 순서는 드라이브 사진 순서 기준
 const LIST: Omit<Faculty, "detail">[] = [
   {
     slug: "lee-joongsup", nameEn: "Joongsup Lee", nameKo: "이중섭", position: "부교수/ 학부장",
