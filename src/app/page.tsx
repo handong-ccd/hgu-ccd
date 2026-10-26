@@ -7,7 +7,6 @@ import { Exhibition } from "@/components/sections/Exhibition";
 import { Faculties } from "@/components/sections/Faculties";
 import { Hero } from "@/components/sections/Hero";
 import { Intro } from "@/components/sections/Intro";
-import { Networks } from "@/components/sections/Networks";
 
 export default function Home() {
   return (
@@ -27,10 +26,6 @@ export default function Home() {
           </Container>
           <Container className="pt-10 pb-10 md:pt-0 md:pb-[100px]">
             <Exhibition />
-          </Container>
-          {/* Figma: PC(6:328)는 NETWORKS 섹션 숨김, 모바일(6:2071)은 유지 */}
-          <Container className="pt-10 md:pt-0 lg:hidden">
-            <Networks />
           </Container>
         </div>
       </main>
