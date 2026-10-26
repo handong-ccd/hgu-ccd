@@ -8,8 +8,8 @@ export const NAV_ITEMS = [
 
 // TODO: 실제 채널 주소로 교체
 export const SOCIAL_LINKS = {
-  youtube: "#",
-  instagram: "#",
+  youtube: "https://www.youtube.com/channel/UCVdPrSGA4SpK6hoLPzjQg0Q",
+  instagram: "https://www.instagram.com/design_hgu/",
   email: "#",
   hgu: "https://www.handong.edu",
 } as const;

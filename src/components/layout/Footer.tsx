@@ -28,9 +28,18 @@ function FollowList() {
     <ul className="font-telegraf text-[12px] leading-[1.2] tracking-[-0.01em]">
       {FOLLOW.map((item) => (
         <li key={item.label}>
-          <a href={item.href} className="hover:opacity-60">
-            {item.label}
-          </a>
+          {item.href === "#" ? (
+            // 링크 준비 전
+            <span aria-disabled="true">{item.label}</span>
+          ) : (
+            <a
+              href={item.href}
+              {...(item.href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}
+              className="hover:opacity-60"
+            >
+              {item.label}
+            </a>
+          )}
         </li>
       ))}
     </ul>
