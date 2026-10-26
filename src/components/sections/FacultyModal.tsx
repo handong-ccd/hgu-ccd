@@ -20,10 +20,10 @@ function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactN
   );
 }
 
-/** 왼쪽 100px 연도 칸 + 내용 (간격 12px) — 연도가 빈 줄은 위 연도에 이어지는 항목 */
+/** 왼쪽 100px 연도 칸 + 내용 (간격 12px), 항목 사이 8px — 연도가 빈 줄은 위 연도에 이어지는 항목 */
 function EntryList({ entries, limit }: { entries: CvEntry[]; limit?: number }) {
   return (
-    <ul className="flex flex-col text-[14px] leading-[1.6] md:text-[16px]">
+    <ul className="flex flex-col gap-1.5 text-[14px] leading-[1.6] md:gap-2 md:text-[16px]">
       {entries.slice(0, limit).map((e, i) => (
         <li key={i} className="flex gap-3">
           <span className="w-[100px] shrink-0">{e.year}</span>
@@ -178,17 +178,23 @@ function Detail({ person }: { person: Faculty }) {
           </dl>
         )}
 
+        {/* 소개 — 국문 14px/160%, 영문 14px/140% (시안 44:3598 등), 모바일 13px */}
         {d.intro && (
-          <p className="text-[13px] leading-[1.6] tracking-[-0.02em] md:text-[18px] md:leading-[1.4] md:tracking-normal">
+          <p className="text-[13px] leading-[1.6] tracking-[-0.02em] whitespace-pre-line md:text-[14px] md:tracking-normal">
             {d.intro}
+          </p>
+        )}
+        {d.introEn && (
+          <p lang="en" className="text-[13px] leading-[1.4] whitespace-pre-line md:text-[14px]">
+            {d.introEn}
           </p>
         )}
       </div>
 
       {/* 오른쪽: CV */}
       <div className="flex min-w-0 flex-1 flex-col gap-10 md:gap-[60px]">
-        {/* Major → Research Interest → Biography → Awards → (기타) → Publications → Patent → Works
-            모든 항목은 5개까지 보이고, 넘으면 화살표로 펼치기 (Figma 6:198) */}
+        {/* Major → Biography → Awards → Publications → Works → Patent → Research Interest → (기타)
+            시안 44:2927·44:3598 등 순서. 모든 항목은 5개까지 보이고, 넘으면 화살표로 펼치기 (Figma 6:198) */}
         <Section title="Major" total={d.major?.length}>
           {(limit) =>
             d.major?.length ? (
@@ -206,11 +212,6 @@ function Detail({ person }: { person: Faculty }) {
             )
           }
         </Section>
-        {d.researchInterest && (
-          <Section title="Research Interest">
-            <p className="text-[14px] leading-[1.4] md:text-[16px]">{d.researchInterest}</p>
-          </Section>
-        )}
         {d.biography?.length ? (
           <Section title="Biography" total={d.biography.length}>
             {(limit) => <EntryList entries={d.biography!} limit={limit} />}
@@ -221,19 +222,12 @@ function Detail({ person }: { person: Faculty }) {
             {(limit) => <EntryList entries={d.awards!} limit={limit} />}
           </Section>
         ) : null}
-        {d.extra?.map((sec) => (
-          <Section key={sec.title} title={sec.title} total={sec.entries.length}>
-            {(limit) => <EntryList entries={sec.entries} limit={limit} />}
-          </Section>
-        ))}
         {d.publications?.length ? (
-          <Section title="Publications" total={d.publications.reduce((n, g) => n + g.entries.length, 0)}>
+          <Section
+            title={d.publicationsTitle ?? "Publications"}
+            total={d.publications.reduce((n, g) => n + g.entries.length, 0)}
+          >
             {(limit) => <Publications groups={d.publications!} limit={limit} />}
-          </Section>
-        ) : null}
-        {d.patents?.length ? (
-          <Section title="Patent" total={d.patents.length}>
-            {(limit) => <EntryList entries={d.patents!} limit={limit} />}
           </Section>
         ) : null}
         {d.works?.length ? (
@@ -241,6 +235,21 @@ function Detail({ person }: { person: Faculty }) {
             {(limit) => <EntryList entries={d.works!} limit={limit} />}
           </Section>
         ) : null}
+        {d.patents?.length ? (
+          <Section title="Patent" total={d.patents.length}>
+            {(limit) => <EntryList entries={d.patents!} limit={limit} />}
+          </Section>
+        ) : null}
+        {d.researchInterest && (
+          <Section title="Research Interest">
+            <p className="text-[14px] leading-[1.4] md:text-[16px]">{d.researchInterest}</p>
+          </Section>
+        )}
+        {d.extra?.map((sec) => (
+          <Section key={sec.title} title={sec.title} total={sec.entries.length}>
+            {(limit) => <EntryList entries={sec.entries} limit={limit} />}
+          </Section>
+        ))}
       </div>
     </div>
   );
