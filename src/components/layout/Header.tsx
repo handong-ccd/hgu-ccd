@@ -52,7 +52,7 @@ export function Header({ tone = "dark" }: { tone?: Tone }) {
       </Container>
 
       {/* Mobile / Tablet (<1080) */}
-      <div className="flex h-[72px] items-center justify-between px-[23px] md:px-[60px] lg:hidden">
+      <div className="flex h-[60px] items-center justify-between px-[23px] md:px-[60px] lg:hidden">
         <Link href="/" aria-label="HGU CCD 홈" className="text-current">
           <LogoCcd width={44.3855} />
         </Link>
@@ -83,7 +83,7 @@ export function Header({ tone = "dark" }: { tone?: Tone }) {
       {open && (
         <div
           id="mobile-menu"
-          className={`fixed inset-x-0 top-[72px] bottom-0 overflow-y-auto lg:hidden ${light ? "bg-white" : "bg-black"}`}
+          className={`fixed inset-x-0 top-[60px] bottom-0 overflow-y-auto lg:hidden ${light ? "bg-white" : "bg-black"}`}
         >
           <nav aria-label="주요 메뉴" className="px-4 pt-6 pb-10 md:px-[60px]">
             <ul className="flex flex-col">
