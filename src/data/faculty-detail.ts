@@ -12,6 +12,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
       "email": "joongsup@handong.edu"
     },
     "intro": "이중섭 교수는 아이오와 주립대에서 그래픽디자인 MFA를 받았다. 디자인 전문회사 DBwI를 운영하였으며 다양한 기관 및 기업의 프로젝트를 경험하였으다. 한동대학교 부임 후, 중소기업 및 공공기관의 브랜딩 및 서비스(경험) 디자인 프로젝트를 수행하였다. 주된 연구 관심사는 디자인 분야 뿐만 아니라 기술, 문화, 산업 등 외부적인 경계가 사라지고 있는 초융합 시대에 그래픽디자인이 어떻게 발전하고 이 시대를 준비해야 하는지에 촛점을 맞추고 있다. 그리고 새로운 세대에게 어떤것들을 물려주고, 디자인의 경계를 넘어 그 역할을 확장시키는 가치 있는 교육을 하는 데에 있다.",
+    "introEn": "Professor Joongsub Lee received his Master of Fine Arts in Graphic Design from Iowa State University. He founded and directed DBwI, a professional design consultancy, where he gained extensive experience working on projects for a wide range of organizations and corporations. Since joining the faculty at Handong Global University, he has led numerous branding and service experience design projects for small and medium-sized enterprises and public institutions.\n\nHis primary research interests focus on the evolving role and future direction of graphic design in an era of unprecedented convergence, where traditional boundaries between design, technology, culture, and industry are becoming increasingly blurred. His work explores how graphic design can evolve, adapt, and prepare for the opportunities and challenges of this rapidly changing landscape.\n\nHe is also deeply committed to design education, particularly to identifying the knowledge, values, and perspectives that should be passed on to future generations of designers. Through his teaching, he seeks to cultivate a broader understanding of design, encouraging students to transcend conventional disciplinary boundaries and expand the role and impact of design in society.",
     "major": [
       {
         "year": "2015",
@@ -226,6 +227,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
       "email": "cspark@handong.edu"
     },
     "intro": "박찬송 교수는 스웨덴 우메오 대학교 디자인대학에서 운송디자인 MFA를 받았다. HD현대 디자인센터에서 약 10년간 선임·책임연구원으로 재직하며 선박, 의료·산업용 로봇, 산업차량, 건설장비의 내외장 디자인과 가상 휴먼 시뮬레이션 기반의 인간공학 디자인 가이드 개발을 이끌었다. 2021년 한동대학교에 부임한 후에는 KG모빌리티, 한국항공우주산업, 한화 등과 함께 차세대 SUV 인테리어, KF-21 전투기 위장 도장 그래픽, K9 자주포 인간공학 디자인 가이드라인 등의 산학 프로젝트를 수행하였다. 주된 연구 관심사는 모빌리티·로봇·선박 디자인, 가상 휴먼 시뮬레이션을 활용한 인간공학적 디자인 평가 및 3D 모델링 설계이다.",
+    "introEn": "Professor Chansong Park received his MFA in Transportation Design from Umeå Institute of Design, Sweden. For about ten years at HD Hyundai Design Center, as a industrial designer, he led the exterior and interior design of oceanographic research vessels, medical and industrial robots, industrial vehicles and construction equipment, and developed ergonomic design guidelines based on virtual human simulation. Since joining Handong Global University in 2021, he has carried out industry-academia projects with KG Mobility, Korea Aerospace Industries(KAI) and Hanwha, including next-generation SUV interiors, camouflage graphics for the KF-21 fighter and ergonomic design guidelines for the K9 self-propelled howitzer. His research interests are mobility, robot and marine vessel design, ergonomic design evaluation using virtual human simulation, and 3D modeling.",
     "major": [
       {
         "year": "2007 - 2009",
@@ -234,7 +236,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
     ],
     "biography": [
       {
-        "year": "2021 - Present",
+        "year": "2021 -",
         "text": "Assistant Professor | School of Contents Convergence Design, Handong Global University"
       },
       {
@@ -406,6 +408,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
       "email": "sbell@handong.edu"
     },
     "intro": "이은종 교수는 KAIST 산업디자인학과에서 학사, 석사 및 박사과정을 수료하였다. 1997년부터 한동대학교 콘텐츠융합디자인학부 교수로 재직 중이며, Design 연구소 및 Life Experience Design 연구소 소장을 맡고 있다. LG전자, 삼성전자, KAI(한국항공우주산업), SK텔레콤 및 정부 산하 기관과의 수많은 산학/국가 연구 프로젝트를 총괄하였으며, 최근에는 AI 기반 UX/UI 디자인 프레임워크, 모빌리티 UX, Generative AI 가전 및 인터페이스 설계 연구를 활발히 수행하고 있다.",
+    "introEn": "Professor Eun-jong Lee completed his B.S., M.S., and Ph.D. coursework in Industrial Design at KAIST. Since 1997, he has been a Professor in the School of Contents Convergence Design at Handong Global University and serves as the Director of the Design Research Institute. He has led numerous industry-academia and national research projects with major corporations including LG Electronics, Samsung Electronics, KAI, and SK Telecom. His current research focuses on AI-based UX/UI design frameworks, mobility UX, generative AI appliances, and multimodal user interface design.",
     "major": [
       {
         "year": "2008",
@@ -585,6 +588,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
       "email": "youngmin@handong.edu"
     },
     "intro": "주영민 교수는 동시대의 현상과 사람들의 경험을 바탕으로 디자인을 연구하고 실천한다. SK텔레콤에서 AI·로봇·서비스 플랫폼의 UX와 스마트 디바이스 기획·디자인을 이끌었으며, 브랜드 컨설팅펌 Clay의 전략총괄을 거쳐 AX 디자인 컨설팅펌 ㈜히든피겨스(hddn)를 설립했다. 이후 국내외 주요 정보통신 및 금융, 모빌리티 기업들의 브랜드와 디지털 제품·서비스 디자인의 혁신 전략을 컨설팅한 경험을 바탕으로 한국디자인학회 이사, 한국HCI학회 조직위원 등의 활동을 통해 산업과 학문의 가치를 의미있게 연결하려 노력해왔다. 주요 관심사는 시각 언어, 경험과 감각, 형태와 태도의 관계이며, 브랜드 경험과 인식이 행동에 미치는 영향과 AI 기반 서비스 디자인을 연구하고 있다.",
+    "introEn": "Professor Youngmin Ju’s design research and practice are grounded in an understanding of contemporary phenomena and human experience. At SK Telecom, he led UX design for AI, robotics, and service platforms, as well as smart device planning and design. He later served as Head of Strategy at brand consultancy Clay before founding Hidden Figures Inc. (hddn), an AX design consultancy. He has since advised leading ICT, financial services, and mobility companies in Korea and abroad on innovation strategies for branding and digital product and service design. Drawing on this experience, he has worked to build meaningful connections between industry and academia through his service as a board member of the Korean Society of Design Science and an organizing committee member of the HCI Society of Korea. His primary interests include visual language, experience and sensory perception, and the relationship between form and attitude. His research focuses on how brand experience and perception influence behavior and on AI-based service design.",
     "major": [
       {
         "year": "2022",
@@ -593,7 +597,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
     ],
     "biography": [
       {
-        "year": "2026 - Present",
+        "year": "2026 -",
         "text": "Associate Professor, School of Contents Convergence Design, Handong Global University"
       },
       {
@@ -649,11 +653,11 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
         "title": "Affiliations",
         "entries": [
           {
-            "year": "2026 - Present",
+            "year": "2026 -",
             "text": "Board Member, Korean Society of Design Science (한국디자인학회)"
           },
           {
-            "year": "2024 - Present",
+            "year": "2024 -",
             "text": "Organizing Committee Member, HCI Society of Korea (한국HCI학회)"
           }
         ]
@@ -819,6 +823,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
       "email": "faithful@handong.edu"
     },
     "intro": "최인욱 교수는 국민대학교 공업디자인학과를 졸업하고 LG전자에서 연구원으로 근무한 뒤, 미국으로 건너가 로체스터 공과대학교(RIT)에서 컴퓨터 그래픽 디자인을 공부했습니다. 그는 미국 한국인 교회에서 만난 학생을 통해 한동대학교를 알게 되었으며, 졸업과 동시에 기회가 열려서 감사한 마음으로 한동대학교에 오게 되었습니다. \n대학 1학년 때에 캠퍼스 복음화에 대한 소명을 경험하고 즉시 선교 단체에서 훈련을 받았으며, 캠퍼스 개척과 제자 훈련, 성경 공부를 통해 하나님의 나라를 확장하는 일에 소망을 가져 왔습니다. 이러한 사명은 미국에서도 이어져, 현지 한인 청년들을 대상으로 교회와 대학 캠퍼스에서 선교 활동을 이어왔습니다. 한동대학교에 와서는  '그리스도인을 위한 섬김'이라는 모토를 갖게 되었으며 크리스챤 대학생들을 포함하여 도움이 필요한 여러 상황에 필요한 선물을 가져다 주는 생활을 큰 기쁨으로 여기며, 섬길 수 있는 기회를 주시는 하나님께 깊이 감사하고 있습니다.\n그는 디자인을 통해 건강 증진에 기여할 방법을 꾸준히 모색하고 있으며, 특히 경도 인지 장애나 ADHD를 비롯한 다양한 정신 건강 문제를 위한 디지털 진단 도구 및 치료제를 개발하는 데에 관심이 있습니다.",
+    "introEn": "Professor In-Wook Choi graduated from the Department of Industrial Design at Kookmin University and worked as a researcher at LG Electronics before moving to the United States to study Computer Graphic Design at the Rochester Institute of Technology (RIT). He first learned about Handong Global University through a student he met at a Korean-American church in the U.S.; upon his graduation, an opportunity arose, and he joined the faculty at Handong with a heart full of gratitude.\nDuring his freshman year of college, he experienced a calling toward campus evangelism. He immediately began training with a missionary organization and has since dedicated himself to expanding the Kingdom of God through campus pioneering, discipleship training, and Bible study. This mission continued during his time in the U.S., where he engaged in outreach activities for young Korean-Americans within both church and university campus settings. Since arriving at Handong Global University, he has adopted the motto \"Service for Christians.\" He finds great joy in providing support—in whatever form is needed—to those around him, including Christian university students, and he is deeply thankful to God for the opportunities to serve.\nHe consistently explores ways to contribute to health and well-being through design, with a particular interest in developing digital diagnostic tools and therapeutic interventions for various mental health conditions, including mild cognitive impairment and ADHD.",
     "major": [
       {
         "year": "2002 ~ 2005",
@@ -831,11 +836,11 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
     ],
     "biography": [
       {
-        "year": "2009 ~ 현재",
+        "year": "2009 -",
         "text": "한동대학교 콘텐츠융합디자인학부 교수"
       },
       {
-        "year": "2026 ~ 현재",
+        "year": "2026 -",
         "text": "한동대학교 HUSS미래디자인 사업단 단장"
       },
       {
@@ -847,7 +852,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
         "text": "한동대학교 환동해지역혁신원 원장"
       },
       {
-        "year": "2022 ~ 현재",
+        "year": "2022 -",
         "text": "과학예술융합학회 논문 심사위원"
       },
       {
@@ -859,7 +864,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
         "text": "(주)EMOCOG 자문"
       },
       {
-        "year": "2020 ~ 현재",
+        "year": "2020 -",
         "text": "한국산업디자이너 협회 논문심사위원"
       },
       {
@@ -871,7 +876,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
         "text": "한동대학교 콘텐츠융합디자인학부 학부장"
       },
       {
-        "year": "2011 ~ 현재",
+        "year": "2011 -",
         "text": "대구경북디자인 진흥원 기업지원 심사위원"
       },
       {
@@ -1003,7 +1008,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
     ],
     "biography": [
       {
-        "year": "2025–present",
+        "year": "2025 -",
         "text": "Professor, industrial design, Savannah College of Art and Design, Savannah, GA"
       },
       {
@@ -1149,6 +1154,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
       "email": "hyuni2@handong.edu"
     },
     "intro": "이주현 교수는 보스턴대학교에서 그래픽디자인 MFA를 받았다. 졸업 후 미국의 여러 디자인 회사에서 그래픽디자인, 멀티미디어 및 웹 디자인, 전시 디자인 등 다양한 경험을 쌓았으며, AIGA와 Boston Advance Community의 멤버로 활발히 활동했다.\n\n미국 대학원 시절 하나님을 새롭게 만난 그는 교육과 제자 양육, 그리고 공동체에 대한 비전을 품고, 하나님께서 허락하실 때를 소망하며 경험을 쌓아 갔다. 그러던 중 섬기던 한인교회를 방문한 고(故) 김영길 총장의 간증을 통해 한동대학교를 알게 되었고, 이것이 한동대학교에 오게 된 계기가 되었다.\n\n\"네게서 날 자들이 오래 황폐된 곳들을 다시 세울 것이며 너는 역대의 파괴된 기초를 쌓으리니 너를 일컬어 무너진 데를 보수하는 자라 할 것이며 길을 수축하여 거할 곳이 되게 하는 자라 하리라\"(이사야 58:12)는 그의 심장을 뛰게 하는 말씀이다. 시간이 흐른 지금도 그는 매일 처음과 같은 떨림과 설렘으로 학생들과 함께 디자인을 이야기하고 있다.",
+    "introEn": "Professor Joohyun Lee received her MFA in Graphic Design from Boston University. After graduating, she gained broad experience at several design firms in the United States, working across graphic design, multimedia and web design, and exhibition design. She was also an active member of AIGA and the Boston Advance Community.\n\nDuring her graduate studies in the U.S., she encountered God in a new way and received a vision for education, discipleship, and community. Holding on to the hope of the time God would allow, she continued to build her experience. Then, at the Korean church she attended, she heard the testimony of the late Dr. Young-Gil Kim, founding president of Handong Global University. This was how she first learned about Handong, and it became the reason she came to the university.\n\n“Your people will rebuild the ancient ruins and will raise up the age-old foundations; you will be called Repairer of Broken Walls, Restorer of Streets with Dwellings.” (Isaiah 58:12). This verse still makes her heart beat faster. Even now, she talks about design with her students every day with the same excitement and anticipation she felt at the start.",
     "major": [
       {
         "year": "1999",
@@ -1161,7 +1167,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
         "text": "Associate Professor | School of Contents Convergence Design, Handong Global University, Pohang, Korea"
       },
       {
-        "year": "2021~current",
+        "year": "2021 -",
         "text": "Adjunct Professor | School of Contents Convergence Design, Handong Global University, Pohang, Korea"
       },
       {
@@ -1208,9 +1214,9 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
       }
     ],
     "researchInterest": "emotional design, color psychology & application, design education",
-    "extra": [
+    "publicationsTitle": "Exhibitions & Publications",
+    "publications": [
       {
-        "title": "Exhibitions & Publications",
         "entries": [
           {
             "year": "2020",
