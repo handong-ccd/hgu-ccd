@@ -252,7 +252,7 @@ export function FacultyModal({ person, onClose }: { person: Faculty | null; onCl
       {person && (
         <>
           {/* Mobile: 상단 바 (로고 + 닫기) */}
-          <div className="sticky top-0 z-10 flex items-center justify-between bg-black px-[23px] py-4 md:hidden">
+          <div className="sticky top-0 z-10 flex h-[60px] items-center justify-between bg-black px-[23px] md:hidden">
             <LogoCcd width={44.386} className="text-white" />
             <button type="button" onClick={onClose} aria-label="닫기" className="size-8">
               <img src="/icons/close.svg" alt="" className="block size-8" />
