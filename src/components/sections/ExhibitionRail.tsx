@@ -56,20 +56,39 @@ function Chevron({ dir }: { dir: "prev" | "next" }) {
   );
 }
 
-/** 가로 스크롤 영역을 한 화면의 80%씩 이동시키는 버튼 */
+/** 가로 스크롤 영역을 카드 한 칸씩 이동시키는 버튼 — 이동 후 카드 왼쪽이 레일 시작점에 맞음 */
 export function RailControls({ target }: { target: string }) {
   const move = (dir: 1 | -1) => {
     const el = document.getElementById(target);
     if (!el) return;
+    const cards = Array.from(el.querySelectorAll<HTMLElement>(":scope > article"));
+    if (cards.length === 0) return;
+    // 첫 카드 기준 위치 (offsetLeft·scrollLeft 모두 레이아웃 px 라 body zoom 과 무관)
+    const lefts = cards.map((c) => c.offsetLeft - cards[0].offsetLeft);
+    const now = el.scrollLeft;
+    const next = dir === 1 ? lefts.find((x) => x > now + 2) : lefts.findLast((x) => x < now - 2);
+    if (next === undefined) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: reduce ? "auto" : "smooth" });
+    el.scrollTo({ left: next, behavior: reduce ? "auto" : "smooth" });
   };
   return (
     <div className="flex shrink-0 items-center gap-2">
-      <button type="button" aria-controls={target} aria-label="이전 전시" onClick={() => move(-1)} className="hover:opacity-60">
+      <button
+        type="button"
+        aria-controls={target}
+        aria-label="이전 전시"
+        onClick={() => move(-1)}
+        className="hover:opacity-60"
+      >
         <Chevron dir="prev" />
       </button>
-      <button type="button" aria-controls={target} aria-label="다음 전시" onClick={() => move(1)} className="hover:opacity-60">
+      <button
+        type="button"
+        aria-controls={target}
+        aria-label="다음 전시"
+        onClick={() => move(1)}
+        className="hover:opacity-60"
+      >
         <Chevron dir="next" />
       </button>
     </div>

@@ -8,7 +8,7 @@ import { ExhibitionRow } from "@/components/exhibitions/ExhibitionRow";
 import { getExhibitions } from "@/lib/api/exhibitions";
 
 export const metadata: Metadata = {
-  title: "Exhibitions | HGU CCD",
+  title: "Exhibition Archive | HGU CCD",
   description: "한동대학교 콘텐츠융합디자인학부 졸업 작품전 아카이브",
 };
 
@@ -24,7 +24,7 @@ export default async function ExhibitionsPage() {
           {/* Mobile */}
           <div className="flex flex-col gap-5 pt-10 pb-10 md:hidden">
             <div className="flex flex-col gap-3 border-b border-line pb-0">
-              <h1 className="font-telegraf text-[34px] leading-none tracking-[-0.03em]">Exhibitions</h1>
+              <h1 className="font-telegraf text-[34px] leading-none tracking-[-0.03em]">Exhibition Archive</h1>
               <p className="pb-3 text-[16px] leading-none tracking-[-0.03em]">한동대학교 콘텐츠융합디자인학부 졸업 작품전</p>
             </div>
             <ExhibitionListMobile items={exhibitions} />
@@ -32,7 +32,7 @@ export default async function ExhibitionsPage() {
 
           {/* Tablet+ */}
           <div className="hidden md:block">
-            <h1 className="sr-only">Exhibitions — 한동대학교 콘텐츠융합디자인학부 졸업 작품전</h1>
+            <h1 className="sr-only">Exhibition Archive — 한동대학교 콘텐츠융합디자인학부 졸업 작품전</h1>
             {exhibitions.map((item, i) => (
               <Fragment key={item.year}>
                 {i > 0 && <hr className="border-0 border-t border-line" />}
