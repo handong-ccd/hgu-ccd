@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element -- 아이콘 SVG */
 import Image from "next/image";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
-import type { CvEntry, Faculty } from "@/types/faculty";
+import type { CvEntry, Faculty, FacultyDetail } from "@/types/faculty";
 import { Container } from "@/components/ui/Container";
 import { LogoCcd } from "@/components/ui/LogoCcd";
 
@@ -21,10 +21,10 @@ function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactN
 }
 
 /** 왼쪽 100px 연도 칸 + 내용 (간격 12px) — 연도가 빈 줄은 위 연도에 이어지는 항목 */
-function EntryList({ entries }: { entries: CvEntry[] }) {
+function EntryList({ entries, limit }: { entries: CvEntry[]; limit?: number }) {
   return (
     <ul className="flex flex-col text-[14px] leading-[1.6] md:text-[16px]">
-      {entries.map((e, i) => (
+      {entries.slice(0, limit).map((e, i) => (
         <li key={i} className="flex gap-3">
           <span className="w-[100px] shrink-0">{e.year}</span>
           <span className="min-w-0 flex-1">{e.text}</span>
@@ -34,46 +34,86 @@ function EntryList({ entries }: { entries: CvEntry[] }) {
   );
 }
 
-function Section({ title, children, className = "" }: { title: string; children: ReactNode; className?: string }) {
+/** 처음 보여줄 항목 수 — 넘으면 제목 오른쪽 화살표로 나머지 펼치기 (Figma 6:198) */
+const LIMIT = 5;
+
+/** ∨ 화살표 — 펼치면 위로 뒤집힘 */
+function Chevron({ open }: { open: boolean }) {
   return (
-    <section className={`flex flex-col gap-2 ${className}`}>
-      <SectionTitle>{title}</SectionTitle>
-      {children}
-    </section>
+    <svg
+      viewBox="0 0 26 14"
+      fill="none"
+      aria-hidden
+      className={`block w-[20.8px] transition-transform duration-300 md:w-[26px] ${open ? "rotate-180" : ""}`}
+    >
+      <path d="M1 1l12 12L25 1" stroke="currentColor" strokeWidth={1.2} />
+    </svg>
   );
 }
 
-/** Publications · Works — +/− 로 펼치고 접는 섹션 */
-function Collapsible({ title, children }: { title: string; children: ReactNode }) {
+/**
+ * CV 섹션. 항목(total)이 LIMIT 를 넘으면 처음엔 LIMIT 개만 보여주고 화살표 버튼으로 전체 펼치기.
+ * children 은 현재 보여줄 개수(limit, 펼치면 undefined = 전체)를 받아서 그림
+ */
+function Section({
+  title,
+  total = 0,
+  children,
+}: {
+  title: string;
+  total?: number;
+  children: ReactNode | ((limit: number | undefined) => ReactNode);
+}) {
   const [open, setOpen] = useState(false);
   const id = useId();
+  const foldable = total > LIMIT;
+  const limit = foldable && !open ? LIMIT : undefined;
   return (
     <section className="flex flex-col gap-2">
       <SectionTitle
         aside={
-          <button
-            type="button"
-            aria-expanded={open}
-            aria-controls={id}
-            aria-label={`${title} ${open ? "접기" : "펼치기"}`}
-            onClick={() => setOpen((v) => !v)}
-            className="relative flex size-8 shrink-0 items-center justify-center hover:opacity-70 md:size-10"
-          >
-            <img
-              src={open ? "/icons/minus-white.svg" : "/icons/plus-white.svg"}
-              alt=""
-              className="block w-[20.8px] md:w-[26px]"
-            />
-          </button>
+          foldable && (
+            <button
+              type="button"
+              aria-expanded={open}
+              aria-controls={id}
+              aria-label={`${title} ${open ? "접기" : `전체 ${total}개 펼치기`}`}
+              onClick={() => setOpen((v) => !v)}
+              className="flex size-8 shrink-0 items-center justify-center hover:opacity-70 md:size-10"
+            >
+              <Chevron open={open} />
+            </button>
+          )
         }
       >
         {title}
       </SectionTitle>
-      <div id={id} hidden={!open} className="flex flex-col gap-2">
-        {children}
+      <div id={id} className="flex flex-col gap-2">
+        {typeof children === "function" ? children(limit) : children}
       </div>
     </section>
   );
+}
+
+/** Publications — 소분류(group)를 가로질러 앞에서부터 limit 개만 */
+function Publications({ groups, limit }: { groups: NonNullable<FacultyDetail["publications"]>; limit?: number }) {
+  let left = limit ?? Infinity;
+  return groups.map((group, i) => {
+    const take = Math.min(group.entries.length, left);
+    left -= take;
+    if (take === 0) return null;
+    return (
+      <div key={group.label ?? i} className="flex flex-col gap-2">
+        {group.label && (
+          <h4 className="font-telegraf text-[14px] leading-[1.06] uppercase md:text-[16px]">{group.label}</h4>
+        )}
+        <EntryList entries={group.entries} limit={take} />
+        {take === group.entries.length && group.note && (
+          <p className="text-[14px] leading-[1.6] md:text-[16px]">{group.note}</p>
+        )}
+      </div>
+    );
+  });
 }
 
 function Detail({ person }: { person: Faculty }) {
@@ -147,21 +187,24 @@ function Detail({ person }: { person: Faculty }) {
 
       {/* 오른쪽: CV */}
       <div className="flex min-w-0 flex-1 flex-col gap-10 md:gap-[60px]">
-        {/* 시안 44:2926: Major → Research Interest → Biography → Awards → (기타) → Publications → Patent → Works */}
-        <Section title="Major">
-          {d.major?.length ? (
-            d.major.some((m) => m.year) ? (
-              <EntryList entries={d.major} />
+        {/* Major → Research Interest → Biography → Awards → (기타) → Publications → Patent → Works
+            모든 항목은 5개까지 보이고, 넘으면 화살표로 펼치기 (Figma 6:198) */}
+        <Section title="Major" total={d.major?.length}>
+          {(limit) =>
+            d.major?.length ? (
+              d.major.some((m) => m.year) ? (
+                <EntryList entries={d.major} limit={limit} />
+              ) : (
+                <ul className="text-[14px] leading-[1.6] md:text-[16px]">
+                  {d.major.slice(0, limit).map((m) => (
+                    <li key={m.text}>{m.text}</li>
+                  ))}
+                </ul>
+              )
             ) : (
-              <ul className="text-[14px] leading-[1.6] md:text-[16px]">
-                {d.major.map((m) => (
-                  <li key={m.text}>{m.text}</li>
-                ))}
-              </ul>
+              <p className="text-[14px] leading-[1.6] md:text-[16px]">{person.education}</p>
             )
-          ) : (
-            <p className="text-[14px] leading-[1.6] md:text-[16px]">{person.education}</p>
-          )}
+          }
         </Section>
         {d.researchInterest && (
           <Section title="Research Interest">
@@ -169,42 +212,34 @@ function Detail({ person }: { person: Faculty }) {
           </Section>
         )}
         {d.biography?.length ? (
-          <Section title="Biography">
-            <EntryList entries={d.biography} />
+          <Section title="Biography" total={d.biography.length}>
+            {(limit) => <EntryList entries={d.biography!} limit={limit} />}
           </Section>
         ) : null}
         {d.awards?.length ? (
-          <Section title="Awards">
-            <EntryList entries={d.awards} />
+          <Section title="Awards" total={d.awards.length}>
+            {(limit) => <EntryList entries={d.awards!} limit={limit} />}
           </Section>
         ) : null}
         {d.extra?.map((sec) => (
-          <Section key={sec.title} title={sec.title}>
-            <EntryList entries={sec.entries} />
+          <Section key={sec.title} title={sec.title} total={sec.entries.length}>
+            {(limit) => <EntryList entries={sec.entries} limit={limit} />}
           </Section>
         ))}
         {d.publications?.length ? (
-          <Collapsible title="Publications">
-            {d.publications.map((group, i) => (
-              <div key={group.label ?? i} className="flex flex-col gap-2">
-                {group.label && (
-                  <h4 className="font-telegraf text-[14px] leading-[1.06] uppercase md:text-[16px]">{group.label}</h4>
-                )}
-                <EntryList entries={group.entries} />
-                {group.note && <p className="text-[14px] leading-[1.6] md:text-[16px]">{group.note}</p>}
-              </div>
-            ))}
-          </Collapsible>
+          <Section title="Publications" total={d.publications.reduce((n, g) => n + g.entries.length, 0)}>
+            {(limit) => <Publications groups={d.publications!} limit={limit} />}
+          </Section>
         ) : null}
         {d.patents?.length ? (
-          <Collapsible title="Patent">
-            <EntryList entries={d.patents} />
-          </Collapsible>
+          <Section title="Patent" total={d.patents.length}>
+            {(limit) => <EntryList entries={d.patents!} limit={limit} />}
+          </Section>
         ) : null}
         {d.works?.length ? (
-          <Collapsible title="Works (Recent 5 years)">
-            <EntryList entries={d.works} />
-          </Collapsible>
+          <Section title="Works" total={d.works.length}>
+            {(limit) => <EntryList entries={d.works!} limit={limit} />}
+          </Section>
         ) : null}
       </div>
     </div>
