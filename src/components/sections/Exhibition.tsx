@@ -89,7 +89,7 @@ export async function Exhibition() {
     <section aria-labelledby="exhibitions" className="scroll-mt-4">
       <SectionHeading
         id="exhibitions"
-        title="Exhibition"
+        title="Exhibition Archive"
         aside={
           <>
             {/* Mobile: MORE ↗ */}

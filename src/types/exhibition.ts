@@ -13,7 +13,7 @@ export type Exhibition = {
     /** 영문 구절 (전시 목록·상세) */
     en?: { ref: string; text: string };
   };
-  /** 온라인 전시 페이지 주소 — 있으면 상세에 GO TO ARCHIVE 버튼 표시 */
+  /** 온라인 전시 페이지 주소 — 있으면 상세에 ONLINE EXHIBITION 버튼 표시 */
   archiveUrl?: string;
   /** 트랙 구분 없이 학부 전체로 기록된 지도교수 (2007년 이전 등) */
   advisors?: string[];
