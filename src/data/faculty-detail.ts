@@ -818,7 +818,7 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
       "phone": "054 260 1467",
       "email": "faithful@handong.edu"
     },
-    "intro": "최인욱 교수는 국민대학교 공업디자인학과를 졸업하고 LG전자에서 연구원으로 근무한 뒤, 미국으로 건너가 로체스터 공과대학교(RIT)에서 컴퓨터 그래픽 디자인을 공부했습니다. 그는 미국 한국인 교회에서 만난 학생을 통해 한동대학교를 알게 되었으며, 졸업과 동시에 기회가 열려서 감사한 마음으로 한동대학교에 오게 되었습니다. \n대학 1학년 때에 그는 캠퍼스 복음화에 대한 소명을 느꼈습니다. 즉시 선교 단체에서 훈련을 받았으며, 캠퍼스 개척과 제자 훈련, 성경 공부를 통해 하나님의 나라를 확장하는 일에 소망을 가져 왔습니다. 이러한 사명은 미국에서도 이어져, 현지 한인 청년들을 대상으로 교회와 대학 캠퍼스에서 선교 활동을 펼치기도 했습니다. '그리스도인을 위한 섬김'이라는 모토를 갖고 있는 그는 한동대학교에서의 생활을 큰 기쁨으로 여기며, 계속해서 섬길 수 있는 기회를 주시는 하나님께 깊이 감사하고 있습니다.\n그는 디자인을 통해 건강 증진에 기여할 방법을 꾸준히 모색하고 있으며, 특히 경도 인지 장애나 ADHD를 비롯한 다양한 정신 건강 문제를 위한 디지털 진단 도구 및 치료제를 개발하는 데에 관심이 있습니다.",
+    "intro": "최인욱 교수는 국민대학교 공업디자인학과를 졸업하고 LG전자에서 연구원으로 근무한 뒤, 미국으로 건너가 로체스터 공과대학교(RIT)에서 컴퓨터 그래픽 디자인을 공부했습니다. 그는 미국 한국인 교회에서 만난 학생을 통해 한동대학교를 알게 되었으며, 졸업과 동시에 기회가 열려서 감사한 마음으로 한동대학교에 오게 되었습니다. \n대학 1학년 때에 캠퍼스 복음화에 대한 소명을 경험하고 즉시 선교 단체에서 훈련을 받았으며, 캠퍼스 개척과 제자 훈련, 성경 공부를 통해 하나님의 나라를 확장하는 일에 소망을 가져 왔습니다. 이러한 사명은 미국에서도 이어져, 현지 한인 청년들을 대상으로 교회와 대학 캠퍼스에서 선교 활동을 이어왔습니다. 한동대학교에 와서는  '그리스도인을 위한 섬김'이라는 모토를 갖게 되었으며 크리스챤 대학생들을 포함하여 도움이 필요한 여러 상황에 필요한 선물을 가져다 주는 생활을 큰 기쁨으로 여기며, 섬길 수 있는 기회를 주시는 하나님께 깊이 감사하고 있습니다.\n그는 디자인을 통해 건강 증진에 기여할 방법을 꾸준히 모색하고 있으며, 특히 경도 인지 장애나 ADHD를 비롯한 다양한 정신 건강 문제를 위한 디지털 진단 도구 및 치료제를 개발하는 데에 관심이 있습니다.",
     "major": [
       {
         "year": "2002 ~ 2005",
@@ -930,7 +930,15 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
     "works": [
       {
         "year": "2026",
+        "text": "A.I 기업 지식시스템 (Toolmaru Brain)개발 - (주)가인지컨설팅그룹"
+      },
+      {
+        "year": "2026",
         "text": "스마트 시스템가구 디자인 - (주)모빌퍼스"
+      },
+      {
+        "year": "2026",
+        "text": "자동 차량사고 구난 및 신고 모바일 앱 - (주)세이프카"
       },
       {
         "year": "2026",
@@ -1130,6 +1138,229 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
       },
       {
         "text": "in-flight passenger information system (US 8806543 B1), The Boeing Company"
+      }
+    ]
+  },
+  "lee-joohyun": {
+    "title": "초빙교수 / 그래픽 디자인",
+    "contact": {
+      "office": "느헤미야홀(NHM) 218(B)호",
+      "phone": "054 260 1674",
+      "email": "hyuni2@handong.edu"
+    },
+    "intro": "이주현 교수는 보스턴대학교에서 그래픽디자인 MFA를 받았다. 졸업 후 미국의 여러 디자인 회사에서 그래픽디자인, 멀티미디어 및 웹 디자인, 전시 디자인 등 다양한 경험을 쌓았으며, AIGA와 Boston Advance Community의 멤버로 활발히 활동했다.\n\n미국 대학원 시절 하나님을 새롭게 만난 그는 교육과 제자 양육, 그리고 공동체에 대한 비전을 품고, 하나님께서 허락하실 때를 소망하며 경험을 쌓아 갔다. 그러던 중 섬기던 한인교회를 방문한 고(故) 김영길 총장의 간증을 통해 한동대학교를 알게 되었고, 이것이 한동대학교에 오게 된 계기가 되었다.\n\n\"네게서 날 자들이 오래 황폐된 곳들을 다시 세울 것이며 너는 역대의 파괴된 기초를 쌓으리니 너를 일컬어 무너진 데를 보수하는 자라 할 것이며 길을 수축하여 거할 곳이 되게 하는 자라 하리라\"(이사야 58:12)는 그의 심장을 뛰게 하는 말씀이다. 시간이 흐른 지금도 그는 매일 처음과 같은 떨림과 설렘으로 학생들과 함께 디자인을 이야기하고 있다.",
+    "major": [
+      {
+        "year": "1999",
+        "text": "M.F.A. · Graphic Design | Boston University"
+      }
+    ],
+    "biography": [
+      {
+        "year": "2004~2020",
+        "text": "Associate Professor | School of Contents Convergence Design, Handong Global University, Pohang, Korea"
+      },
+      {
+        "year": "2021~current",
+        "text": "Adjunct Professor | School of Contents Convergence Design, Handong Global University, Pohang, Korea"
+      },
+      {
+        "year": "2003",
+        "text": "Senior Researcher | BlueDot Education Group."
+      },
+      {
+        "year": "2001~2002",
+        "text": "Graphic Design Lead | Krent/Paffett Associates, Inc., Boston, MA, U.S.A."
+      },
+      {
+        "year": "2000~2001",
+        "text": "Graphic Designer |  Razorfish Inc., Boston, MA, U.S.A."
+      },
+      {
+        "year": "1999~2000",
+        "text": "Graphic Designer |  Crocker Inc., Boston, MA, U.S.A."
+      },
+      {
+        "year": "1998",
+        "text": "Graphic Designer |  Devine & Pearson Communications, Boston, MA, U.S.A."
+      },
+      {
+        "year": "1996",
+        "text": "Graphic Designer |  Morning Glory, Seoul, Korea"
+      }
+    ],
+    "awards": [
+      {
+        "year": "2010",
+        "text": "Best Teacher's Award, Handong Global University, Pohang, Korea"
+      },
+      {
+        "year": "2001",
+        "text": "AIGA at Bone Show Design Contest, Aluminum Bone Prize Winner., Boston, MA, U.S.A."
+      },
+      {
+        "year": "1999",
+        "text": "Master Degree Thesis Exhibition, Interpret emotion as a visual language, Boston, MA, U.S.A."
+      },
+      {
+        "year": "1994",
+        "text": "ChosunIlbo Newspaper AD design contest, 4th prize winner, Korea"
+      }
+    ],
+    "researchInterest": "emotional design, color psychology & application, design education",
+    "extra": [
+      {
+        "title": "Exhibitions & Publications",
+        "entries": [
+          {
+            "year": "2020",
+            "text": "2020국제 포스터 디자인 전시회"
+          },
+          {
+            "year": "2018",
+            "text": "The 10th Asia Graphic Triennial 2018"
+          },
+          {
+            "year": "2017",
+            "text": "2017 International Poster Exhibition +A9"
+          },
+          {
+            "year": "2014",
+            "text": "2014 KECD 갤러리 이앙 초대 정기 회원전"
+          },
+          {
+            "year": "2014",
+            "text": "2014 Spain국제초대전시회"
+          },
+          {
+            "year": "2014",
+            "text": "2014 아시아 디자이너 국제 초대전"
+          },
+          {
+            "year": "2014",
+            "text": "2014 The exhibition of Korea-China contemporary design"
+          },
+          {
+            "year": "2013",
+            "text": "세계 여성디자이너 105인의 국제디자인 교류전"
+          },
+          {
+            "year": "2013",
+            "text": "KECD 갤러리 이앙 초대 정기 회원전"
+          },
+          {
+            "year": "2012",
+            "text": "국제 도시브랜드 디자인전"
+          },
+          {
+            "year": "2012",
+            "text": "중국 로신미술대학 초청 중국전"
+          },
+          {
+            "year": "2012",
+            "text": "KECD 중국 로신미술대학 초청 특별전"
+          },
+          {
+            "year": "2012",
+            "text": "KECD사단법인 한국현대디자인협회 정기전"
+          },
+          {
+            "year": "2011",
+            "text": "2011 IDA CONGRESS TAIPEI특별전"
+          },
+          {
+            "year": "2011",
+            "text": "2011 My City 7th City Face해외 초대전"
+          },
+          {
+            "year": "2011",
+            "text": "Fusion Print Art Calendar 터키 전시회"
+          },
+          {
+            "year": "2011",
+            "text": "제 1회 상해 시각디자인 비엔날레 전시회"
+          },
+          {
+            "year": "2010",
+            "text": "영국 맨체스터 Tandot 갤러리 해외초대전, 아트커넥션코리아"
+          },
+          {
+            "year": "2010",
+            "text": "2010 월드 그래픽스 데이 일본특별전"
+          },
+          {
+            "year": "2010",
+            "text": "2010 월드 그래픽스 데이 남한산성 배너 특별기획전"
+          },
+          {
+            "year": "2006",
+            "text": "Colorful대구 국제포스터전"
+          },
+          {
+            "year": "2006",
+            "text": "제 40회 한국미술협회전, 산단법인 한국미술협회"
+          },
+          {
+            "year": "2006",
+            "text": "포스터로 부르는 우리 노래전(국내+사우디아라비아 전시)"
+          },
+          {
+            "year": "2005",
+            "text": "한국디자인단체총연합회 창림10주년 전시회"
+          },
+          {
+            "year": "2005",
+            "text": "제97회 KECD정기회원전"
+          },
+          {
+            "year": "2005",
+            "text": "한.중.일 여성교류 협력대회 초대전"
+          },
+          {
+            "year": "2005",
+            "text": "제 75회 춘향제 기념 사랑이미지포스터 초대전"
+          },
+          {
+            "year": "2005",
+            "text": "디자이너 정체성이 가지는 의미와 “mark making”에 관한 연구, 한국디자인포럼"
+          },
+          {
+            "year": "2004",
+            "text": "2004 Fusion Calendar Exhibition"
+          },
+          {
+            "year": "2004",
+            "text": "2004북경국제디자인박람회"
+          },
+          {
+            "year": "2004",
+            "text": "대진대학교 예술대학 디자인학부 교수전시회"
+          },
+          {
+            "year": "2003",
+            "text": "제37회 한국미술협회전"
+          },
+          {
+            "year": "2003",
+            "text": "Chinese Character International Poster Exhibition"
+          },
+          {
+            "year": "2003",
+            "text": "제5회 서울-아시아 그래픽포스터 트리엔날레"
+          },
+          {
+            "year": "2003",
+            "text": "2003 Life & Forest Festival 2003"
+          },
+          {
+            "year": "2003",
+            "text": "2003 Icograda Congress Nagoya Korea & Japan Graphic Design Exhibition"
+          },
+          {
+            "year": "1999",
+            "text": "Master Degree Thesis Exhibition; Interpret emotion as a visual language"
+          }
+        ]
       }
     ]
   }
