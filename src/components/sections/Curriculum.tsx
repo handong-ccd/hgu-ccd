@@ -2,6 +2,7 @@
 import { getTracks } from "@/lib/api/curriculum";
 import { DOWNLOADS } from "@/data/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { TrackAccordion } from "./TrackAccordion";
 
 /** Figma 6:371 — ↓ 다운로드 아이콘 (17.846 × 16) */
 function DownloadIcon({ k }: { k: number }) {
@@ -135,11 +136,10 @@ export async function Curriculum() {
         below={<DownloadLinks variant="mobile" />}
       />
 
-      {/* Mobile: 트랙별 학년 줄 (학년 50px + 과목) — Figma 6:2130. 과목 없는 학년은 생략 */}
+      {/* Mobile: 트랙별 드롭다운(기본 접힘) → 학년 줄 (학년 50px + 과목) — Figma 6:2130. 과목 없는 학년은 생략 */}
       <div className="mt-6 flex flex-col gap-6 md:hidden">
         {tracks.map((track) => (
-          <div key={track.name} className="flex flex-col gap-2">
-            <TrackTitle name={track.name} />
+          <TrackAccordion key={track.name} name={track.name}>
             <dl className="flex flex-col gap-3 text-[12px] leading-[1.4]">
               {track.columns
                 .flat()
@@ -157,7 +157,7 @@ export async function Curriculum() {
                   </div>
                 ))}
             </dl>
-          </div>
+          </TrackAccordion>
         ))}
       </div>
 

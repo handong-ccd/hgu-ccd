@@ -1,4 +1,5 @@
 import { Footer } from "@/components/layout/Footer";
+import { GoTopButton } from "@/components/ui/GoTopButton";
 import { Header } from "@/components/layout/Header";
 import { Container } from "@/components/ui/Container";
 import { IntroScene } from "@/components/motion/IntroScene";
@@ -33,6 +34,7 @@ export default function Home() {
           </Container>
         </div>
       </main>
+      <GoTopButton />
       <Footer />
     </>
   );

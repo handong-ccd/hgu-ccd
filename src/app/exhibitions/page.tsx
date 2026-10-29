@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
+import { GoTopButton } from "@/components/ui/GoTopButton";
 import { Header } from "@/components/layout/Header";
 import { Container } from "@/components/ui/Container";
 import { ExhibitionArchive } from "@/components/exhibitions/ExhibitionArchive";
@@ -24,6 +25,7 @@ export default async function ExhibitionsPage() {
           <ExhibitionArchive items={exhibitions} />
         </Container>
       </main>
+      <GoTopButton />
       <Footer />
     </>
   );
