@@ -13,23 +13,16 @@ const RAIL_ID = "exhibition-rail";
 /** 메인 PC 레일에 보여줄 최신 작품 수 (전체는 /exhibitions) */
 const RAIL_LIMIT = 10;
 
-function Body({ body }: { body: ExhibitionItem["body"] }) {
-  if (body.length === 1) {
-    return <p className="text-[14px] leading-[1.2]">{body[0].text}</p>;
-  }
-  return (
-    <div className="flex flex-col gap-2 text-[14px] leading-[1.4]">
-      {body.map((p) => (
-        <p key={p.text} className={p.emphasis ? "font-medium" : undefined}>
-          {p.text}
-        </p>
-      ))}
-    </div>
-  );
+/** 메인 PC 레일 포스터 크기 — 시안 6:502 기준 높이 600 · 폭 430 을 넘지 않게 비율 유지해서 줄임 */
+const RAIL_MAX = { width: 430, height: 600 };
+function railSize(size: { width: number; height: number }) {
+  const k = Math.min(1, RAIL_MAX.width / size.width, RAIL_MAX.height / size.height);
+  return { width: Math.round(size.width * k), height: Math.round(size.height * k) };
 }
 
+/** 메인 PC 카드 — Figma 6:515 등. 포스터 + 제목·기간·장소(36px) + 부제 2줄(14px), 설명글 없음 */
 function DesktopCard({ item }: { item: ExhibitionItem }) {
-  const { width, height } = item.size ?? DEFAULT_SIZE;
+  const { width, height } = railSize(item.size ?? DEFAULT_SIZE);
   return (
     <article className="flex shrink-0 flex-col gap-4" style={{ width }}>
       {/* 포스터 클릭 → 전시 상세 (드래그로 스크롤한 경우 클릭은 ExhibitionRail 이 막음) */}
@@ -49,33 +42,30 @@ function DesktopCard({ item }: { item: ExhibitionItem }) {
           draggable={false}
         />
       </Link>
-      <div className="flex flex-col gap-6">
-        <div className="flex flex-col gap-1.5">
-          <h3 className="font-telegraf text-[44px] leading-none uppercase 2xl:text-[48px]">
-            {item.name}
-            {item.venueOnNewLine ? (
+      <div className="flex flex-col gap-3">
+        <h3 className="font-telegraf text-[36px] leading-none uppercase">
+          {item.name}
+          {item.venueOnNewLine ? (
+            <>
+              <br />
+              {item.date}
+              <br />
+              {item.venue}
+            </>
+          ) : (
+            dateVenue(item) && (
               <>
                 <br />
-                {item.date}
-                <br />
-                {item.venue}
+                {dateVenue(item)}
               </>
-            ) : (
-              dateVenue(item) && (
-                <>
-                  <br />
-                  {dateVenue(item)}
-                </>
-              )
-            )}
-          </h3>
-          <p className="font-helvetica text-[18px] leading-[1.2] font-medium tracking-[-0.02em]">
-            {item.subtitle[0]}
-            <br />
-            {item.subtitle[1]}
-          </p>
-        </div>
-        <Body body={item.body} />
+            )
+          )}
+        </h3>
+        <p className="text-[14px] leading-[1.4] uppercase">
+          {item.subtitle[0]}
+          <br />
+          {item.subtitle[1]}
+        </p>
       </div>
     </article>
   );
@@ -89,6 +79,8 @@ export async function Exhibition() {
       <SectionHeading
         id="exhibitions"
         title="Exhibition Archive"
+        // 제목을 눌러도 전체 목록 페이지로
+        href={MORE_HREF}
         aside={
           <>
             {/* Tablet+: ‹ › + MORE 버튼 */}
