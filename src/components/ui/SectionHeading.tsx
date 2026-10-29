@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 /** 섹션 타이틀 + 하단 구분선 (PC 40px / Mo 32px) */
@@ -7,8 +8,11 @@ export function SectionHeading({
   aside,
   below,
   asideAlign = "center",
+  href,
   className = "",
 }: {
+  /** 있으면 제목 글자를 이 주소로 가는 링크로 */
+  href?: string;
   id?: string;
   title: string;
   /** 타이틀 오른쪽 (More 링크, PC 다운로드 버튼 등) */
@@ -26,7 +30,13 @@ export function SectionHeading({
           id={id}
           className="min-w-0 flex-1 font-telegraf text-[32px] leading-none tracking-[-0.03em] md:text-[40px]"
         >
-          {title}
+          {href ? (
+            <Link href={href} className="hover:opacity-70">
+              {title}
+            </Link>
+          ) : (
+            title
+          )}
         </h2>
         {aside}
       </div>
