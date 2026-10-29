@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Exhibition } from "@/types/exhibition";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { Container } from "@/components/ui/Container";
@@ -25,6 +26,26 @@ function ArchiveLink({ href, full = false }: { href: string; full?: boolean }) {
       <ArrowUpRight size={20} color="white" />
       {external && <span className="sr-only">(온라인 전시, 새 탭에서 열림)</span>}
     </a>
+  );
+}
+
+/** 전체 전시 목록으로 — PC 상세 왼쪽 맨 아래 (Figma 423:1057) */
+function AllExhibitionLink() {
+  return (
+    <Link
+      href="/exhibitions"
+      className="flex items-center gap-2.5 self-start border border-white px-5 py-4 transition-opacity hover:opacity-70"
+    >
+      {/* 네모 4칸 아이콘 22px */}
+      <span aria-hidden className="grid size-[22px] grid-cols-2 gap-0.5">
+        {[0, 1, 2, 3].map((n) => (
+          <span key={n} className="border-[1.29px] border-white" />
+        ))}
+      </span>
+      <span className="font-telegraf text-[22.86px] leading-none uppercase [text-box:trim-both_cap_alphabetic]">
+        All Exhibition
+      </span>
+    </Link>
   );
 }
 
@@ -188,6 +209,7 @@ export function ExhibitionDetail({ item }: { item: Exhibition }) {
             {item.alumni?.length || item.advisors?.length ? (
               <Alumni advisors={item.advisors} alumni={item.alumni} />
             ) : null}
+            <AllExhibitionLink />
           </div>
           <div
             className="relative w-1/2 max-w-[600px] shrink-0 bg-neutral-900"
