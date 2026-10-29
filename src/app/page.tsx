@@ -21,8 +21,11 @@ export default function Home() {
         </IntroScene>
         <div className="relative z-[1] bg-white">
           <Container className="flex flex-col gap-20 py-10 md:gap-[100px] md:pt-[60px] md:pb-[100px]">
-            <TrackAbout />
-            <Curriculum />
+            {/* About → Curriculum: Mo 48px / PC 100px (Figma 6:2108 / 6:364) */}
+            <div className="flex flex-col gap-12 md:gap-[100px]">
+              <TrackAbout />
+              <Curriculum />
+            </div>
             <Faculties />
           </Container>
           <Container className="pt-10 pb-10 md:pt-0 md:pb-[100px]">
