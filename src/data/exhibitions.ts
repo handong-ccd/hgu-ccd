@@ -11,11 +11,11 @@ export const EXHIBITIONS: Exhibition[] = [
     "venue": "Genesis Lab, HGU",
     "subtitle": [
       "2026 한동대학교 콘텐츠융합디자인학부 졸업 작품전",
-      "Filling to Flow : 채우심으로 말미암아"
+      "Filling to Flow: 채우심으로 말미암아"
     ],
     "verse": {
       "ref": "출애굽기 31:3",
-      "text": "그에게 하나님의 영을 채워 주어, 지혜와 총명과 지식과 온갖 기술을 갖게 하셨다.",
+      "text": "그에게 하나님의 영을 채워 주어,\n지혜와 총명과 지식과 온갖 기술을 갖게 하셨다.",
       "en": {
         "ref": "Exodus 31:3",
         "text": "I have filled him with the Spirit of God, with wisdom, with understanding, with knowledge and with all kinds of skills."
@@ -29,17 +29,103 @@ export const EXHIBITIONS: Exhibition[] = [
           "이재선",
           "이중섭"
         ],
-        "graduates": []
+        "graduates": [
+          "고재현",
+          "김강",
+          "김민",
+          "김시은A",
+          "김시은B",
+          "김예희",
+          "김윤아",
+          "김지민A",
+          "김지민B",
+          "김현진",
+          "김희원",
+          "박서우",
+          "박서한",
+          "박시현",
+          "박예림",
+          "박주현",
+          "박지우",
+          "박찬미",
+          "방예원",
+          "송우상",
+          "송주희",
+          "송하연",
+          "안예인",
+          "오희원",
+          "이승진",
+          "이예인",
+          "이예찬",
+          "이은혜",
+          "이준희",
+          "이지수",
+          "이진아",
+          "이하람",
+          "이한빈",
+          "이해빈",
+          "이혜원",
+          "임지인",
+          "장민희",
+          "장희원",
+          "전서현",
+          "정주은",
+          "조서현",
+          "채서은",
+          "최윤하",
+          "최주은",
+          "함지현",
+          "황규상",
+          "황현수"
+        ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "최인욱",
           "손성찬",
           "이정훈"
         ],
-        "graduates": []
+        "graduates": [
+          "공신영",
+          "기노은",
+          "김사랑",
+          "김소정",
+          "김영채",
+          "김예빈",
+          "김은진",
+          "김채원",
+          "김채은",
+          "김하경A",
+          "김하경B",
+          "박다민",
+          "박다은",
+          "박세윤",
+          "박예빈",
+          "방주현",
+          "변민서",
+          "송정훈",
+          "유종빈",
+          "유하람",
+          "유혜연",
+          "이서현",
+          "이윤서",
+          "이주향",
+          "이주희",
+          "이진희",
+          "임현호",
+          "장지원",
+          "정성은",
+          "정예한",
+          "정재은",
+          "정주연",
+          "차수연",
+          "최수원",
+          "최영은",
+          "한영찬",
+          "한예원"
+        ]
       }
     ],
     "body": [
@@ -50,8 +136,8 @@ export const EXHIBITIONS: Exhibition[] = [
     "archiveUrl": "https://harlo-ii.github.io/hgu-filling-to-flowing-comingsoon/",
     "image": "/images/exhibitions/2026.jpg",
     "size": {
-      "width": 384,
-      "height": 579
+      "width": 359,
+      "height": 520
     }
   },
   {
@@ -61,7 +147,7 @@ export const EXHIBITIONS: Exhibition[] = [
     "venue": "Genesis Lab, HGU",
     "subtitle": [
       "2025 한동대학교 콘텐츠융합디자인학부 졸업 작품전",
-      "Where the Light Begins : 능력의 서막"
+      "Where the Light Begins: 능력의 서막"
     ],
     "verse": {
       "ref": "빌립보서 4:13",
@@ -128,7 +214,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "박찬송",
@@ -177,8 +263,8 @@ export const EXHIBITIONS: Exhibition[] = [
     ],
     "image": "/images/exhibitions/2025.jpg",
     "size": {
-      "width": 513,
-      "height": 723
+      "width": 427,
+      "height": 600
     }
   },
   {
@@ -188,7 +274,7 @@ export const EXHIBITIONS: Exhibition[] = [
     "venue": "Grace School, HGU",
     "subtitle": [
       "2024 한동대학교 콘텐츠융합디자인학부 졸업 작품전",
-      "ONE IN CHRIST : 그리스도 안에서 하나되는 공동체"
+      "ONE IN CHRIST: 그리스도 안에서 하나되는 공동체"
     ],
     "verse": {
       "ref": "로마서 12:5",
@@ -206,7 +292,97 @@ export const EXHIBITIONS: Exhibition[] = [
           "이재선",
           "이중섭"
         ],
-        "graduates": []
+        "graduates": [
+          "강수빈",
+          "강지은",
+          "고수영",
+          "김가현",
+          "김경진",
+          "김나경",
+          "김성순",
+          "김수아",
+          "김예향",
+          "김온유",
+          "김은빈",
+          "김현지",
+          "노유원",
+          "류혜빈",
+          "박보민",
+          "박승주A",
+          "박승주B",
+          "박은실",
+          "박창조",
+          "박하민",
+          "서유나",
+          "서하령",
+          "송민준",
+          "안가현",
+          "안다진",
+          "안희재",
+          "오예랑",
+          "이동연",
+          "이주아",
+          "이주영",
+          "이지향",
+          "이채정",
+          "이하준",
+          "이혁",
+          "이현화",
+          "임다솔",
+          "임예담",
+          "장소윤",
+          "장희진",
+          "전민정",
+          "전유은",
+          "정예은",
+          "정은서",
+          "정해인",
+          "정희주",
+          "조민서",
+          "조은비",
+          "최가흔",
+          "최예영",
+          "홍예희"
+        ]
+      },
+      {
+        "track": "Product Design",
+        "advisors": [
+          "이은종",
+          "박찬송"
+        ],
+        "graduates": [
+          "강산길",
+          "권은진",
+          "김민경",
+          "김민기",
+          "김민영",
+          "김유미",
+          "김형진",
+          "박민석",
+          "박범서",
+          "박예봄",
+          "서지은",
+          "손해성",
+          "신수민",
+          "신지수",
+          "안혜빈",
+          "유수정",
+          "유주희",
+          "윤승렬",
+          "이승현",
+          "이신원",
+          "이지원",
+          "이하영",
+          "임시은",
+          "조가은",
+          "조은비",
+          "최복원",
+          "최석현",
+          "한상윤",
+          "한인철",
+          "허현지"
+        ]
       }
     ],
     "body": [
@@ -216,8 +392,8 @@ export const EXHIBITIONS: Exhibition[] = [
     ],
     "image": "/images/exhibitions/2024.jpg",
     "size": {
-      "width": 384,
-      "height": 385
+      "width": 344,
+      "height": 345
     }
   },
   {
@@ -227,7 +403,7 @@ export const EXHIBITIONS: Exhibition[] = [
     "venue": "Grace School, HGU",
     "subtitle": [
       "2023 한동대학교 콘텐츠융합디자인학부 졸업 작품전",
-      "THE TRUTH SHALL SET YOU FREE : 진리가 너희를 자유케하리라"
+      "THE TRUTH SHALL SET YOU FREE: 진리가 너희를 자유케하리라"
     ],
     "verse": {
       "ref": "요한복음 8:32",
@@ -243,9 +419,122 @@ export const EXHIBITIONS: Exhibition[] = [
         "advisors": [
           "이진구",
           "이재선",
-          "이중섭"
+          "이중섭",
+          "김지현"
         ],
-        "graduates": []
+        "graduates": [
+          "권은서",
+          "권지현",
+          "김경민",
+          "김도아",
+          "김리한",
+          "김소민",
+          "김수윤",
+          "김예향",
+          "김온유",
+          "김정원",
+          "김지수",
+          "김하영",
+          "김하은",
+          "남수민",
+          "남은진",
+          "박세빛",
+          "박준희",
+          "박하민",
+          "배예진",
+          "배요은",
+          "베가 샤론",
+          "소미진",
+          "손승아",
+          "송재원",
+          "송주은",
+          "양희정",
+          "오성현",
+          "오예랑",
+          "유제니",
+          "윤주애",
+          "윤주영",
+          "이가윤",
+          "이세빈",
+          "이세은",
+          "이송희",
+          "이시온",
+          "이예신",
+          "이유진A",
+          "이유진B",
+          "이주희",
+          "이지애",
+          "이지혜",
+          "이지후",
+          "이채린",
+          "이채정",
+          "이혁",
+          "이화평",
+          "임나연",
+          "임성",
+          "임주원",
+          "임혜린",
+          "전민정",
+          "정사라",
+          "정예은",
+          "조민서",
+          "조서진",
+          "차가은",
+          "최산성",
+          "최하경",
+          "추예림",
+          "키타오 노아",
+          "한주리",
+          "한주희",
+          "허준행",
+          "홍수지",
+          "홍예희",
+          "홍희연",
+          "황보혜",
+          "황유리",
+          "황지영"
+        ]
+      },
+      {
+        "track": "Product Design",
+        "advisors": [
+          "이은종",
+          "박찬송"
+        ],
+        "graduates": [
+          "구세빈",
+          "길문식",
+          "김동민",
+          "김민지",
+          "김상민",
+          "김세영",
+          "김예일",
+          "김지혜",
+          "남주희",
+          "노주휘",
+          "박승주",
+          "박에녹",
+          "손연우",
+          "손해성",
+          "신기웅",
+          "신이레",
+          "윤승렬",
+          "윤은진",
+          "이병희",
+          "이세희",
+          "이소연",
+          "이시은",
+          "이주헌",
+          "이채연",
+          "이태화",
+          "정수연",
+          "정주희",
+          "조은산",
+          "채지훈",
+          "최복원",
+          "최정민",
+          "최하은"
+        ]
       }
     ],
     "body": [
@@ -255,8 +544,8 @@ export const EXHIBITIONS: Exhibition[] = [
     ],
     "image": "/images/exhibitions/2023.jpg",
     "size": {
-      "width": 453,
-      "height": 641
+      "width": 354,
+      "height": 500
     }
   },
   {
@@ -266,7 +555,7 @@ export const EXHIBITIONS: Exhibition[] = [
     "venue": "Grace School, HGU",
     "subtitle": [
       "2022 한동대학교 콘텐츠융합디자인학부 졸업 작품전",
-      "Return to New : 영원한 초심"
+      "Return to New: 영원한 초심"
     ],
     "verse": {
       "ref": "고린도후서 4:16",
@@ -281,11 +570,110 @@ export const EXHIBITIONS: Exhibition[] = [
         "track": "Visual Communication Design",
         "advisors": [
           "이진구",
+          "이중섭",
           "김성혜",
           "정경일",
           "이재선"
         ],
-        "graduates": []
+        "graduates": [
+          "강예빈",
+          "고예은",
+          "김가은",
+          "김규림",
+          "김다예",
+          "김다은",
+          "김선",
+          "김소연",
+          "김수정",
+          "김예빈",
+          "김예은",
+          "김예준",
+          "김이레",
+          "김지수",
+          "김지우",
+          "김진주",
+          "김하은",
+          "김혜림",
+          "나재동",
+          "남현주",
+          "문지은",
+          "박샤론",
+          "박서영",
+          "박성경",
+          "박세령",
+          "박예지",
+          "박주영",
+          "박하람",
+          "배영서",
+          "백지은",
+          "송하민",
+          "신솔",
+          "신채현",
+          "양유정",
+          "윤다혜",
+          "이병희",
+          "이수빈",
+          "이아라",
+          "이예린",
+          "이유경",
+          "이지민",
+          "이하경",
+          "이혜린",
+          "전하은",
+          "정대수",
+          "정유훈",
+          "정지민",
+          "정희진",
+          "조예슬",
+          "진주희",
+          "차맑은샘",
+          "최시온",
+          "최은석",
+          "최지혜",
+          "최진경",
+          "최하늘",
+          "피판 키티판나폰",
+          "한수은",
+          "한승혜",
+          "한지민",
+          "홍다희"
+        ]
+      },
+      {
+        "track": "Product Design",
+        "advisors": [
+          "이은종",
+          "박찬송"
+        ],
+        "graduates": [
+          "강이경",
+          "고은혜",
+          "권다현",
+          "권동성",
+          "김성경",
+          "김에녹",
+          "김현서",
+          "박예지",
+          "박유진",
+          "손지현",
+          "송하민",
+          "신주혜",
+          "심고은",
+          "양소윤",
+          "엄세현",
+          "오예빈",
+          "유광채",
+          "이재교",
+          "이주안",
+          "이호",
+          "조성효",
+          "진세한",
+          "차맑은샘",
+          "최주은",
+          "허준행",
+          "황단열",
+          "황서현"
+        ]
       }
     ],
     "body": [
@@ -322,10 +710,104 @@ export const EXHIBITIONS: Exhibition[] = [
         "advisors": [
           "이진구",
           "김성혜",
-          "정경일",
           "이재선"
         ],
-        "graduates": []
+        "graduates": [
+          "강세라",
+          "강의원",
+          "강준휘",
+          "강혜원",
+          "구하영",
+          "권은서",
+          "권주은",
+          "김가론",
+          "김내경",
+          "김다원",
+          "김다정",
+          "김시온",
+          "김아현",
+          "김영훈",
+          "김예선",
+          "김은지",
+          "김종형",
+          "김주혜",
+          "김지연",
+          "김진실",
+          "김하정",
+          "노지현",
+          "문승의",
+          "박선영",
+          "박인혜",
+          "박지원",
+          "배서호",
+          "백하나",
+          "변루시아",
+          "손세웅",
+          "손지혜",
+          "송은택",
+          "양은진",
+          "원종혜",
+          "유정민",
+          "유정빈",
+          "윤단비",
+          "윤채은",
+          "이나눔",
+          "이봄",
+          "이샤론",
+          "이예린",
+          "이주함",
+          "이지우",
+          "임믿음",
+          "장한별",
+          "전찬아",
+          "전채리",
+          "전채은",
+          "정다은",
+          "정지선",
+          "정진",
+          "조나연",
+          "조수아",
+          "조은세",
+          "차윤지",
+          "최연제",
+          "츠카고시 유키",
+          "허나연",
+          "홍지석",
+          "황찬미"
+        ]
+      },
+      {
+        "track": "Product Design",
+        "advisors": [
+          "이은종",
+          "최인욱"
+        ],
+        "graduates": [
+          "곽현정",
+          "김세인",
+          "김신재",
+          "김유빈",
+          "류은아",
+          "박성민",
+          "박소령",
+          "박예빈",
+          "박이레",
+          "박현아",
+          "우성아",
+          "유혜림",
+          "윤채은",
+          "이동주",
+          "이수민",
+          "이혜진",
+          "장유림",
+          "정예지",
+          "정지선",
+          "정창윤",
+          "최세나",
+          "허재원",
+          "홍진경",
+          "황인성"
+        ]
       }
     ],
     "body": [
@@ -346,7 +828,7 @@ export const EXHIBITIONS: Exhibition[] = [
     "venue": "Lounge, HGU",
     "subtitle": [
       "2020 한동대학교 콘텐츠융합디자인학부 졸업 작품전",
-      "They are meal for us : 그들은 우리의 먹이라"
+      "They are meal for us: 그들은 우리의 먹이라"
     ],
     "verse": {
       "ref": "민수기 14:9",
@@ -365,7 +847,106 @@ export const EXHIBITIONS: Exhibition[] = [
     "size": {
       "width": 536,
       "height": 759
-    }
+    },
+    "alumni": [
+      {
+        "track": "Visual Communication Design",
+        "advisors": [
+          "이진구",
+          "정경일",
+          "이재선"
+        ],
+        "graduates": [
+          "고지온",
+          "김다혜",
+          "김동성",
+          "김보경",
+          "김서영",
+          "김서정",
+          "김예원",
+          "김우림",
+          "김지열",
+          "김지윤",
+          "김희진",
+          "남우리",
+          "목지훈",
+          "문하은",
+          "박상언",
+          "박선하",
+          "박원빈",
+          "박하영",
+          "백은혜",
+          "서경순",
+          "송원경",
+          "송주희",
+          "신효성",
+          "양가희",
+          "염지민",
+          "오세현",
+          "오수현",
+          "유다희",
+          "윤조아",
+          "윤지희",
+          "윤하은",
+          "이가희",
+          "이정헌",
+          "이주섭",
+          "이지우",
+          "이지윤",
+          "이찬미",
+          "이혜림",
+          "임소리",
+          "장주현",
+          "장현주",
+          "전수연",
+          "전인송",
+          "정다운",
+          "정서영",
+          "정혜림",
+          "조주현",
+          "조혜진",
+          "주희언",
+          "최예희",
+          "탁지은",
+          "한지혜",
+          "황세영"
+        ]
+      },
+      {
+        "track": "Product Design",
+        "advisors": [
+          "이은종",
+          "최인욱"
+        ],
+        "graduates": [
+          "강솔지",
+          "김병훈",
+          "김신철",
+          "김지수",
+          "김진현",
+          "남다희",
+          "박의연",
+          "박지현",
+          "서예린",
+          "송주희",
+          "신지은",
+          "양기원",
+          "옥녹현",
+          "윤은진",
+          "윤희수",
+          "이애덕",
+          "이정현",
+          "이혁재",
+          "이효정",
+          "장유정",
+          "전예린",
+          "전은우",
+          "정아람",
+          "한의영",
+          "홍시우"
+        ]
+      }
+    ]
   },
   {
     "year": 2019,
@@ -374,7 +955,7 @@ export const EXHIBITIONS: Exhibition[] = [
     "venue": "Hongik Daehangno Art Center",
     "subtitle": [
       "2019 한동대학교 콘텐츠융합디자인학부 졸업 작품전",
-      "Go to the land : 네게 지시할 땅으로 가라"
+      "Go to the land: 네게 지시할 땅으로 가라"
     ],
     "verse": {
       "ref": "창세기 12:1-2",
@@ -388,11 +969,114 @@ export const EXHIBITIONS: Exhibition[] = [
       {
         "track": "Visual Communication Design",
         "advisors": [
-          "이진구(커뮤니케이션 디자인)",
-          "김성혜(영상 디자인)",
-          "이중섭(서비스디자인)"
+          "이진구",
+          "김성혜",
+          "이중섭",
+          "김진아"
         ],
-        "graduates": []
+        "graduates": [
+          "강창성",
+          "권이낙",
+          "김규리",
+          "김기원",
+          "김세현",
+          "김소연",
+          "김수연",
+          "김시윤",
+          "김예솜",
+          "김예인",
+          "김은빈",
+          "김인지",
+          "김정은",
+          "김지현",
+          "김채은",
+          "김채희",
+          "김하경",
+          "김하영",
+          "김혜빈",
+          "로반 발리니",
+          "류한동",
+          "박규도",
+          "박성현",
+          "송다혜",
+          "송한빛",
+          "신재은",
+          "신해슬란",
+          "양요한",
+          "양주희",
+          "유예지",
+          "유재형",
+          "유혜원",
+          "윤브니엘",
+          "윤세혁",
+          "윤혜주",
+          "이다은",
+          "이상화",
+          "이수진",
+          "이예랑",
+          "이예슬",
+          "이인정",
+          "이정호",
+          "이주섭",
+          "이주영",
+          "이지웅",
+          "이지원",
+          "이찬미",
+          "이찬영",
+          "이하영",
+          "이혜리",
+          "임주은",
+          "장하나",
+          "정지은",
+          "정태경",
+          "정현숙",
+          "주요한",
+          "차승연",
+          "천소영",
+          "최주성",
+          "최지현",
+          "팀뱅크스",
+          "하정경",
+          "한솔",
+          "한예은",
+          "홍아람"
+        ]
+      },
+      {
+        "track": "Product Design",
+        "advisors": [
+          "이은종",
+          "최인욱"
+        ],
+        "graduates": [
+          "강주은",
+          "강혜성",
+          "권효정",
+          "김소연",
+          "김진이",
+          "김진현",
+          "김현정",
+          "박고은",
+          "박성지",
+          "백미연",
+          "석찬홍",
+          "신영지",
+          "심정아",
+          "안진욱",
+          "양형석",
+          "이유빈",
+          "이찬영",
+          "이현진",
+          "임창규",
+          "장지현",
+          "전은지",
+          "정현숙",
+          "조민구",
+          "진승혜",
+          "최지연",
+          "한진영",
+          "황현정"
+        ]
       }
     ],
     "body": [
@@ -431,9 +1115,126 @@ export const EXHIBITIONS: Exhibition[] = [
         "track": "Visual Communication Design",
         "advisors": [
           "이진구",
-          "이재선"
+          "이재선",
+          "김진아"
         ],
-        "graduates": []
+        "graduates": [
+          "강다솔",
+          "강민희",
+          "곽소정",
+          "구아영",
+          "권지수",
+          "김나연",
+          "김다슬",
+          "김동관",
+          "김민진",
+          "김선영",
+          "김소윤",
+          "김수빈",
+          "김수아",
+          "김수연",
+          "김엘림",
+          "김영은",
+          "김예은",
+          "김은성",
+          "김은희",
+          "김하영",
+          "김형린",
+          "김효진",
+          "문수아",
+          "박계수",
+          "박성결",
+          "박성효",
+          "박수인",
+          "박예담",
+          "박장호",
+          "박정은",
+          "박현주",
+          "박혜송",
+          "백승혁",
+          "서수현",
+          "서예진",
+          "신상우",
+          "심예린",
+          "안소미",
+          "안하은",
+          "염지혜",
+          "오의인",
+          "유지아",
+          "이기연",
+          "이빈나",
+          "이상권",
+          "이새힘",
+          "이수민",
+          "이슬기",
+          "이영인",
+          "이은표",
+          "이지수",
+          "이진실",
+          "이현",
+          "장윤지",
+          "장의선",
+          "전다흰",
+          "정시영",
+          "정유진",
+          "조라빈",
+          "조언화",
+          "조예랑",
+          "진혜원",
+          "채유리",
+          "채주희",
+          "최민주",
+          "최이정",
+          "한예은",
+          "한지현",
+          "허미애",
+          "황단비"
+        ]
+      },
+      {
+        "track": "Product Design",
+        "advisors": [
+          "조원철",
+          "이은종"
+        ],
+        "graduates": [
+          "강주은",
+          "고영노",
+          "관신란",
+          "김승윤",
+          "김승윤",
+          "김여름",
+          "김여름",
+          "김용국",
+          "김용국",
+          "김정민",
+          "김정민",
+          "김지인",
+          "김지인",
+          "김혜리",
+          "마경석",
+          "안다빈",
+          "우진서",
+          "우진서",
+          "이경택",
+          "이경택",
+          "이선혜",
+          "이선혜",
+          "이영주",
+          "이영주",
+          "이예은",
+          "이예은",
+          "이주환",
+          "이헌영",
+          "이헌영",
+          "임수민",
+          "임수민",
+          "정병찬",
+          "정혜윤",
+          "정혜윤",
+          "최연재",
+          "최연재"
+        ]
       }
     ],
     "body": [
@@ -454,7 +1255,7 @@ export const EXHIBITIONS: Exhibition[] = [
     "venue": "GALLERY IANG",
     "subtitle": [
       "2017 한동대학교 콘텐츠융합디자인학부 졸업 작품전",
-      "Spread your wings : 청춘을 독수리같이"
+      "Spread your wings: 청춘을 독수리같이"
     ],
     "verse": {
       "ref": "시편 103:5",
@@ -469,9 +1270,126 @@ export const EXHIBITIONS: Exhibition[] = [
         "track": "Visual Communication Design",
         "advisors": [
           "이진구",
-          "이재선"
+          "이재선",
+          "김성혜"
         ],
-        "graduates": []
+        "graduates": [
+          "강윤구",
+          "강인애",
+          "고다은",
+          "권혁기",
+          "김나윤",
+          "김미영",
+          "김민경",
+          "김서연",
+          "김소리",
+          "김소미",
+          "김솔로",
+          "김예준",
+          "김예진",
+          "김유진",
+          "김은겸",
+          "김은빈",
+          "김주성",
+          "김주성",
+          "김지은",
+          "김지은",
+          "김한솔",
+          "김한솔",
+          "김혜원",
+          "김혜원",
+          "류다",
+          "박서진",
+          "박성희",
+          "박세하",
+          "박송은",
+          "박요셉",
+          "박은빛",
+          "박준형",
+          "박진서",
+          "박현명",
+          "박희선",
+          "백사은",
+          "백승연",
+          "백은진",
+          "승수현",
+          "양수현",
+          "양희락",
+          "옥주은",
+          "원동미",
+          "유수아",
+          "유지원",
+          "윤채영",
+          "이경아",
+          "이다희",
+          "이동하",
+          "이윤아",
+          "이일심",
+          "이주영",
+          "이주혜",
+          "이하은",
+          "이희소",
+          "임은주",
+          "장동욱",
+          "전환희",
+          "정이레",
+          "정지인",
+          "정지형",
+          "정한별",
+          "정혜민",
+          "조소은",
+          "조언심",
+          "조에스더",
+          "조인호",
+          "진수완",
+          "진하영",
+          "최소희",
+          "최의섭",
+          "한나래",
+          "한예지",
+          "한찬미",
+          "허은지",
+          "홍찬미",
+          "황예은",
+          "황혜원"
+        ]
+      },
+      {
+        "track": "Product Design",
+        "advisors": [
+          "조원철",
+          "이은종"
+        ],
+        "graduates": [
+          "강승훈",
+          "강주헌",
+          "강혜린",
+          "김성화",
+          "김요셉",
+          "김은겸",
+          "김하연",
+          "김효태",
+          "동가람",
+          "박수현",
+          "박지영",
+          "백요셉",
+          "서안드레",
+          "성경은",
+          "앙흐졸",
+          "양현채",
+          "이가을",
+          "이광현",
+          "이유정",
+          "이형석",
+          "임철호",
+          "임태민",
+          "정극호",
+          "조익현",
+          "차우아",
+          "최미열",
+          "최온유",
+          "허예슬"
+        ]
       }
     ],
     "body": [
@@ -492,7 +1410,7 @@ export const EXHIBITIONS: Exhibition[] = [
     "venue": "ARA ART CENTER",
     "subtitle": [
       "2016 한동대학교 콘텐츠융합디자인학부 졸업 작품전",
-      "Healing in the Light : 빛으로 나음이라"
+      "Healing in the Light: 빛으로 나음이라"
     ],
     "verse": {
       "ref": "말라기 4:2",
@@ -507,9 +1425,102 @@ export const EXHIBITIONS: Exhibition[] = [
         "track": "Visual Communication Design",
         "advisors": [
           "이진구",
-          "이재선"
+          "이재선",
+          "김성혜"
         ],
-        "graduates": []
+        "graduates": [
+          "강지민",
+          "강찬희",
+          "권혁진",
+          "김다소",
+          "김다은",
+          "김선아",
+          "김시인",
+          "김신희",
+          "김아라",
+          "김예나",
+          "김요한",
+          "김지영",
+          "김지유",
+          "김진경",
+          "김진형",
+          "김한솔",
+          "김화평",
+          "남현아",
+          "박다정",
+          "박신희",
+          "박은정",
+          "박은총",
+          "백소연",
+          "서민영",
+          "서바름",
+          "서지원",
+          "성신애",
+          "성하현",
+          "송다원",
+          "송의영",
+          "양선용",
+          "오지수",
+          "원혜진",
+          "유수훈",
+          "유예지",
+          "유지연",
+          "이선배",
+          "이송주",
+          "이수연",
+          "이요한",
+          "이은혜",
+          "이은혜",
+          "임단비",
+          "임영완",
+          "장예지",
+          "전찬미",
+          "정선민",
+          "정여경",
+          "정윤호",
+          "정찬미",
+          "조하민",
+          "채윤희",
+          "최나래",
+          "최문영",
+          "최유지",
+          "최정민",
+          "홍민지"
+        ]
+      },
+      {
+        "track": "Product Design",
+        "advisors": [
+          "최인욱",
+          "조원철"
+        ],
+        "graduates": [
+          "고태준",
+          "김슬비",
+          "김정연",
+          "김주형",
+          "김지성",
+          "김지은",
+          "김태현",
+          "김한수",
+          "김혜지",
+          "박건",
+          "박지원",
+          "유예정",
+          "윤강석",
+          "이사야",
+          "이찬경",
+          "임창섭",
+          "전지현",
+          "정다희",
+          "정윤조",
+          "정은지",
+          "정현수",
+          "최성은",
+          "최예락",
+          "최지섭",
+          "최해영"
+        ]
       }
     ],
     "body": [
@@ -531,7 +1542,7 @@ export const EXHIBITIONS: Exhibition[] = [
     "venue": "ARA ART CENTER",
     "subtitle": [
       "2015 한동대학교 산업정보디자인학부 졸업 작품전",
-      "Make it Neue(new) : 새롭게 하소서"
+      "Make it Neue(new): 새롭게 하소서"
     ],
     "verse": {
       "ref": "시편 51:10",
@@ -546,9 +1557,99 @@ export const EXHIBITIONS: Exhibition[] = [
         "track": "Visual Communication Design",
         "advisors": [
           "이진구",
-          "이재선"
+          "이재선",
+          "김성혜"
         ],
-        "graduates": []
+        "graduates": [
+          "고한솔",
+          "권세경",
+          "김경림",
+          "김금화",
+          "김드림",
+          "김민경",
+          "김서로",
+          "김신영",
+          "김애진",
+          "김은범",
+          "김지연",
+          "김진빈",
+          "김희수",
+          "류지혜",
+          "박채연",
+          "백승의",
+          "서재은",
+          "소가윤",
+          "송은지",
+          "시마다 메이",
+          "신영원",
+          "신지수",
+          "에잉 쩜라은",
+          "오선혜",
+          "위은총",
+          "유다혜",
+          "유지희",
+          "유현",
+          "이민아",
+          "이상준",
+          "이세인",
+          "이은아",
+          "이은환",
+          "이주희",
+          "이지은",
+          "이참",
+          "이하람",
+          "이한나",
+          "이한별",
+          "임이레",
+          "장인영",
+          "전소현",
+          "조서영",
+          "조셉 우바스",
+          "조은희",
+          "주화",
+          "채승찬",
+          "최유진",
+          "최은일",
+          "최찬영",
+          "추향기"
+        ]
+      },
+      {
+        "track": "Product Design",
+        "advisors": [
+          "최인욱",
+          "조원철"
+        ],
+        "graduates": [
+          "강윤하",
+          "곽신재",
+          "김도형",
+          "김예슬",
+          "김태완",
+          "김현진",
+          "문소연",
+          "박민향",
+          "박유나",
+          "박은지",
+          "안정환",
+          "우대규",
+          "윤종욱",
+          "윤주영",
+          "이규리",
+          "이민주",
+          "이소현",
+          "이신영",
+          "이연우",
+          "임경은",
+          "전인화",
+          "정다솜",
+          "정다솜",
+          "정보라",
+          "정하영",
+          "조재경",
+          "최규호",
+          "황호찬"
+        ]
       }
     ],
     "body": [
@@ -569,7 +1670,7 @@ export const EXHIBITIONS: Exhibition[] = [
     "venue": "Sangmyung Gallery",
     "subtitle": [
       "2014 한동대학교 산업정보디자인학부 졸업 작품전",
-      "YOU ARE THE LIGHT OF THE WORLD : 너희는 세상의 빛이라"
+      "YOU ARE THE LIGHT OF THE WORLD: 너희는 세상의 빛이라"
     ],
     "verse": {
       "ref": "마태복음 5:14",
@@ -621,7 +1722,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [],
         "graduates": [
           "김다인",
@@ -738,7 +1839,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "조원철",
           "최인욱",
@@ -854,7 +1955,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "조원철",
@@ -920,7 +2021,6 @@ export const EXHIBITIONS: Exhibition[] = [
           "김성혜"
         ],
         "graduates": [
-          "<시각디자인>",
           "권미혜",
           "김경빈",
           "김보람",
@@ -961,7 +2061,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "최인욱"
@@ -1051,7 +2151,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "최인욱"
@@ -1090,9 +2190,9 @@ export const EXHIBITIONS: Exhibition[] = [
         "track": "Visual Communication Design",
         "advisors": [
           "이진구",
-          "조성배(영상디자인)",
-          "유현경(시각디자인)",
-          "이주현(웹디자인)",
+          "조성배",
+          "유현경",
+          "이주현",
           "김성혜",
           "김공웅"
         ],
@@ -1137,7 +2237,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "조원철",
           "이은종",
@@ -1197,10 +2297,10 @@ export const EXHIBITIONS: Exhibition[] = [
       {
         "track": "Visual Communication Design",
         "advisors": [
-          "이진구(시각정보디자인)",
-          "이주현(웹디자인)",
-          "김성혜(영상디자인)",
-          "김공웅(일러스트레이션, 기초디자인)"
+          "이진구",
+          "이주현",
+          "김성혜",
+          "김공웅"
         ],
         "graduates": [
           "강소현",
@@ -1247,7 +2347,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "조원철",
           "이은종",
@@ -1311,7 +2411,13 @@ export const EXHIBITIONS: Exhibition[] = [
     "alumni": [
       {
         "track": "Visual Communication Design",
-        "advisors": [],
+        "advisors": [
+          "이진구",
+          "이주현",
+          "김성혜",
+          "김공웅",
+          "최병묵"
+        ],
         "graduates": [
           "강성구",
           "강소희",
@@ -1367,8 +2473,12 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
-        "advisors": [],
+        "track": "Product Design",
+        "advisors": [
+          "최인욱",
+          "조원철",
+          "이은종"
+        ],
         "graduates": [
           "강한종",
           "권일구",
@@ -1437,7 +2547,13 @@ export const EXHIBITIONS: Exhibition[] = [
     "alumni": [
       {
         "track": "Visual Communication Design",
-        "advisors": [],
+        "advisors": [
+          "이진구",
+          "이주현",
+          "김성혜",
+          "김공웅",
+          "최병묵"
+        ],
         "graduates": [
           "강경중",
           "강신혜",
@@ -1492,8 +2608,12 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
-        "advisors": [],
+        "track": "Product Design",
+        "advisors": [
+          "최인욱",
+          "조원철",
+          "이은종"
+        ],
         "graduates": [
           "김상민",
           "김애영",
@@ -1566,7 +2686,13 @@ export const EXHIBITIONS: Exhibition[] = [
     "alumni": [
       {
         "track": "Visual Communication Design",
-        "advisors": [],
+        "advisors": [
+          "이진구",
+          "이주현",
+          "김성혜",
+          "김공웅",
+          "최병묵"
+        ],
         "graduates": [
           "권성미",
           "권희정",
@@ -1612,8 +2738,12 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
-        "advisors": [],
+        "track": "Product Design",
+        "advisors": [
+          "최인욱",
+          "조원철",
+          "이은종"
+        ],
         "graduates": [
           "강승구",
           "강승구",
@@ -1726,7 +2856,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [],
         "graduates": [
           "강대은",
@@ -1770,8 +2900,8 @@ export const EXHIBITIONS: Exhibition[] = [
       "ref": "요한복음 14:16~17 / 요한복음 14:26",
       "text": "내가 아버지께 구하겠으니 그가 또 다른 보혜사를 너희에게 주사 영원토록 너희와 함께 있게 하시리니 저는 진리의 영이라 세상은 능히 저를받지 못하나니 이는 저를 보지도 못하고 알지도 못함이라 그러나 너희는 저를 아나니 저는 너희와 함께 거하심이요 또 너희 속에 계시겠음이라.\n\n보혜사 곧 아버지께서 내 이름으로 보내실 성령 그가 너희에게 모든 것을 가르치시고 내가 너희에게 말한 모든 것을 생각나게 하시리라.",
       "en": {
-        "ref": "John 14:16~17 / John 14:26",
-        "text": "And I will the Father, and he will give you another Counselor to be with you foever the Spirit of truth. The world cannot accept him, because it neither sees him norknows him. But you know him, for he lives with you end will be in you. But the Counselor, the Holy Spirit, whom the Father will send in my name, will teach you all things and will remind you of everything I have said to you."
+        "ref": "John 14:16~17 / John  14:26",
+        "text": "And I will the Father, and he will give you another Counselor to be with you foever the Spirit of truth. The world cannot accept him, because it  neither sees him norknows him. But you know him, for he lives with you end will be in you. But the Counselor, the Holy Spirit, whom the Father will send in my name, will teach you all things and will remind you of everything I have said to you."
       }
     },
     "alumni": [
@@ -1826,7 +2956,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [],
         "graduates": [
           "김두연",
@@ -1861,10 +2991,16 @@ export const EXHIBITIONS: Exhibition[] = [
         "text": "중보자"
       },
       {
-        "text": "001. 둘 사이에 들어 일을 주선하는 사람 002. 인간의 죄를 대신해서 피를 흘리고 죽음으로 하나님과의 관계를 회복시키고 유지하세 하신 그리스도"
+        "text": "001. 둘 사이에 들어 일을 주선하는 사람"
       },
       {
-        "text": "한동산디가 생각하는 중보자 십자가에서 죽으심으로 우리와 하나님 사이의 관계를 회복시켜 주었던 예수님처럼 우리는 우리의 디자인을 통해서 사람들이 알지 못하는 아름다움과 따뜻함, 그 분의 사랑하시는 마음을 사람들에게 보여줌으로 깨어진 우리들의 관계, 그 분과의 관계가 회복되어지길 소망합니다."
+        "text": "002. 인간의 죄를 대신해서 피를 흘리고 죽음으로 하나님과의 관계를 회복시키고 유지하세 하신 그리스도"
+      },
+      {
+        "text": "한동산디가 생각하는 중보자"
+      },
+      {
+        "text": "십자가에서 죽으심으로 우리와 하나님 사이의 관계를 회복시켜 주었던 예수님처럼 우리는 우리의 디자인을 통해서 사람들이 알지 못하는 아름다움과 따뜻함, 그 분의 사랑하시는 마음을 사람들에게 보여줌으로 깨어진 우리들의 관계, 그 분과의 관계가 회복되어지길 소망합니다."
       }
     ],
     "image": "/images/exhibitions/2003.jpg",
@@ -1934,7 +3070,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [],
         "graduates": [
           "고숙진",
@@ -2005,50 +3141,6 @@ export const EXHIBITIONS: Exhibition[] = [
       "석금호(산돌커뮤니케이션즈대표, 객원교수)",
       "김성혜(영상디자인, 겸임교수)"
     ],
-    "alumni": [
-      {
-        "track": "Visual Communication Design",
-        "advisors": [],
-        "graduates": [
-          "고승완",
-          "곽내경",
-          "권숙향",
-          "권은선",
-          "김병수",
-          "김지연",
-          "김현전",
-          "남채완",
-          "류송아",
-          "마승현",
-          "박민정",
-          "박슬아",
-          "박주연",
-          "변혜진",
-          "신은정",
-          "안효선",
-          "오남용",
-          "우경례",
-          "유영은",
-          "윤기숙",
-          "윤소정",
-          "윤정은",
-          "이경남",
-          "이경하",
-          "이규찬",
-          "이문선",
-          "이중섭",
-          "이지영",
-          "이지은",
-          "임영실",
-          "전예윤",
-          "정선은",
-          "정지수",
-          "정희현",
-          "조민정",
-          "황선영"
-        ]
-      }
-    ],
     "body": [
       {
         "text": "특히 금년도 산업정보디자인학부의 세 번째 Degree Presentation의 주제는 \"Exodus\"로 이는 한동대학교가 추구하고 있는 Globalism과 디자인을 통해 보다 나은 세상을 지향하는 모든 졸업생들의 사명이라고 봅니다."
@@ -2092,19 +3184,6 @@ export const EXHIBITIONS: Exhibition[] = [
       "박현철(산업디자인, 겸임교수)",
       "김승자(상업사진, 겸임교수)"
     ],
-    "alumni": [
-      {
-        "track": "Visual Communication Design",
-        "advisors": [],
-        "graduates": [
-          "김용주",
-          "김태은",
-          "나은주",
-          "유승명",
-          "홍지현"
-        ]
-      }
-    ],
     "body": [
       {
         "text": "특히 금년도 산업정보디자인학부의 첫번째 Degree Presentation 의 주제는 \"빛(Light)\" 으로 이는 하나님께서 처음 창조하신 피조물입니다. \"하나님이 가라사대 빛이 있으라 하시매 빛이 있었고 그 빛이 하나님이 보시기에 좋았더라\" (창세기1:3~4)"
@@ -2118,5 +3197,5 @@ export const EXHIBITIONS: Exhibition[] = [
       "width": 491,
       "height": 680
     }
-  },
+  }
 ];

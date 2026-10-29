@@ -32,6 +32,8 @@ function NetworkLink({ href, label }: { href: string; label: string }) {
 export default function NetworksPage() {
   return (
     <>
+      {/* 페이지 맨 위 기준점 — 링크로 들어오면 여기(0)로 스크롤 (sticky 헤더가 첫 요소면 헤더 높이만큼 내려간 채로 열림) */}
+      <div id="top" />
       <Header tone="light" />
       <main className="flex-1">
         <div className="relative aspect-[402/582] w-full overflow-hidden bg-neutral-200 md:aspect-[1919/706]">

@@ -16,6 +16,8 @@ export default async function ExhibitionsPage() {
 
   return (
     <>
+      {/* 페이지 맨 위 기준점 — 링크로 들어오면 여기(0)로 스크롤 (sticky 헤더가 첫 요소면 헤더 높이만큼 내려간 채로 열림) */}
+      <div id="top" />
       <Header tone="light" />
       <main className="flex-1">
         <Container>
