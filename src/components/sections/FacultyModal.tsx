@@ -7,27 +7,66 @@ import type { CvEntry, Faculty, FacultyDetail } from "@/types/faculty";
 import { Container } from "@/components/ui/Container";
 import { LogoCcd } from "@/components/ui/LogoCcd";
 
-/** 섹션 제목 + 하단 구분선 (PC 26px / Mo 22px) */
+/** 본문 글자 — Mo 14px / PC 16px, 행간 140% (시안 419:1296 / 44:2926) */
+const BODY = "text-[14px] leading-[1.4] md:text-[16px]";
+
+/** 글 속 주소(https://…)를 새 탭 링크로. 끝에 붙은 마침표·괄호는 링크에서 뺌 */
+const URL_RE = /(https?:\/\/[^\s]+[^\s.,;:)\]'"’”])/g;
+function Linkify({ text }: { text: string }) {
+  const parts = text.split(URL_RE);
+  if (parts.length === 1) return text;
+  return parts.map((part, i) =>
+    i % 2 === 1 ? (
+      <a
+        key={i}
+        href={part}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="break-all underline decoration-from-font underline-offset-auto hover:opacity-70"
+      >
+        {part}
+      </a>
+    ) : (
+      part
+    ),
+  );
+}
+
+/** 섹션 제목 + 하단 구분선 (PC 26px·0.5px 흰 선 / Mo 22px·1px 50% 선) */
 function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5 md:gap-2">
       <div className="flex items-center gap-1.5 md:gap-2">
-        <h3 className="flex-1 font-telegraf text-[22px] leading-[1.06] md:text-[26px]">{children}</h3>
+        <h3 className="flex-1 font-telegraf text-[22px] leading-normal md:text-[26px] md:leading-[1.4]">{children}</h3>
         {aside}
       </div>
-      <hr className="border-0 border-t border-white/50 md:border-white" />
+      <hr className="border-0 border-t border-white/50 md:border-t-[0.5px] md:border-white" />
     </div>
   );
 }
 
-/** 왼쪽 100px 연도 칸 + 내용 (간격 12px), 항목 사이 8px — 연도가 빈 줄은 위 연도에 이어지는 항목 */
+/**
+ * 왼쪽 연도 칸(Mo 52px / PC 100px) + 내용 (간격 12px), 항목 사이 8px.
+ * 시트에서 연도가 빈 줄(위 연도에 이어지는 항목)도 위 연도를 그대로 붙여서 모든 줄에 연도 표시 (시안 44:3362)
+ */
+function withYears(entries: CvEntry[]): CvEntry[] {
+  let year: string | undefined;
+  return entries.map((e) => {
+    if (e.year) year = e.year;
+    return { year, text: e.text };
+  });
+}
+
 function EntryList({ entries, limit }: { entries: CvEntry[]; limit?: number }) {
+  const rows = withYears(entries);
   return (
-    <ul className="flex flex-col gap-1.5 text-[14px] leading-[1.6] md:gap-2 md:text-[16px]">
-      {entries.slice(0, limit).map((e, i) => (
+    <ul className={`flex flex-col gap-2 ${BODY}`}>
+      {rows.slice(0, limit).map((e, i) => (
         <li key={i} className="flex gap-3">
-          <span className="w-[100px] shrink-0">{e.year}</span>
-          <span className="min-w-0 flex-1">{e.text}</span>
+          <span className="w-[52px] shrink-0 md:w-[100px]">{e.year}</span>
+          <span className="min-w-0 flex-1">
+            <Linkify text={e.text} />
+          </span>
         </li>
       ))}
     </ul>
@@ -58,10 +97,13 @@ function Chevron({ open }: { open: boolean }) {
 function Section({
   title,
   total = 0,
+  bodyClassName = "gap-2",
   children,
 }: {
   title: string;
   total?: number;
+  /** 내용 묶음 사이 간격 — Publications 소분류 사이는 PC 40px */
+  bodyClassName?: string;
   children: ReactNode | ((limit: number | undefined) => ReactNode);
 }) {
   const [open, setOpen] = useState(false);
@@ -88,7 +130,7 @@ function Section({
       >
         {title}
       </SectionTitle>
-      <div id={id} className="flex flex-col gap-2">
+      <div id={id} className={`flex flex-col ${bodyClassName}`}>
         {typeof children === "function" ? children(limit) : children}
       </div>
     </section>
@@ -105,19 +147,43 @@ function Publications({ groups, limit }: { groups: NonNullable<FacultyDetail["pu
     return (
       <div key={group.label ?? i} className="flex flex-col gap-2">
         {group.label && (
-          <h4 className="font-telegraf text-[14px] leading-[1.06] uppercase md:text-[16px]">{group.label}</h4>
+          <h4 className="font-telegraf text-[16px] leading-[1.4] uppercase md:text-[18px]">{group.label}</h4>
         )}
         <EntryList entries={group.entries} limit={take} />
         {take === group.entries.length && group.note && (
-          <p className="text-[14px] leading-[1.6] md:text-[16px]">{group.note}</p>
+          <p className={BODY}>
+            <Linkify text={group.note} />
+          </p>
         )}
       </div>
     );
   });
 }
 
+/** 모바일 소개 펼치기 화살표 (∨ / 펼치면 ∧) — Figma 419:1472 / 419:2113 */
+function IntroToggle({ open, onClick }: { open: boolean; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      aria-expanded={open}
+      aria-label={open ? "영문 소개 접기" : "영문 소개 펼치기"}
+      onClick={onClick}
+      className="flex h-8 w-full items-center justify-center md:hidden"
+    >
+      <img
+        src="/icons/chevron-thin.svg"
+        alt=""
+        width={10.6607}
+        height={19.9071}
+        className={`block transition-transform duration-300 ${open ? "-rotate-90" : "rotate-90"}`}
+      />
+    </button>
+  );
+}
+
 function Detail({ person }: { person: Faculty }) {
   const d = person.detail ?? {};
+  const [introOpen, setIntroOpen] = useState(false);
   const contact = d.contact
     ? ([
         ["연구실", d.contact.office],
@@ -127,9 +193,9 @@ function Detail({ person }: { person: Faculty }) {
     : [];
 
   return (
-    <div className="flex flex-col gap-[100px] lg:flex-row lg:items-start lg:gap-[60px] 2xl:gap-[180px]">
-      {/* 왼쪽: 프로필 */}
-      <div className="flex w-full flex-col gap-10 lg:w-[320px] lg:shrink-0 2xl:w-[420px]">
+    <div className="flex flex-col gap-[60px] md:gap-[100px] lg:flex-row lg:items-start lg:gap-[60px] 2xl:gap-[180px]">
+      {/* 왼쪽: 프로필 (항목 사이 Mo 32px / PC 40px) */}
+      <div className="flex w-full flex-col gap-8 md:gap-10 lg:w-[320px] lg:shrink-0 2xl:w-[420px]">
         <div className="flex flex-col gap-[22.873px]">
           <div className="relative aspect-[1122/1402] w-full overflow-hidden bg-neutral-800">
             {person.image && (
@@ -148,13 +214,8 @@ function Detail({ person }: { person: Faculty }) {
               <h2 className="font-telegraf text-[28px] leading-[1.06] md:text-[34px]">{person.nameEn}</h2>
               <p className="text-[24px] font-medium">{person.nameKo}</p>
             </div>
-            {d.title ? (
-              <>
-                {person.position && <p className="text-[16px] font-medium md:hidden">{person.position}</p>}
-                <p className="hidden text-[20px] font-medium md:block">{d.title}</p>
-              </>
-            ) : (
-              person.position && <p className="text-[16px] font-medium md:text-[20px]">{person.position}</p>
+            {(d.title ?? person.position) && (
+              <p className="text-[16px] font-medium md:text-[20px]">{d.title ?? person.position}</p>
             )}
           </div>
         </div>
@@ -178,16 +239,29 @@ function Detail({ person }: { person: Faculty }) {
           </dl>
         )}
 
-        {/* 소개 — 국문 14px/160%, 영문 14px/140% (시안 44:3598 등), 모바일 13px */}
-        {d.intro && (
-          <p className="text-[13px] leading-[1.6] tracking-[-0.02em] whitespace-pre-line md:text-[14px] md:tracking-normal">
-            {d.intro}
-          </p>
-        )}
-        {d.introEn && (
-          <p lang="en" className="text-[13px] leading-[1.4] whitespace-pre-line md:text-[14px]">
-            {d.introEn}
-          </p>
+        {/* 소개 — 국문 14px/160%, 영문 14px/140% (시안 44:3598 등), 모바일 13px.
+            모바일은 국문만 보이고 아래 화살표로 영문 펼치기 (419:1296 / 419:1959), PC 는 항상 둘 다 */}
+        {(d.intro || d.introEn) && (
+          <div className="flex flex-col gap-1 md:contents">
+            <div className="flex flex-col gap-3 md:contents">
+              {d.intro && (
+                <p className="text-[13px] leading-[1.6] tracking-[-0.02em] whitespace-pre-line md:text-[14px] md:tracking-normal">
+                  <Linkify text={d.intro} />
+                </p>
+              )}
+              {d.introEn && (
+                <p
+                  lang="en"
+                  className={`text-[13px] leading-[1.4] tracking-[-0.02em] whitespace-pre-line md:block md:text-[14px] md:tracking-normal ${
+                    introOpen || !d.intro ? "" : "hidden"
+                  }`}
+                >
+                  <Linkify text={d.introEn} />
+                </p>
+              )}
+            </div>
+            {d.intro && d.introEn && <IntroToggle open={introOpen} onClick={() => setIntroOpen((v) => !v)} />}
+          </div>
         )}
       </div>
 
@@ -201,14 +275,16 @@ function Detail({ person }: { person: Faculty }) {
               d.major.some((m) => m.year) ? (
                 <EntryList entries={d.major} limit={limit} />
               ) : (
-                <ul className="text-[14px] leading-[1.6] md:text-[16px]">
+                <ul className={BODY}>
                   {d.major.slice(0, limit).map((m) => (
-                    <li key={m.text}>{m.text}</li>
+                    <li key={m.text}>
+                      <Linkify text={m.text} />
+                    </li>
                   ))}
                 </ul>
               )
             ) : (
-              <p className="text-[14px] leading-[1.6] md:text-[16px]">{person.education}</p>
+              <p className={BODY}>{person.education}</p>
             )
           }
         </Section>
@@ -226,6 +302,7 @@ function Detail({ person }: { person: Faculty }) {
           <Section
             title={d.publicationsTitle ?? "Publications"}
             total={d.publications.reduce((n, g) => n + g.entries.length, 0)}
+            bodyClassName="gap-2 md:gap-10"
           >
             {(limit) => <Publications groups={d.publications!} limit={limit} />}
           </Section>
@@ -242,7 +319,9 @@ function Detail({ person }: { person: Faculty }) {
         ) : null}
         {d.researchInterest && (
           <Section title="Research Interest">
-            <p className="text-[14px] leading-[1.4] md:text-[16px]">{d.researchInterest}</p>
+            <p className={BODY}>
+              <Linkify text={d.researchInterest} />
+            </p>
           </Section>
         )}
         {d.extra?.map((sec) => (
@@ -256,7 +335,7 @@ function Detail({ person }: { person: Faculty }) {
 }
 
 /**
- * 교수 상세 모달 — Figma 6:264(처음 열었을 때) / 6:198(전체 펼침) / 6:2285(모바일)
+ * 교수 상세 모달 — Figma PC 44:2926·44:3362 / 6:198(전체 펼침), 모바일 419:1296(소개 접힘)·419:1959(펼침)
  * <dialog> 로 포커스 가두기·ESC 닫기를 브라우저에 맡김
  */
 export function FacultyModal({ person, onClose }: { person: Faculty | null; onClose: () => void }) {
@@ -299,7 +378,7 @@ export function FacultyModal({ person, onClose }: { person: Faculty | null; onCl
           <div className="sticky top-0 z-10 flex h-[60px] items-center justify-between bg-black px-[23px] md:hidden">
             <LogoCcd width={44.386} className="text-white" />
             <button type="button" onClick={onClose} aria-label="닫기" className="size-8">
-              <img src="/icons/close.svg" alt="" className="block size-8" />
+              <img src="/icons/close-mobile.svg" alt="" width={32} height={32} className="block size-8" />
             </button>
           </div>
           {/* Tablet+: 오른쪽 위 닫기 */}
@@ -309,7 +388,7 @@ export function FacultyModal({ person, onClose }: { person: Faculty | null; onCl
             aria-label="닫기"
             className="fixed top-10 right-10 z-10 hidden size-[52px] hover:opacity-70 md:block"
           >
-            <img src="/icons/close.svg" alt="" className="block size-[52px]" />
+            <img src="/icons/close.svg" alt="" width={52} height={52} className="block size-[52px]" />
           </button>
 
           <Container className="pt-0 pb-[90px] md:pt-[124px] md:pb-[100px]">

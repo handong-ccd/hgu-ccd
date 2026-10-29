@@ -77,6 +77,40 @@ function DownloadLinks({ variant }: { variant: "desktop" | "mobile" }) {
   );
 }
 
+/** 트랙 소개 문단 — 빈 줄로 나눈 문단 사이 32px */
+function Summary({ text }: { text: string }) {
+  return (
+    <div className="flex flex-col gap-8 font-myeongjo text-[14px] leading-[1.6]">
+      {text.split(/\n\s*\n/).map((p) => (
+        <p key={p}>{p}</p>
+      ))}
+    </div>
+  );
+}
+
+/** 커리큘럼 위 트랙 소개 (Tablet+) — Figma 419:998 · 소개 문구가 있는 트랙만 2열 */
+export async function TrackAbout() {
+  const tracks = (await getTracks()).filter((t) => t.summary);
+  if (!tracks.length) return null;
+
+  return (
+    <section aria-labelledby="track-about" className="hidden flex-col gap-8 md:flex">
+      <SectionHeading id="track-about" title="About" />
+      <div className="flex gap-10 lg:gap-[100px]">
+        {tracks.map((track) => (
+          <div key={track.name} className="flex min-w-0 flex-1 flex-col gap-5">
+            <div className="flex flex-col gap-1">
+              <h3 className="text-[20px] leading-[1.4] font-medium">{track.name}</h3>
+              <hr className="border-0 border-t border-line" />
+            </div>
+            <Summary text={track.summary} />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export async function Curriculum() {
   const tracks = await getTracks();
 
@@ -89,17 +123,19 @@ export async function Curriculum() {
         below={<DownloadLinks variant="mobile" />}
       />
 
-      {/* Mobile: 트랙 소개 문단 */}
+      {/* Mobile: 트랙 소개 문단 (Tablet+ 는 위 About 에) */}
       <div className="mt-12 flex flex-col gap-[46px] md:hidden">
-        {tracks.map((track) => (
-          <div key={track.name} className="flex flex-col gap-3">
-            <h3 className="text-[16px] leading-[1.2] font-medium">{track.name}</h3>
-            <p className="font-myeongjo text-[14px] leading-[1.6]">{track.summary}</p>
-          </div>
-        ))}
+        {tracks
+          .filter((track) => track.summary)
+          .map((track) => (
+            <div key={track.name} className="flex flex-col gap-3">
+              <h3 className="text-[16px] leading-[1.2] font-medium">{track.name}</h3>
+              <Summary text={track.summary} />
+            </div>
+          ))}
       </div>
 
-      {/* Tablet+: 학년별 과목 */}
+      {/* Tablet+: 트랙별 1~4학년 과목 (Figma 6:365) */}
       <div className="mt-6 hidden flex-col gap-6 md:flex">
         {tracks.map((track) => (
           <div key={track.name} className="flex flex-col gap-5">
@@ -113,11 +149,13 @@ export async function Curriculum() {
                   {column.map((group) => (
                     <div key={group.label} className="flex flex-col gap-1">
                       <h4 className="text-[18px] font-semibold">{group.label}</h4>
-                      <ul className="flex flex-col gap-1 font-telegraf text-[15px]">
-                        {group.courses.map((course) => (
-                          <li key={course}>{course}</li>
-                        ))}
-                      </ul>
+                      {group.courses.length > 0 && (
+                        <ul className="flex flex-col gap-1 font-telegraf text-[15px]">
+                          {group.courses.map((course) => (
+                            <li key={course}>{course}</li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
                   ))}
                 </div>
