@@ -1,47 +1,57 @@
 import Image from "next/image";
 import type { Exhibition } from "@/types/exhibition";
-import { dateVenue } from "@/lib/exhibition";
 
 /** 백엔드 응답에 size 가 없을 때 쓰는 기본 포스터 크기 */
 export const DEFAULT_SIZE = { width: 480, height: 680 };
 
-/** 모바일 카드 — Figma 204:1516. 포스터 폭 160 고정, 높이는 원본 비율 */
-export function ExhibitionMobileCard({ item }: { item: Exhibition }) {
-  const { width, height } = item.size ?? DEFAULT_SIZE;
+/** 부제 "영문 : 국문" 에서 국문 제목만 (국문이 없으면 undefined) */
+export function koreanTitle(item: Pick<Exhibition, "subtitle">) {
+  const parts = item.subtitle[1].split(/\s*:\s*/);
+  const ko = parts.length > 1 ? parts.slice(1).join(" : ").trim() : "";
+  return /[가-힣]/.test(ko) ? ko : undefined;
+}
+
+/** "20XX 한동대학교 ○○학부 졸업 작품전" — '대학교' 뒤에서 줄바꿈 */
+function ShowTitle({ text }: { text: string }) {
+  const m = text.match(/^(.*?대학교)\s+(.+)$/);
+  if (!m) return text;
   return (
-    <article className="flex gap-4">
-      <div
-        className="relative w-[160px] shrink-0 self-start overflow-hidden bg-black/20"
-        style={{ aspectRatio: `${width} / ${height}` }}
-      >
+    <>
+      {m[1]}
+      <br />
+      {m[2]}
+    </>
+  );
+}
+
+/**
+ * 모바일 전시 카드 — Figma 6:2071 (480:1658 등). 메인 Exhibition Archive · 전시 목록 공용
+ * 포스터 140×203 + 날짜 / 제목(영문) / 제목(국문) / 20XX 한동대학교 … 졸업 작품전
+ */
+export function ExhibitionMobileCard({ item }: { item: Exhibition }) {
+  const ko = koreanTitle(item);
+  return (
+    <article className="flex gap-3">
+      <div className="relative h-[203px] w-[140px] shrink-0 overflow-hidden bg-black/10">
         <Image
           src={item.image}
           alt={`${item.year} 졸업 작품전 ${item.name} 포스터`}
           fill
-          sizes="160px"
+          sizes="140px"
           className="object-cover"
         />
       </div>
-      <div className="flex min-w-0 flex-1 flex-col gap-5 font-telegraf uppercase">
-        <div className="flex flex-col gap-1.5">
-          <p className="text-[14px] leading-none tracking-[-0.02em]">{item.year}</p>
-          <h3 className="text-[24px] leading-none">
-            {item.name}
-            {dateVenue(item) && (
-              <>
-                <br />
-                {dateVenue(item)}
-              </>
-            )}
-          </h3>
-          <p className="text-[16px] leading-[1.2] tracking-[-0.02em]">{item.subtitle[1]}</p>
+      <div className="flex min-w-0 flex-1 flex-col gap-1.5 font-telegraf">
+        <div className="flex flex-col gap-0.5 leading-none">
+          <p className="text-[13px] tracking-[-0.02em]">{item.date ?? item.year}</p>
+          <h3 className="text-[28px] uppercase">{item.name}</h3>
         </div>
-        {item.verse && (
-          <div className="flex flex-col gap-1 text-[12px] leading-[1.2] tracking-[-0.02em]">
-            <p>{item.verse.ref}</p>
-            <p className="whitespace-pre-line">{item.verse.text}</p>
-          </div>
-        )}
+        <div className="flex flex-col gap-[1.4em] text-[14px] leading-[1.4] tracking-[-0.02em]">
+          {ko && <p>{ko}</p>}
+          <p className="text-[12px]">
+            <ShowTitle text={item.subtitle[0]} />
+          </p>
+        </div>
       </div>
     </article>
   );

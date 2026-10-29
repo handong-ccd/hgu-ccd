@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Fragment } from "react";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { Container } from "@/components/ui/Container";
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
   description: "한동대학교 콘텐츠융합디자인학부 졸업 작품전 아카이브",
 };
 
-/** 전체 전시 목록 — Figma PC 6:1202 / 모바일 64:7150 */
+/** 전체 전시 목록 — Figma PC 6:1202 (포스터 오른쪽 고정) / 모바일 카드 6:2071 */
 export default async function ExhibitionsPage() {
   const exhibitions = await getExhibitions();
 
@@ -33,11 +32,8 @@ export default async function ExhibitionsPage() {
           {/* Tablet+ */}
           <div className="hidden md:block">
             <h1 className="sr-only">Exhibition Archive — 한동대학교 콘텐츠융합디자인학부 졸업 작품전</h1>
-            {exhibitions.map((item, i) => (
-              <Fragment key={item.year}>
-                {i > 0 && <hr className="border-0 border-t border-line" />}
-                <ExhibitionRow item={item} reverse={i % 2 === 1} />
-              </Fragment>
+            {exhibitions.map((item) => (
+              <ExhibitionRow key={item.year} item={item} />
             ))}
           </div>
         </Container>

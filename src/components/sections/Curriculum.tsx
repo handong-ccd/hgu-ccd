@@ -119,6 +119,8 @@ export async function Curriculum() {
       <SectionHeading
         id="curriculum"
         title="Curriculum"
+        // Figma 6:367 — 다운로드 링크는 오른쪽 아래(구분선 위)에 붙임
+        asideAlign="end"
         aside={<DownloadLinks variant="desktop" />}
         below={<DownloadLinks variant="mobile" />}
       />
