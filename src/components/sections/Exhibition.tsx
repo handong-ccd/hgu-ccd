@@ -105,9 +105,9 @@ export async function Exhibition() {
         }
       />
 
-      {/* Mobile: 최근 5개 세로 리스트 + SEE ALL — Figma 6:2071 (204:1240) */}
-      <div className="mt-3 flex flex-col gap-6 md:hidden">
-        <ul className="flex flex-col gap-2">
+      {/* Mobile: 최근 5개 세로 리스트 + SEE ALL — Figma 6:2071 (204:1240), 항목 간격 452:2362 */}
+      <div className="mt-5 flex flex-col gap-6 md:hidden">
+        <ul className="flex flex-col gap-5">
           {exhibitions.slice(0, 5).map((item) => (
             <li key={item.year} className="border-b-[0.5px] border-line pb-5">
               <Link href={`/exhibitions/${item.year}`} className="block">
