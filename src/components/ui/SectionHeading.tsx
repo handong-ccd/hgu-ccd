@@ -6,6 +6,7 @@ export function SectionHeading({
   title,
   aside,
   below,
+  asideAlign = "center",
   className = "",
 }: {
   id?: string;
@@ -14,11 +15,13 @@ export function SectionHeading({
   aside?: ReactNode;
   /** 구분선 아래 (모바일 다운로드 버튼 등) */
   below?: ReactNode;
+  /** aside 세로 정렬 — "end" 면 타이틀 아래선(구분선 바로 위)에 붙임 */
+  asideAlign?: "center" | "end";
   className?: string;
 }) {
   return (
     <div className={`flex w-full flex-col gap-2 ${className}`}>
-      <div className="flex w-full items-center gap-2">
+      <div className={`flex w-full gap-2 ${asideAlign === "end" ? "items-end" : "items-center"}`}>
         <h2
           id={id}
           className="min-w-0 flex-1 font-telegraf text-[32px] leading-none tracking-[-0.03em] md:text-[40px]"
