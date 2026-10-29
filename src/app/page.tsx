@@ -2,7 +2,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { Container } from "@/components/ui/Container";
 import { IntroScene } from "@/components/motion/IntroScene";
-import { Curriculum } from "@/components/sections/Curriculum";
+import { Curriculum, TrackAbout } from "@/components/sections/Curriculum";
 import { Exhibition } from "@/components/sections/Exhibition";
 import { Faculties } from "@/components/sections/Faculties";
 import { Hero } from "@/components/sections/Hero";
@@ -21,6 +21,7 @@ export default function Home() {
         </IntroScene>
         <div className="relative z-[1] bg-white">
           <Container className="flex flex-col gap-20 py-10 md:gap-[100px] md:pt-[60px] md:pb-[100px]">
+            <TrackAbout />
             <Curriculum />
             <Faculties />
           </Container>

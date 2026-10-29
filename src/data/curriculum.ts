@@ -1,43 +1,29 @@
 // 더미 데이터 — USE_MOCK 모드에서 src/lib/api 가 반환. 백엔드 연결 후엔 참고용.
-import type { CourseGroup, Track } from "@/types/curriculum";
+// 과목 배치: Figma 6:364 (트랙별 1~4학년 4열 + 융합교과목)
+import type { Track } from "@/types/curriculum";
 
-const COMMON: CourseGroup = {
-  label: "공통",
-  courses: [
-    "Computer Graphic Design 1",
-    "Computer Graphic Design 2",
-    "스마트 기술 집중강좌",
-    "개별연구",
-  ],
-};
-
-const FIRST_YEAR: CourseGroup = {
-  label: "1학년",
-  courses: ["드로잉 기초 1", "드로잉 기초 2"],
-};
-
-// TODO: 트랙별 소개 문구로 교체 (현재 Figma 시안의 공통 문구)
-const SUMMARY =
+// TODO: 제품디자인 트랙 소개 문구로 교체 (현재 Figma 시안의 공통 문구)
+const COMMON_SUMMARY =
   "졸업 후 진출분야로는 방송국, 전문디자인 회사, 기업 연구소, 뉴미디어 분야, 광고업계, 영상분야 등의 디자인과 직접 관련된 분야뿐 아니라 간접적으로 관련된 다양한 분야 등 그 수요는 점차 증가하고 있습니다. 졸업 후 보다 원활한 사회진출을 위하여 본 학부에서는 디자인 연구소의 설립과 국제적인 디자인 교류를 추진 중에 있습니다.";
 
 export const TRACKS: Track[] = [
   {
     name: "시각디자인",
-    summary: SUMMARY,
+    summary: [
+      "시각디자인 트랙은 시각언어와 창의적 사고를 바탕으로 브랜드와 서비스, 사회의 다양한 문제를 해결하는 디자인 인재를 양성합니다. 브랜드경험(BX)디자인, 그래픽디자인, 편집디자인, 타이포그래피, 영상디자인 및 AX기반 서비스경험디자인, 디자인씽킹 등을 배우며 기업 연계 산학 캡스톤디자인을 통해 실무 역량을 기릅니다. 졸업 후 국내외 대기업과 스타트업의 브랜드·홍보마케팅·서비스전략 분야, 공공서비스디자인, 브랜드 컨설턴시, 그래픽·웹 에이전시 등 다양한 전문 분야로 진출할 수 있습니다.",
+      COMMON_SUMMARY,
+    ].join("\n\n"),
     columns: [
-      [COMMON, FIRST_YEAR],
+      // TODO: 1학년 트랙 과목 (시안에 아직 내용 없음)
+      [{ label: "1학년", courses: [] }],
       [
         {
           label: "2학년",
           courses: [
-            "시각디자인 기초",
-            "Typography Design 1",
-            "Editorial Design",
-            "색채학 및 산업색채",
-            "Design Thinking",
-            "3D Modeling & Printing",
-            "일러스트레이션",
-            "Digital Photography",
+            "Fundamentals of Visual Communication Design(English)",
+            "Typography Design(English)",
+            "Editorial Design(English)",
+            "Illustration(English)",
           ],
         },
       ],
@@ -45,16 +31,12 @@ export const TRACKS: Track[] = [
         {
           label: "3학년",
           courses: [
-            "Design for Behavioral Change",
-            "브랜드디자인방법론",
-            "타임 앤 스페이스 디자인",
-            "Digital Motion Graphic Design 1",
-            "그래픽 디자인",
             "Advanced Editorial Design",
-            "Design Practice",
-            "디자인과 신앙",
-            "디자인역사",
-            "디자인 진로 탐색",
+            "Brand Design Methodology(English)",
+            "Graphic Design",
+            "Design for Behavioral Change",
+            "Digital Motion Graphic Design(English)",
+            "Time and Space Design",
           ],
         },
       ],
@@ -62,10 +44,10 @@ export const TRACKS: Track[] = [
         {
           label: "4학년",
           courses: [
-            "시각 캡스톤 디자인 1 (커뮤니케이션 디자인)",
-            "시각 캡스톤 디자인 2 (커뮤니케이션 디자인)",
-            "시각 캡스톤 디자인 1 (서비스 디자인)",
-            "시각 캡스톤 디자인 2 (서비스 디자인)",
+            "Capstone Design 1 (Communication Design)",
+            "Capstone Design 2 (Communication Design)",
+            "Capstone Design 1 (Service Design)",
+            "Capstone Design 2 (Service Design)",
           ],
         },
       ],
@@ -73,20 +55,64 @@ export const TRACKS: Track[] = [
   },
   {
     name: "제품디자인",
-    summary: SUMMARY,
+    summary: COMMON_SUMMARY,
     columns: [
-      [COMMON, FIRST_YEAR],
+      // TODO: 1학년 트랙 과목 (시안에 아직 내용 없음)
+      [{ label: "1학년", courses: [] }],
       [
         {
           label: "2학년",
           courses: [
-            "제품디자인기초 1",
-            "제품디자인기초 2",
-            "디자인 프리젠테이션 1",
-            "디자인 프리젠테이션 2",
+            "Product Design Fundamentals 1",
+            "Product Design Fundamentals 2",
+            "Design Presentation 1",
+            "Design Presentation 2",
+          ],
+        },
+      ],
+      [
+        {
+          label: "3학년",
+          courses: [
+            "3D Modeling Design",
+            "Design Studio (English)",
+            "AI Convergence Design Project",
+            "Human-Centered Design",
+            "UX Design",
+            "Design Research & Planning 1",
+            "Design Research & Planning 2",
+          ],
+        },
+      ],
+      [
+        {
+          label: "4학년",
+          courses: [
+            "제품 및 서비스 디자인 기획",
+            "Capstone Design 1 (제품 및 서비스 디자인) - Product & Service Design",
+            "Post Capstone (제품 및 서비스 디자인) - Product & Service Design",
+            "Capstone Design 2 (Product Design)",
+          ],
+        },
+      ],
+    ],
+  },
+  {
+    name: "융합교과목",
+    // 트랙 소개(About)·모바일 소개 문단에는 안 나옴
+    summary: "",
+    columns: [
+      [{ label: "1학년", courses: ["드로잉 기초 1", "드로잉 기초 2", "컴퓨터그래픽 기초"] }],
+      [
+        {
+          label: "2학년",
+          courses: [
+            "Color Theory and Industrial Color(English)",
+            "Design Thinking(English)",
+            "Computer Graphic Design 1(English)",
+            "Computer Graphic Design 2",
+            "Future Literacy and Future Design",
             "3D Modeling & Printing",
-            "색채학 및 산업색채",
-            "Design Thinking",
             "Digital Photography",
           ],
         },
@@ -95,35 +121,16 @@ export const TRACKS: Track[] = [
         {
           label: "3학년",
           courses: [
-            "Design Practice",
-            "AI Native Design",
-            "스마트인터페이스디자인",
-            "스마트인터랙션디자인",
-            "Human-Centered Design",
-            "Design Studio 1",
-            "Design Studio 2",
-            "3D Modeling Design",
-            "디자인 리서치&기획 1",
-            "디자인 리서치&기획 2",
-            "AI융합디자인 프로젝트",
-            "UX Design",
-            "디자인과 신앙",
-            "디자인역사",
-            "디자인 진로 탐색",
+            "AI native Design",
+            "Smart Interface Design",
+            "Smart Interaction Design",
+            "Design Career Search",
+            "스마트 기술 집중강좌",
+            "Individual Research",
           ],
         },
       ],
-      [
-        {
-          label: "4학년",
-          courses: [
-            "Capstone Design 1 (제품 및 서비스 디자인)",
-            "제품 및 서비스 디자인 기획",
-            "포스트캡스톤 - 제품 및 서비스 디자인",
-            "Capstone Design 2 (Product Design)",
-          ],
-        },
-      ],
+      [{ label: "4학년", courses: ["Design Practice", "디자인과 신앙", "디자인역사 - Design History"] }],
     ],
   },
 ];

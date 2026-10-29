@@ -24,7 +24,8 @@ export const DOWNLOADS = [
   { label: "입학안내 책자", href: "#", kind: "download" },
   {
     label: "커리큘럼 상세",
-    href: "#",
+    // 학교 홈페이지 교육과정 PDF (Figma 6:385 링크)
+    href: "https://www.handong.edu/ext/bbs/pdf.dcp?doc=/dcp/editor/files/2026-2_08_CCD.pdf",
     kind: "external",
   },
 ] as const;
