@@ -12,7 +12,7 @@ export function exhibitionHref(year: number) {
  * 전시 목록 PC 한 행 — Figma 6:1231 등. 글은 왼쪽(650px) / 포스터는 오른쪽(최대 560px) 고정, 아래 구분선.
  * 제목 → (80px) → 부제 2줄 → (24px) → 소개. 제목·포스터를 누르면 전시 상세로
  */
-export function ExhibitionRow({ item }: { item: Exhibition }) {
+export function ExhibitionRow({ item, eager = false }: { item: Exhibition; eager?: boolean }) {
   const { width, height } = item.size ?? DEFAULT_SIZE;
   const paragraphs = item.body.filter((p) => !p.emphasis);
   const href = exhibitionHref(item.year);
@@ -56,6 +56,7 @@ export function ExhibitionRow({ item }: { item: Exhibition }) {
           alt=""
           fill
           sizes="(min-width: 1280px) 560px, 40vw"
+          loading={eager ? "eager" : undefined}
           className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
         />
       </Link>

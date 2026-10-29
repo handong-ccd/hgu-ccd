@@ -25,10 +25,11 @@ function ShowTitle({ text }: { text: string }) {
 }
 
 /**
- * 모바일 전시 카드 — Figma 6:2071 (480:1658 등). 메인 Exhibition Archive · 전시 목록 공용
+ * 모바일 전시 카드 — Figma 452:2362 / 6:2071. 메인 Exhibition Archive · 전시 목록 공용
  * 포스터 140×203 + 날짜 / 제목(영문) / 제목(국문) / 20XX 한동대학교 … 졸업 작품전
  */
-export function ExhibitionMobileCard({ item }: { item: Exhibition }) {
+/** eager: 첫 화면에 보이는 첫 카드 (LCP) 는 바로 불러오기 */
+export function ExhibitionMobileCard({ item, eager = false }: { item: Exhibition; eager?: boolean }) {
   const ko = koreanTitle(item);
   return (
     <article className="flex gap-3">
@@ -38,6 +39,7 @@ export function ExhibitionMobileCard({ item }: { item: Exhibition }) {
           alt={`${item.year} 졸업 작품전 ${item.name} 포스터`}
           fill
           sizes="140px"
+          loading={eager ? "eager" : undefined}
           className="object-cover"
         />
       </div>
@@ -46,8 +48,9 @@ export function ExhibitionMobileCard({ item }: { item: Exhibition }) {
           <p className="text-[13px] tracking-[-0.02em]">{item.date ?? item.year}</p>
           <h3 className="text-[28px] uppercase">{item.name}</h3>
         </div>
+        {/* 국문 제목이 없는 해도 같은 높이로 빈 줄 유지 (Figma 452:2468) */}
         <div className="flex flex-col gap-[1.4em] text-[14px] leading-[1.4] tracking-[-0.02em]">
-          {ko && <p>{ko}</p>}
+          <p>{ko ?? "\u00a0"}</p>
           <p className="text-[12px]">
             <ShowTitle text={item.subtitle[0]} />
           </p>
