@@ -80,7 +80,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "최인욱",
@@ -214,7 +214,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "박찬송",
@@ -346,7 +346,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "박찬송"
@@ -496,7 +496,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "박찬송"
@@ -640,7 +640,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "박찬송"
@@ -777,7 +777,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "최인욱"
@@ -913,7 +913,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "최인욱"
@@ -1043,7 +1043,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "최인욱"
@@ -1192,7 +1192,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "조원철",
           "이은종"
@@ -1355,7 +1355,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "조원철",
           "이은종"
@@ -1489,7 +1489,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "최인욱",
           "조원철"
@@ -1615,7 +1615,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "최인욱",
           "조원철"
@@ -1722,7 +1722,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [],
         "graduates": [
           "김다인",
@@ -1839,7 +1839,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "조원철",
           "최인욱",
@@ -1955,7 +1955,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "조원철",
@@ -2061,7 +2061,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "최인욱"
@@ -2151,7 +2151,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "이은종",
           "최인욱"
@@ -2237,7 +2237,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "조원철",
           "이은종",
@@ -2347,7 +2347,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "조원철",
           "이은종",
@@ -2473,7 +2473,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "최인욱",
           "조원철",
@@ -2608,7 +2608,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "최인욱",
           "조원철",
@@ -2738,7 +2738,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [
           "최인욱",
           "조원철",
@@ -2856,7 +2856,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [],
         "graduates": [
           "강대은",
@@ -2956,7 +2956,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [],
         "graduates": [
           "김두연",
@@ -3070,7 +3070,7 @@ export const EXHIBITIONS: Exhibition[] = [
         ]
       },
       {
-        "track": "Product-UX Design",
+        "track": "Product Design",
         "advisors": [],
         "graduates": [
           "고숙진",
@@ -3141,50 +3141,6 @@ export const EXHIBITIONS: Exhibition[] = [
       "석금호(산돌커뮤니케이션즈대표, 객원교수)",
       "김성혜(영상디자인, 겸임교수)"
     ],
-    "alumni": [
-      {
-        "track": "Visual Communication Design",
-        "advisors": [],
-        "graduates": [
-          "고승완",
-          "곽내경",
-          "권숙향",
-          "권은선",
-          "김병수",
-          "김지연",
-          "김현전",
-          "남채완",
-          "류송아",
-          "마승현",
-          "박민정",
-          "박슬아",
-          "박주연",
-          "변혜진",
-          "신은정",
-          "안효선",
-          "오남용",
-          "우경례",
-          "유영은",
-          "윤기숙",
-          "윤소정",
-          "윤정은",
-          "이경남",
-          "이경하",
-          "이규찬",
-          "이문선",
-          "이중섭",
-          "이지영",
-          "이지은",
-          "임영실",
-          "전예윤",
-          "정선은",
-          "정지수",
-          "정희현",
-          "조민정",
-          "황선영"
-        ]
-      }
-    ],
     "body": [
       {
         "text": "특히 금년도 산업정보디자인학부의 세 번째 Degree Presentation의 주제는 \"Exodus\"로 이는 한동대학교가 추구하고 있는 Globalism과 디자인을 통해 보다 나은 세상을 지향하는 모든 졸업생들의 사명이라고 봅니다."
@@ -3227,19 +3183,6 @@ export const EXHIBITIONS: Exhibition[] = [
       "박혜경(실내디자인, 겸임교수)",
       "박현철(산업디자인, 겸임교수)",
       "김승자(상업사진, 겸임교수)"
-    ],
-    "alumni": [
-      {
-        "track": "Visual Communication Design",
-        "advisors": [],
-        "graduates": [
-          "김용주",
-          "김태은",
-          "나은주",
-          "유승명",
-          "홍지현"
-        ]
-      }
     ],
     "body": [
       {
