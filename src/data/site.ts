@@ -1,9 +1,12 @@
-/** 서브 페이지에서도 메인 섹션으로 이동하도록 "/#id" 형태 */
+/**
+ * GNB — Figma 6:1202. 메인 섹션은 서브 페이지에서도 이동하도록 "/#id" 형태
+ * About 은 커리큘럼 위 트랙 소개(About) 영역, Exhibition Archive 는 전체 목록 페이지
+ */
 export const NAV_ITEMS = [
   { label: "About", href: "/#about" },
   { label: "Curriculum", href: "/#curriculum" },
-  { label: "Faculties", href: "/#faculties" },
-  { label: "Exhibitions", href: "/#exhibitions" },
+  { label: "Faculty", href: "/#faculties" },
+  { label: "Exhibition Archive", href: "/exhibitions" },
 ] as const;
 
 // TODO: 실제 채널 주소로 교체

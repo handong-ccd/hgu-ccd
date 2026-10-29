@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Fragment } from "react";
 import { getExhibitions } from "@/lib/api/exhibitions";
 import type { Exhibition as ExhibitionItem } from "@/types/exhibition";
-import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { dateVenue } from "@/lib/exhibition";
 import { ExhibitionRail, RailControls } from "./ExhibitionRail";
@@ -92,13 +91,6 @@ export async function Exhibition() {
         title="Exhibition Archive"
         aside={
           <>
-            {/* Mobile: MORE ↗ */}
-            <Link href={MORE_HREF} className="flex shrink-0 items-center gap-1 hover:opacity-70 md:hidden">
-              <span className="font-telegraf text-[16px] leading-none text-accent uppercase [text-box:trim-both_cap_alphabetic]">
-                More
-              </span>
-              <ArrowUpRight size={14} color="accent" />
-            </Link>
             {/* Tablet+: ‹ › + MORE 버튼 */}
             <div className="hidden shrink-0 items-center gap-5 md:flex">
               <RailControls target={RAIL_ID} />
@@ -113,12 +105,14 @@ export async function Exhibition() {
         }
       />
 
-      {/* Mobile: 최근 5개 세로 리스트 + 전체보기 */}
+      {/* Mobile: 최근 5개 세로 리스트 + SEE ALL — Figma 6:2071 (204:1240) */}
       <div className="mt-3 flex flex-col gap-6 md:hidden">
         <ul className="flex flex-col gap-2">
           {exhibitions.slice(0, 5).map((item) => (
-            <li key={item.year} className="flex flex-col gap-2 border-b border-line pb-2">
-              <ExhibitionMobileCard item={item} />
+            <li key={item.year} className="border-b-[0.5px] border-line pb-5">
+              <Link href={`/exhibitions/${item.year}`} className="block">
+                <ExhibitionMobileCard item={item} />
+              </Link>
             </li>
           ))}
         </ul>
@@ -126,7 +120,7 @@ export async function Exhibition() {
           href={MORE_HREF}
           className="flex w-full items-center justify-center border border-black px-5 py-4 font-telegraf text-[16px] leading-none uppercase [text-box:trim-both_cap_alphabetic]"
         >
-          전체보기
+          See all
         </Link>
       </div>
 

@@ -4,7 +4,7 @@ import { LineReveal } from "@/components/motion/LineReveal";
 /** 배너 아래 학부 소개 — 제목 → 영문 → 국문 순으로 한 줄씩 등장 */
 export function Intro() {
   return (
-    <section id="about" aria-label="학부 소개" className="bg-black text-white 2xl:min-h-[960px]">
+    <section id="intro" aria-label="학부 소개" className="bg-black text-white 2xl:min-h-[960px]">
       <Container className="flex flex-col gap-[100px] pt-10 pb-[90px] md:flex-row md:justify-between md:gap-[60px] md:pt-[60px] md:pb-[100px]">
         <LineReveal
           as="h1"

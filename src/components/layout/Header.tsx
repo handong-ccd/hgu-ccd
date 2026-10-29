@@ -11,9 +11,28 @@ const linkText = "font-pretendard text-[14px] uppercase leading-none tracking-[-
 /** dark: 검정 배경(기본, 메인·전시 상세) / light: 흰 배경(전시 목록) */
 type Tone = "dark" | "light";
 
+/** 헤더 높이만큼은 항상 보이고, 그 아래에서 아래로 스크롤하면 숨기고 위로 스크롤하면 다시 보임 */
+function useHideOnScrollDown() {
+  const [hidden, setHidden] = useState(false);
+  useEffect(() => {
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (y < 82) setHidden(false);
+      else if (y > last + 4) setHidden(true);
+      else if (y < last - 4) setHidden(false);
+      if (Math.abs(y - last) > 4 || y < 82) last = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return hidden;
+}
+
 export function Header({ tone = "dark" }: { tone?: Tone }) {
   const light = tone === "light";
   const [open, setOpen] = useState(false);
+  const hidden = useHideOnScrollDown() && !open;
 
   useEffect(() => {
     if (!open) return;
@@ -30,7 +49,12 @@ export function Header({ tone = "dark" }: { tone?: Tone }) {
   }, [open]);
 
   return (
-    <header className={`relative z-50 ${light ? "bg-white text-black" : "bg-black text-white"}`}>
+    // 모든 페이지 공통: 화면 위에 붙어 있고(sticky), 아래로 스크롤하면 숨김 → 위로 스크롤하면 다시 나타남
+    <header
+      className={`sticky top-0 z-50 transition-transform duration-300 ease-out ${hidden ? "-translate-y-full" : ""} ${
+        light ? "bg-white text-black" : "bg-black text-white"
+      }`}
+    >
       {/* Desktop (≥1080) */}
       <Container className="hidden h-[82px] items-center lg:flex">
         <div className="flex items-center gap-[60px]">
@@ -41,7 +65,7 @@ export function Header({ tone = "dark" }: { tone?: Tone }) {
             <ul className="flex items-center gap-[30px]">
               {NAV_ITEMS.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href} className={`${linkText} hover:opacity-60`}>
+                  <a href={item.href} className={`${linkText} whitespace-nowrap hover:opacity-60`}>
                     {item.label}
                   </a>
                 </li>

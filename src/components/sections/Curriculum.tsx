@@ -42,7 +42,7 @@ function DownloadLinks({ variant }: { variant: "desktop" | "mobile" }) {
   const desktop = variant === "desktop";
   const k = desktop ? 1 : 0.8125;
   return (
-    <ul className={desktop ? "hidden shrink-0 items-start gap-12 md:flex" : "flex flex-col items-start gap-2 md:hidden"}>
+    <ul className={desktop ? "hidden shrink-0 items-start gap-12 md:flex" : "flex flex-wrap items-start gap-x-5 gap-y-2 md:hidden"}>
       {DOWNLOADS.map((item) => {
         const external = item.kind === "external";
         const ready = item.href !== "#";
@@ -88,21 +88,31 @@ function Summary({ text }: { text: string }) {
   );
 }
 
-/** 커리큘럼 위 트랙 소개 (Tablet+) — Figma 419:998 · 소개 문구가 있는 트랙만 2열 */
+/** 트랙 이름 + 아래 구분선 (Mo 16px / PC 20px) */
+function TrackTitle({ name }: { name: string }) {
+  return (
+    <div className="flex flex-col gap-1">
+      <h3 className="text-[16px] leading-[1.2] font-medium md:text-[20px] md:leading-[1.4]">{name}</h3>
+      <hr className="border-0 border-t border-line" />
+    </div>
+  );
+}
+
+/**
+ * 커리큘럼 위 트랙 소개 — GNB "About" 이 이동하는 곳 (id="about")
+ * Figma PC 419:998 (2열) / 모바일 6:2109 (세로). 소개 문구가 있는 트랙만
+ */
 export async function TrackAbout() {
   const tracks = (await getTracks()).filter((t) => t.summary);
   if (!tracks.length) return null;
 
   return (
-    <section aria-labelledby="track-about" className="hidden flex-col gap-8 md:flex">
+    <section id="about" aria-labelledby="track-about" className="flex scroll-mt-4 flex-col gap-6 md:gap-8">
       <SectionHeading id="track-about" title="About" />
-      <div className="flex gap-10 lg:gap-[100px]">
+      <div className="flex flex-col gap-6 md:flex-row md:gap-10 lg:gap-[100px]">
         {tracks.map((track) => (
-          <div key={track.name} className="flex min-w-0 flex-1 flex-col gap-5">
-            <div className="flex flex-col gap-1">
-              <h3 className="text-[20px] leading-[1.4] font-medium">{track.name}</h3>
-              <hr className="border-0 border-t border-line" />
-            </div>
+          <div key={track.name} className="flex min-w-0 flex-col gap-2 md:flex-1 md:gap-5">
+            <TrackTitle name={track.name} />
             <Summary text={track.summary} />
           </div>
         ))}
@@ -125,26 +135,37 @@ export async function Curriculum() {
         below={<DownloadLinks variant="mobile" />}
       />
 
-      {/* Mobile: 트랙 소개 문단 (Tablet+ 는 위 About 에) */}
-      <div className="mt-12 flex flex-col gap-[46px] md:hidden">
-        {tracks
-          .filter((track) => track.summary)
-          .map((track) => (
-            <div key={track.name} className="flex flex-col gap-3">
-              <h3 className="text-[16px] leading-[1.2] font-medium">{track.name}</h3>
-              <Summary text={track.summary} />
-            </div>
-          ))}
+      {/* Mobile: 트랙별 학년 줄 (학년 50px + 과목) — Figma 6:2130. 과목 없는 학년은 생략 */}
+      <div className="mt-6 flex flex-col gap-6 md:hidden">
+        {tracks.map((track) => (
+          <div key={track.name} className="flex flex-col gap-2">
+            <TrackTitle name={track.name} />
+            <dl className="flex flex-col gap-3 text-[12px] leading-[1.4]">
+              {track.columns
+                .flat()
+                .filter((group) => group.courses.length > 0)
+                .map((group) => (
+                  <div key={group.label} className="flex gap-1">
+                    <dt className="w-[50px] shrink-0">{group.label}</dt>
+                    <dd className="min-w-0 flex-1 font-telegraf">
+                      <ul>
+                        {group.courses.map((course) => (
+                          <li key={course}>{course}</li>
+                        ))}
+                      </ul>
+                    </dd>
+                  </div>
+                ))}
+            </dl>
+          </div>
+        ))}
       </div>
 
       {/* Tablet+: 트랙별 1~4학년 과목 (Figma 6:365) */}
       <div className="mt-6 hidden flex-col gap-6 md:flex">
         {tracks.map((track) => (
           <div key={track.name} className="flex flex-col gap-5">
-            <div className="flex flex-col gap-1">
-              <h3 className="text-[20px] leading-[1.4] font-medium">{track.name}</h3>
-              <hr className="border-0 border-t border-line" />
-            </div>
+            <TrackTitle name={track.name} />
             <div className="grid grid-cols-2 gap-x-6 gap-y-8 leading-[1.4] lg:grid-cols-4">
               {track.columns.map((column, i) => (
                 <div key={i} className="flex min-w-0 flex-col gap-8">
