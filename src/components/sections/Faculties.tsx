@@ -7,7 +7,7 @@ export async function Faculties() {
 
   return (
     <section aria-labelledby="faculties" className="scroll-mt-4">
-      <SectionHeading id="faculties" title="Faculties" />
+      <SectionHeading id="faculties" title="Faculty" />
       <FacultyDirectory faculty={faculty} />
     </section>
   );
