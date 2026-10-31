@@ -78,6 +78,7 @@ function NameColumn({
 
 /**
  * Alumni — PC 251:1807 / 모바일 6:2393 등. 트랙별 지도교수 + 졸업생 (모바일 3열 / PC 4열)
+ * 지도교수 기록이 없는 해(2002~2004, 2014 등)는 졸업생 명단만, 트랙 구분이 없는 해는 트랙명 없이 통합
  * 트랙 구분 없이 기록된 해(advisors)는 학부 지도교수를 먼저 보여주고 트랙엔 졸업생만
  */
 function Alumni({ advisors, alumni = [] }: { advisors?: string[]; alumni?: Exhibition["alumni"] }) {
@@ -97,12 +98,15 @@ function Alumni({ advisors, alumni = [] }: { advisors?: string[]; alumni?: Exhib
       ) : null}
       {alumni.map((group, i) => (
         <div
-          key={group.track}
+          key={group.track || i}
           className={`flex flex-col gap-1.5 pt-1.5 lg:border-t ${i > 0 || advisors?.length ? "border-t" : ""} ${line}`}
         >
-          <h3 className={`border-b pb-1.5 font-telegraf text-[14px] leading-[1.4] lg:text-[22px] ${line}`}>
-            {group.track}
-          </h3>
+          {/* 트랙 구분이 없는 해(1999·2001)는 트랙명 없이 졸업생 통합 명단 */}
+          {group.track && (
+            <h3 className={`border-b pb-1.5 font-telegraf text-[14px] leading-[1.4] lg:text-[22px] ${line}`}>
+              {group.track}
+            </h3>
+          )}
           <div className={`flex gap-5 ${text}`}>
             {group.advisors.length > 0 && (
               <NameColumn label="지도교수" names={group.advisors} className="w-[103px] shrink-0 lg:w-[180px]" />
