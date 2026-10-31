@@ -2,8 +2,11 @@
 
 /* eslint-disable @next/next/no-img-element -- 아이콘 SVG */
 import Image from "next/image";
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import Lenis from "lenis";
+import { Children, useEffect, useId, useRef, useState, type ReactNode } from "react";
 import type { CvEntry, Faculty, FacultyDetail } from "@/types/faculty";
+import { BlockReveal } from "@/components/motion/BlockReveal";
+import { REDUCED_MOTION, SMOOTH_SCROLL_OPTIONS } from "@/components/motion/motion";
 import { Container } from "@/components/ui/Container";
 import { LogoCcd } from "@/components/ui/LogoCcd";
 
@@ -36,11 +39,13 @@ function Linkify({ text }: { text: string }) {
 function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5 md:gap-2">
-      <div className="flex items-center gap-1.5 md:gap-2">
-        <h3 className="flex-1 font-telegraf text-[22px] leading-normal md:text-[26px] md:leading-[1.4]">{children}</h3>
-        {aside}
+      <div className="faculty-reveal-mask">
+        <div className="faculty-reveal-item faculty-section-heading flex items-center gap-1.5 md:gap-2">
+          <h3 className="flex-1 font-telegraf text-[22px] leading-normal md:text-[26px] md:leading-[1.4]">{children}</h3>
+          {aside}
+        </div>
       </div>
-      <hr className="border-0 border-t border-white/50 md:border-t-[0.5px] md:border-white" />
+      <hr className="faculty-section-rule border-0 border-t border-white/50 md:border-t-[0.5px] md:border-white" />
     </div>
   );
 }
@@ -57,17 +62,31 @@ function withYears(entries: CvEntry[]): CvEntry[] {
   });
 }
 
-function EntryList({ entries, limit }: { entries: CvEntry[]; limit?: number }) {
-  const rows = withYears(entries);
+/** 보여줄 항목 범위 [from, to) — 접힌 섹션은 앞 LIMIT 개 / 나머지(펼침 영역)로 나눠 그림 */
+type Range = { from: number; to?: number };
+
+/** 한 줄(블록)씩 아래에서 올라오는 등장 효과 단위 (block-reveal.css) */
+function Reveal({ as: Tag = "div", className = "", children }: { as?: "div" | "li"; className?: string; children: ReactNode }) {
+  return (
+    <Tag className="faculty-reveal-mask">
+      <div className={`faculty-reveal-item ${className}`}>{children}</div>
+    </Tag>
+  );
+}
+
+function EntryList({ entries, from = 0, to }: { entries: CvEntry[] } & Partial<Range>) {
+  // 연도 이어 붙이기는 전체 목록 기준으로 한 뒤에 자름
+  const rows = withYears(entries).slice(from, to);
+  if (!rows.length) return null;
   return (
     <ul className={`flex flex-col gap-2 ${BODY}`}>
-      {rows.slice(0, limit).map((e, i) => (
-        <li key={i} className="flex gap-3">
+      {rows.map((e, i) => (
+        <Reveal key={from + i} as="li" className="flex gap-3">
           <span className="w-[52px] shrink-0 md:w-[100px]">{e.year}</span>
           <span className="min-w-0 flex-1">
             <Linkify text={e.text} />
           </span>
-        </li>
+        </Reveal>
       ))}
     </ul>
   );
@@ -76,6 +95,9 @@ function EntryList({ entries, limit }: { entries: CvEntry[]; limit?: number }) {
 /** 처음 보여줄 항목 수 — 넘으면 제목 오른쪽 화살표로 나머지 펼치기 (Figma 6:198) */
 const LIMIT = 5;
 
+/** 드롭다운 아이콘 회전 — 1s ease-in-out (Figma 486:1365) */
+const ICON_TURN = "transition-transform duration-1000 ease-[cubic-bezier(.45,0,.2,1)] motion-reduce:transition-none";
+
 /** ∨ 화살표 — 펼치면 위로 뒤집힘 */
 function Chevron({ open }: { open: boolean }) {
   return (
@@ -83,7 +105,7 @@ function Chevron({ open }: { open: boolean }) {
       viewBox="0 0 26 14"
       fill="none"
       aria-hidden
-      className={`block w-[20.8px] transition-transform duration-300 md:w-[26px] ${open ? "rotate-180" : ""}`}
+      className={`block w-[20.8px] md:w-[26px] ${ICON_TURN} ${open ? "rotate-180" : ""}`}
     >
       <path d="M1 1l12 12L25 1" stroke="currentColor" strokeWidth={1.2} />
     </svg>
@@ -91,8 +113,9 @@ function Chevron({ open }: { open: boolean }) {
 }
 
 /**
- * CV 섹션. 항목(total)이 LIMIT 를 넘으면 처음엔 LIMIT 개만 보여주고 화살표 버튼으로 전체 펼치기.
- * children 은 현재 보여줄 개수(limit, 펼치면 undefined = 전체)를 받아서 그림
+ * CV 섹션. 항목(total)이 LIMIT 를 넘으면 처음엔 LIMIT 개만 보여주고, 화살표 버튼으로 나머지를 펼침.
+ * 나머지는 처음부터 그려 두고 grid 행 0fr → 1fr 로 부드럽게 펼침 (block-reveal.css .faculty-expand).
+ * children 은 보여줄 항목 범위를 받아서 그림
  */
 function Section({
   title,
@@ -104,12 +127,26 @@ function Section({
   total?: number;
   /** 내용 묶음 사이 간격 — Publications 소분류 사이는 PC 40px */
   bodyClassName?: string;
-  children: ReactNode | ((limit: number | undefined) => ReactNode);
+  children: ReactNode | ((range: Range) => ReactNode);
 }) {
   const [open, setOpen] = useState(false);
+  const [revealing, setRevealing] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const lastItem = useRef<Element | null>(null);
   const id = useId();
   const foldable = total > LIMIT;
-  const limit = foldable && !open ? LIMIT : undefined;
+  const render = (range: Range) => (typeof children === "function" ? children(range) : children);
+
+  const toggle = () => {
+    const next = !open;
+    // 펼칠 때 나머지 항목도 위에서부터 55ms 간격으로 올라오게
+    const items = panelRef.current?.querySelectorAll<HTMLElement>(".faculty-reveal-item") ?? [];
+    items.forEach((item, i) => item.style.setProperty("--expanded-item-delay", `${i * 55}ms`));
+    lastItem.current = items.length ? items[items.length - 1] : null;
+    setRevealing(next && items.length > 0 && !matchMedia(REDUCED_MOTION).matches);
+    setOpen(next);
+  };
+
   return (
     <section className="flex flex-col gap-2">
       <SectionTitle
@@ -120,7 +157,7 @@ function Section({
               aria-expanded={open}
               aria-controls={id}
               aria-label={`${title} ${open ? "접기" : `전체 ${total}개 펼치기`}`}
-              onClick={() => setOpen((v) => !v)}
+              onClick={toggle}
               className="flex size-8 shrink-0 items-center justify-center hover:opacity-70 md:size-10"
             >
               <Chevron open={open} />
@@ -130,30 +167,52 @@ function Section({
       >
         {title}
       </SectionTitle>
-      <div id={id} className={`flex flex-col ${bodyClassName}`}>
-        {typeof children === "function" ? children(limit) : children}
-      </div>
+      <div className={`flex flex-col ${bodyClassName}`}>{render({ from: 0, to: foldable ? LIMIT : undefined })}</div>
+      {foldable && (
+        <div
+          id={id}
+          ref={panelRef}
+          data-expanded={open}
+          data-expanded-reveal={revealing || undefined}
+          className="faculty-expand -mt-2"
+          onAnimationEnd={(e) => {
+            if (e.target === lastItem.current && e.animationName === "faculty-line-reveal") setRevealing(false);
+          }}
+        >
+          <div className="faculty-expand-inner">
+            <div className={`flex flex-col pt-2 ${bodyClassName}`}>{render({ from: LIMIT })}</div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
 
-/** Publications — 소분류(group)를 가로질러 앞에서부터 limit 개만 */
-function Publications({ groups, limit }: { groups: NonNullable<FacultyDetail["publications"]>; limit?: number }) {
-  let left = limit ?? Infinity;
+/** Publications — 소분류(group)를 가로질러 전체 순서 기준 [from, to) 범위만 */
+function Publications({ groups, from, to = Infinity }: { groups: NonNullable<FacultyDetail["publications"]> } & Range) {
+  let start = 0;
   return groups.map((group, i) => {
-    const take = Math.min(group.entries.length, left);
-    left -= take;
-    if (take === 0) return null;
+    const groupStart = start;
+    const groupEnd = (start += group.entries.length);
+    const a = Math.max(from, groupStart);
+    const b = Math.min(to, groupEnd);
+    if (a >= b) return null;
+    // 펼침 영역이 소분류 경계에서 시작하면 소분류 사이 간격(PC 40px)을 맞춤
+    const boundary = from > 0 && a === groupStart && a === from;
     return (
-      <div key={group.label ?? i} className="flex flex-col gap-2">
-        {group.label && (
-          <h4 className="font-telegraf text-[16px] leading-[1.4] uppercase md:text-[18px]">{group.label}</h4>
+      <div key={group.label ?? i} className={`flex flex-col gap-2 ${boundary ? "md:pt-8" : ""}`}>
+        {group.label && a === groupStart && (
+          <Reveal>
+            <h4 className="font-telegraf text-[16px] leading-[1.4] uppercase md:text-[18px]">{group.label}</h4>
+          </Reveal>
         )}
-        <EntryList entries={group.entries} limit={take} />
-        {take === group.entries.length && group.note && (
-          <p className={BODY}>
-            <Linkify text={group.note} />
-          </p>
+        <EntryList entries={group.entries} from={a - groupStart} to={b - groupStart} />
+        {b === groupEnd && group.note && (
+          <Reveal>
+            <p className={BODY}>
+              <Linkify text={group.note} />
+            </p>
+          </Reveal>
         )}
       </div>
     );
@@ -175,8 +234,64 @@ function IntroToggle({ open, onClick }: { open: boolean; onClick: () => void }) 
         alt=""
         width={10.6607}
         height={19.9071}
-        className={`block transition-transform duration-300 ${open ? "-rotate-90" : "rotate-90"}`}
+        className={`block ${ICON_TURN} ${open ? "-rotate-90" : "rotate-90"}`}
       />
+    </button>
+  );
+}
+
+/** 오른쪽 CV — 첫 섹션이 화면에 보이면 섹션마다 차례로 등장 (BlockReveal) */
+function CvColumn({ children }: { children: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [start, setStart] = useState(false);
+
+  useEffect(() => {
+    const first = ref.current?.firstElementChild;
+    if (!first) return;
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        setStart(true);
+        io.disconnect();
+      }
+    });
+    io.observe(first);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="flex min-w-0 flex-1 flex-col gap-10 md:gap-[60px]">
+      {Children.toArray(children).map((section, i) => (
+        <BlockReveal key={i} index={i} start={start}>
+          {section}
+        </BlockReveal>
+      ))}
+    </div>
+  );
+}
+
+/**
+ * 닫기 X — 열릴 때 두 획이 차례로 그려지고, 마우스를 올리면 반 바퀴 회전 (Figma 486:1365)
+ * PC 52px·2.2px 선 / 모바일 32px (시안 닫기 아이콘과 같은 크기·굵기)
+ */
+function CloseButton({ onClose, mobile = false, className }: { onClose: () => void; mobile?: boolean; className: string }) {
+  const [spinning, setSpinning] = useState(false);
+  const [a, b, size, stroke] = mobile ? [6.2, 25.8, 32, 2.55] : [10, 42, 52, 2.2];
+  return (
+    <button
+      type="button"
+      onClick={onClose}
+      onPointerEnter={(e) => {
+        if (e.pointerType !== "touch" && !matchMedia(REDUCED_MOTION).matches) setSpinning(true);
+      }}
+      onAnimationEnd={(e) => e.animationName === "close-spin" && setSpinning(false)}
+      data-spinning={spinning || undefined}
+      aria-label="닫기"
+      className={className}
+    >
+      <svg viewBox={`0 0 ${size} ${size}`} fill="none" aria-hidden className="block size-full">
+        <line className="faculty-close-backslash" x1={a} y1={a} x2={b} y2={b} stroke="#F3183D" strokeWidth={stroke} pathLength={1} />
+        <line className="faculty-close-slash" x1={b} y1={a} x2={a} y2={b} stroke="#F3183D" strokeWidth={stroke} pathLength={1} />
+      </svg>
     </button>
   );
 }
@@ -250,15 +365,18 @@ function Detail({ person }: { person: Faculty }) {
                 </p>
               )}
               {d.introEn && (
-                <p
-                  lang="en"
-                  // 영문 소개: PC 는 회색 #949494 (시안 44:3019), 모바일은 흰색 (419:2112)
-                  className={`text-[13px] leading-[1.4] tracking-[-0.02em] whitespace-pre-line md:block md:text-[14px] md:tracking-normal md:text-[#949494] ${
-                    introOpen || !d.intro ? "" : "hidden"
-                  }`}
-                >
-                  <Linkify text={d.introEn} />
-                </p>
+                // 모바일은 화살표로 부드럽게 펼침 / 태블릿 이상은 항상 보임 (md-open)
+                <div data-expanded={introOpen || !d.intro} className="faculty-expand md-open">
+                  <div className="faculty-expand-inner">
+                    <p
+                      lang="en"
+                      // 영문 소개: PC 는 회색 #949494 (시안 44:3019), 모바일은 흰색 (419:2112)
+                      className="text-[13px] leading-[1.4] tracking-[-0.02em] whitespace-pre-line md:text-[14px] md:tracking-normal md:text-[#949494]"
+                    >
+                      <Linkify text={d.introEn} />
+                    </p>
+                  </div>
+                </div>
               )}
             </div>
             {d.intro && d.introEn && <IntroToggle open={introOpen} onClick={() => setIntroOpen((v) => !v)} />}
@@ -267,36 +385,40 @@ function Detail({ person }: { person: Faculty }) {
       </div>
 
       {/* 오른쪽: CV */}
-      <div className="flex min-w-0 flex-1 flex-col gap-10 md:gap-[60px]">
+      <CvColumn>
         {/* Major → Biography → Awards → Publications → Works → Patent → Research Interest → (기타)
             시안 44:2927·44:3598 등 순서. 모든 항목은 5개까지 보이고, 넘으면 화살표로 펼치기 (Figma 6:198) */}
         <Section title="Major" total={d.major?.length}>
-          {(limit) =>
+          {(r) =>
             d.major?.length ? (
               d.major.some((m) => m.year) ? (
-                <EntryList entries={d.major} limit={limit} />
+                <EntryList entries={d.major} {...r} />
               ) : (
                 <ul className={BODY}>
-                  {d.major.slice(0, limit).map((m) => (
-                    <li key={m.text}>
+                  {d.major.slice(r.from, r.to).map((m) => (
+                    <Reveal key={m.text} as="li">
                       <Linkify text={m.text} />
-                    </li>
+                    </Reveal>
                   ))}
                 </ul>
               )
             ) : (
-              <p className={BODY}>{person.education}</p>
+              r.from === 0 && (
+                <Reveal>
+                  <p className={BODY}>{person.education}</p>
+                </Reveal>
+              )
             )
           }
         </Section>
         {d.biography?.length ? (
           <Section title="Biography" total={d.biography.length}>
-            {(limit) => <EntryList entries={d.biography!} limit={limit} />}
+            {(r) => <EntryList entries={d.biography!} {...r} />}
           </Section>
         ) : null}
         {d.awards?.length ? (
           <Section title="Awards" total={d.awards.length}>
-            {(limit) => <EntryList entries={d.awards!} limit={limit} />}
+            {(r) => <EntryList entries={d.awards!} {...r} />}
           </Section>
         ) : null}
         {d.publications?.length ? (
@@ -305,32 +427,34 @@ function Detail({ person }: { person: Faculty }) {
             total={d.publications.reduce((n, g) => n + g.entries.length, 0)}
             bodyClassName="gap-2 md:gap-10"
           >
-            {(limit) => <Publications groups={d.publications!} limit={limit} />}
+            {(r) => <Publications groups={d.publications!} {...r} />}
           </Section>
         ) : null}
         {d.works?.length ? (
           <Section title={d.worksTitle ?? "Works"} total={d.works.length}>
-            {(limit) => <EntryList entries={d.works!} limit={limit} />}
+            {(r) => <EntryList entries={d.works!} {...r} />}
           </Section>
         ) : null}
         {d.patents?.length ? (
           <Section title="Patent" total={d.patents.length}>
-            {(limit) => <EntryList entries={d.patents!} limit={limit} />}
+            {(r) => <EntryList entries={d.patents!} {...r} />}
           </Section>
         ) : null}
         {d.researchInterest && (
           <Section title="Research Interest">
-            <p className={BODY}>
-              <Linkify text={d.researchInterest} />
-            </p>
+            <Reveal>
+              <p className={BODY}>
+                <Linkify text={d.researchInterest} />
+              </p>
+            </Reveal>
           </Section>
         )}
         {d.extra?.map((sec) => (
           <Section key={sec.title} title={sec.title} total={sec.entries.length}>
-            {(limit) => <EntryList entries={sec.entries} limit={limit} />}
+            {(r) => <EntryList entries={sec.entries} {...r} />}
           </Section>
         ))}
-      </div>
+      </CvColumn>
     </div>
   );
 }
@@ -341,6 +465,7 @@ function Detail({ person }: { person: Faculty }) {
  */
 export function FacultyModal({ person, onClose }: { person: Faculty | null; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -352,6 +477,25 @@ export function FacultyModal({ person, onClose }: { person: Faculty | null; onCl
       el.focus();
     }
     if (!person && el.open) el.close();
+  }, [person]);
+
+  // 상세 창 안에서도 페이지와 같은 스무스 스크롤 (배경 페이지 스크롤은 잠김)
+  useEffect(() => {
+    const wrapper = ref.current;
+    const content = contentRef.current;
+    if (!person || !wrapper || !content) return;
+    const reduce = matchMedia(REDUCED_MOTION);
+    let lenis: Lenis | undefined;
+    const sync = () => {
+      lenis?.destroy();
+      lenis = reduce.matches ? undefined : new Lenis({ ...SMOOTH_SCROLL_OPTIONS, wrapper, content });
+    };
+    sync();
+    reduce.addEventListener("change", sync);
+    return () => {
+      reduce.removeEventListener("change", sync);
+      lenis?.destroy();
+    };
   }, [person]);
 
   // 열려 있는 동안 배경 스크롤 잠금
@@ -368,34 +512,27 @@ export function FacultyModal({ person, onClose }: { person: Faculty | null; onCl
   return (
     <dialog
       ref={ref}
+      // 페이지 스무스 스크롤이 상세 창 휠 입력을 가로채지 않게
+      data-lenis-prevent
       tabIndex={-1}
       aria-label={person ? `${person.nameKo} 교수 상세` : undefined}
       onClose={onClose}
       className="inset-0 m-0 h-full max-h-none w-full outline-none max-w-none overflow-y-auto overscroll-contain bg-black p-0 text-white backdrop:bg-black/60"
     >
       {person && (
-        <>
+        <div ref={contentRef}>
           {/* Mobile: 상단 바 (로고 + 닫기) */}
           <div className="sticky top-0 z-10 flex h-[60px] items-center justify-between bg-black px-[23px] md:hidden">
             <LogoCcd width={44.386} className="text-white" />
-            <button type="button" onClick={onClose} aria-label="닫기" className="size-8">
-              <img src="/icons/close-mobile.svg" alt="" width={32} height={32} className="block size-8" />
-            </button>
+            <CloseButton onClose={onClose} mobile className="size-8" />
           </div>
           {/* Tablet+: 오른쪽 위 닫기 */}
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="닫기"
-            className="fixed top-10 right-10 z-10 hidden size-[52px] hover:opacity-70 md:block"
-          >
-            <img src="/icons/close.svg" alt="" width={52} height={52} className="block size-[52px]" />
-          </button>
+          <CloseButton onClose={onClose} className="fixed top-10 right-10 z-10 hidden size-[52px] md:block" />
 
           <Container className="pt-0 pb-[90px] md:pt-[124px] md:pb-[100px]">
             <Detail key={person.slug} person={person} />
           </Container>
-        </>
+        </div>
       )}
     </dialog>
   );
