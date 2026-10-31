@@ -26,7 +26,7 @@ export default async function ExhibitionPage({ params }: PageProps<"/exhibitions
   const item = /^\d{4}$/.test(year) ? await getExhibition(Number(year)) : null;
   if (!item) notFound();
 
-  // 목록(최신순)에서 앞뒤 전시 — 좌우 플로팅 버튼
+  // 목록(최신순)에서 앞뒤 전시 — 이전 = 한 해 전(목록 다음 항목), 다음 = 한 해 뒤(목록 앞 항목)
   const list = await getExhibitions();
   const i = list.findIndex((e) => e.year === item.year);
   const pick = (e?: (typeof list)[number]) => (e ? { year: e.year, name: e.name } : undefined);
@@ -38,12 +38,11 @@ export default async function ExhibitionPage({ params }: PageProps<"/exhibitions
       <Header />
       <main className="flex-1 bg-black">
         <ExhibitionDetail item={item} />
-        <ExhibitionPager prev={pick(list[i - 1])} next={pick(list[i + 1])} />
+        <ExhibitionPager prev={pick(list[i + 1])} next={pick(list[i - 1])} />
       </main>
       <Footer dark />
-      {/* 모바일: 화면 아래 떠 있는 좌우 버튼이 푸터를 가리지 않게 여백 */}
-      {/* (버튼 54px + 아래 16px + 여유 16px) */}
-      <div aria-hidden className="h-[86px] bg-black lg:hidden" />
+      {/* 모바일: 화면 하단 이전/다음 바(76px)가 푸터를 가리지 않게 여백 */}
+      <div aria-hidden className="h-[76px] bg-black lg:hidden" />
     </>
   );
 }
