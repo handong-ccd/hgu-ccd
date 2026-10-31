@@ -1,13 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { ADDRESS, SOCIAL_LINKS } from "@/data/site";
+import { ADDRESS, RELATED_LINKS } from "@/data/site";
 import { Container } from "@/components/ui/Container";
 import { LogoCcd } from "@/components/ui/LogoCcd";
 
-const FOLLOW = [
-  { label: "Email", href: SOCIAL_LINKS.email },
-  { label: "Instagram", href: SOCIAL_LINKS.instagram },
-  { label: "Youtube", href: SOCIAL_LINKS.youtube },
-];
 
 const COPYRIGHT = "Handong Global University (c)2026";
 
@@ -23,23 +18,21 @@ function SchoolName({ className = "" }: { className?: string }) {
   );
 }
 
-function FollowList() {
+/** Related Links — 밑줄 링크, 새 탭 (PC 12px / 모바일 10px) */
+function RelatedLinks({ className = "" }: { className?: string }) {
   return (
-    <ul className="font-telegraf text-[12px] leading-[1.2] tracking-[-0.01em]">
-      {FOLLOW.map((item) => (
+    <ul className={`font-telegraf leading-[1.2] tracking-[-0.01em] ${className}`}>
+      {RELATED_LINKS.map((item) => (
         <li key={item.label}>
-          {item.href === "#" ? (
-            // 링크 준비 전
-            <span aria-disabled="true">{item.label}</span>
-          ) : (
-            <a
-              href={item.href}
-              {...(item.href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}
-              className="hover:opacity-60"
-            >
-              {item.label}
-            </a>
-          )}
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="whitespace-nowrap underline decoration-from-font underline-offset-auto hover:opacity-60"
+          >
+            {item.label}
+            <span className="sr-only"> (새 탭에서 열림)</span>
+          </a>
         </li>
       ))}
     </ul>
@@ -85,8 +78,8 @@ export function Footer({ dark = false }: { dark?: boolean }) {
                 </span>
               </address>
               <div className="flex flex-col gap-3">
-                <span className="leading-none whitespace-nowrap">Follow CCD</span>
-                <FollowList />
+                <span className="leading-none whitespace-nowrap">Related Links</span>
+                <RelatedLinks className="text-[12px]" />
               </div>
               <p className="leading-none whitespace-nowrap">{COPYRIGHT}</p>
             </div>
@@ -95,23 +88,23 @@ export function Footer({ dark = false }: { dark?: boolean }) {
         </div>
       </Container>
 
-      {/* Mobile / Tablet (<1080) */}
+      {/* Mobile / Tablet (<1080) — Figma 393:1269: 제목·링크 10px, 주소 9px */}
       <Container className="pt-2 pb-[30px] lg:hidden">
         <hr className={`border-0 border-t ${dark ? "border-white" : "border-line"}`} />
         <div className="mt-3 flex flex-col gap-5">
           <SchoolName className="text-[18px] tracking-[-0.01em]" />
           <div className="flex gap-6">
             <address className="flex min-w-0 flex-1 flex-col gap-1 font-telegraf not-italic">
-              <span className="text-[12px] leading-none tracking-[-0.01em]">Address</span>
+              <span className="text-[10px] leading-none tracking-[-0.01em]">Address</span>
               <hr className={`border-0 border-t ${dark ? "border-white" : "border-line"}`} />
-              <span lang="ko" className="text-[11px] leading-[1.4] tracking-[-0.01em]">
+              <span lang="ko" className="text-[9px] leading-[1.4] tracking-[-0.01em]">
                 {ADDRESS.ko}
               </span>
             </address>
             <div className="flex min-w-0 flex-1 flex-col gap-1 font-telegraf">
-              <span className="text-[12px] leading-none tracking-[-0.01em]">Follow CCD</span>
+              <span className="text-[10px] leading-none tracking-[-0.01em]">Related Links</span>
               <hr className={`border-0 border-t ${dark ? "border-white" : "border-line"}`} />
-              <FollowList />
+              <RelatedLinks className="text-[10px]" />
             </div>
           </div>
           <div className="flex items-end justify-between gap-4">

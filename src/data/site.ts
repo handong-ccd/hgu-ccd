@@ -15,7 +15,19 @@ export const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/design_hgu/",
   email: "#",
   hgu: "https://www.handong.edu",
+  // 학교 공식 채널 — 한동대 영문 홈페이지(handong.edu/eng) 하단 링크 기준
+  hguAdmissions: "https://admissions.handong.edu",
+  hguInstagram: "https://www.instagram.com/handongglobaluniversity/",
+  hguYoutube: "https://www.youtube.com/@HandongGlobalUniversity",
 } as const;
+
+/** 푸터 Related Links — Figma 6:639 / 393:1279 (모두 새 탭) */
+export const RELATED_LINKS = [
+  { label: "HGU Official", href: SOCIAL_LINKS.hgu },
+  { label: "HGU Admissions", href: SOCIAL_LINKS.hguAdmissions },
+  { label: "HGU Instagram", href: SOCIAL_LINKS.hguInstagram },
+  { label: "HGU YouTube", href: SOCIAL_LINKS.hguYoutube },
+] as const;
 
 /**
  * 커리큘럼 섹션 링크 — 둘 다 새 탭으로 열림 (href 가 "#" 이면 비활성)
@@ -61,10 +73,10 @@ export const NETWORK_GROUPS: { title: string; links: { label: string; href: stri
     title: "About the School",
     links: [
       { label: "HGU Official", href: SOCIAL_LINKS.hgu },
-      { label: "HGU Admissions", href: "#" },
+      { label: "HGU Admissions", href: SOCIAL_LINKS.hguAdmissions },
       { label: "HGU Alumni", href: "#" },
-      { label: "HGU Instagram", href: "#" },
-      { label: "HGU YouTube", href: "#" },
+      { label: "HGU Instagram", href: SOCIAL_LINKS.hguInstagram },
+      { label: "HGU YouTube", href: SOCIAL_LINKS.hguYoutube },
     ],
   },
 ];

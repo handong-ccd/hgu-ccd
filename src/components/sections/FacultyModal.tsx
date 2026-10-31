@@ -252,7 +252,8 @@ function Detail({ person }: { person: Faculty }) {
               {d.introEn && (
                 <p
                   lang="en"
-                  className={`text-[13px] leading-[1.4] tracking-[-0.02em] whitespace-pre-line md:block md:text-[14px] md:tracking-normal ${
+                  // 영문 소개: PC 는 회색 #949494 (시안 44:3019), 모바일은 흰색 (419:2112)
+                  className={`text-[13px] leading-[1.4] tracking-[-0.02em] whitespace-pre-line md:block md:text-[14px] md:tracking-normal md:text-[#949494] ${
                     introOpen || !d.intro ? "" : "hidden"
                   }`}
                 >
