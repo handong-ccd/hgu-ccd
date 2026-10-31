@@ -1369,5 +1369,151 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
         ]
       }
     ]
+  },
+  "kim-onyu": {
+    "title": "객원교수 / 그래픽디자인",
+    "contact": {
+      "email": "ononnn@handong.edu"
+    },
+    "major": [
+      {
+        "year": "2019",
+        "text": "M.F.A. · Graphic Design | California Institute of the Arts, US"
+      }
+    ],
+    "biography": [
+      {
+        "year": "2025 -",
+        "text": "Visiting Professor | School of Contents Convergence Design, Handong Global University"
+      },
+      {
+        "year": "2021 -",
+        "text": "Independent Designer | oouuaa Studio"
+      },
+      {
+        "year": "2024 - 2025",
+        "text": "Visiting Professor | Visual communication design, Phnom Penh University of the Arts, Cambodia"
+      },
+      {
+        "year": "2022 - 2025",
+        "text": "Adjunct Professor | School of Contents Convergence Design, Handong Global University"
+      },
+      {
+        "year": "2023",
+        "text": "Visiting Lecturer | Global Vision Christian School"
+      },
+      {
+        "year": "2021 - 2022",
+        "text": "Visiting Researcher | Handong Design Institute"
+      },
+      {
+        "year": "2017 - 2018",
+        "text": "Freelance Designer | Yes to ADU, LA County Arts Commission, US"
+      },
+      {
+        "year": "2017",
+        "text": "Freelance Designer | Born Group (New York), US"
+      }
+    ],
+    "awards": [
+      {
+        "year": "2024",
+        "text": "Best Creativity Award | Convergence Art & Design International 2024"
+      },
+      {
+        "year": "2023",
+        "text": "Good Design (GD) Selection | Good Design Korea 2024, Ministry of Trade, Industry and Energy"
+      },
+      {
+        "year": "2023",
+        "text": "Outstanding Work Award | Korea Women Visual Designers Association"
+      },
+      {
+        "year": "2022",
+        "text": "Young Creativity Award | Convergence Art & Design International 2021"
+      },
+      {
+        "year": "2021",
+        "text": "Bronze Prize | 10th Pohang Outdoor Advertising Design Competition"
+      }
+    ],
+    "publications": [
+      {
+        "entries": [
+          {
+            "year": "2026",
+            "text": "Kim, O., & Yi, J. S. (2026). UX Interventions for Metacognitive Activation through Emotion Awareness. KICD Winter International Academic Conference Proceedings."
+          },
+          {
+            "year": "2022",
+            "text": "Kim, O., Oh, J. J., Kim, Y. Y., Lee, J. S., & Lee, J. K. (2022). A Study on Application of Converging Pictorial Typography and Storytelling in Public Design. The Korean Society of Science & Art, 40(3), 75–86. https://doi.org/10.17548/ksaf.2022.06.30.75"
+          },
+          {
+            "year": "2022",
+            "text": "Kim, O., Lee, J. S., Kim, Y. Y., & Lee, J. K. (2022). A Study on the Proposal of New National Symbols for Unified Korea. The Korean Society of Science & Art, 40(3), 59–73. https://doi.org/10.17548/ksaf.2022.06.30.59"
+          }
+        ]
+      }
+    ],
+    "worksTitle": "Exhibitions & Works",
+    "works": [
+      {
+        "year": "2026",
+        "text": "Art Director | Holistic Global Citizenship Education Textbook for Elementary Schools, UN Academic Impact"
+      },
+      {
+        "year": "2026",
+        "text": "KWVD International Invitational Design Exhibition 2026, Nodeul Island, Seoul"
+      },
+      {
+        "year": "2025",
+        "text": "Friends of Venus | Three-Person Exhibition, Morris Gallery, Seoul"
+      },
+      {
+        "year": "2025",
+        "text": "KWVD International Invitational Special Exhibition 2025, Ahjung Museum of Art, Seoul"
+      },
+      {
+        "year": "2024",
+        "text": "Zizi(支持)ya | Solo Exhibition, Morris Gallery, Seoul"
+      },
+      {
+        "year": "2024",
+        "text": "KWVD International Invitational Special Exhibition 2024, Kim Hee Soo Art Center, Seoul"
+      },
+      {
+        "year": "2024",
+        "text": "Warm Hearts in the Scent of Acacia | Lisoo Gallery, Seoul"
+      },
+      {
+        "year": "2024",
+        "text": "Senior Researcher | Development of Holistic Global Citizenship Education Textbook for Elementary Schools, UN Academic Impact"
+      },
+      {
+        "year": "2024",
+        "text": "Convergence Art & Design International 2021 2024, Mass C&G Exhibition Hall, Seoul"
+      },
+      {
+        "year": "2023",
+        "text": "KWVD International Invitational Design Exhibition 2023, Kim Hee Soo Art Center, Seoul"
+      },
+      {
+        "year": "2022",
+        "text": "Convergence Art & Design International 2021, Online"
+      },
+      {
+        "year": "2019",
+        "text": "Going to be, Yet to be | CalArts, Valencia, US"
+      },
+      {
+        "year": "2017",
+        "text": "Not Normal | CalArts, Valencia, US"
+      },
+      {
+        "year": "2016",
+        "text": "Revealed | Grand Parade, Brighton, UK"
+      }
+    ],
+    "researchInterest": "Visual Arts, Communication Design, Critical Design, Design Critique Design Pedagogy"
   }
 };
