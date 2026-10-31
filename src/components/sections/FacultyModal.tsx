@@ -308,7 +308,7 @@ function Detail({ person }: { person: Faculty }) {
           </Section>
         ) : null}
         {d.works?.length ? (
-          <Section title="Works" total={d.works.length}>
+          <Section title={d.worksTitle ?? "Works"} total={d.works.length}>
             {(limit) => <EntryList entries={d.works!} limit={limit} />}
           </Section>
         ) : null}

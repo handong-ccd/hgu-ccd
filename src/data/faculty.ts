@@ -67,7 +67,7 @@ const LIST: Omit<Faculty, "detail">[] = [
     image: "/images/faculty/choi-sooshin.jpg",
   },
   {
-    slug: "kim-onyu", nameEn: "Onyu Kim", nameKo: "김온유", position: "객원교수",
+    slug: "kim-onyu", nameEn: "Onyou Kim", nameKo: "김온유", position: "객원교수",
     education: "Graphic Design M.F.A., California Inst. of the Arts, CA, US.",
     image: "/images/faculty/kim-onyu.jpg",
   },

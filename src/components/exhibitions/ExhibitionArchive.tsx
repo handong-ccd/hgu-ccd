@@ -77,12 +77,9 @@ export function ExhibitionArchive({ items }: { items: Exhibition[] }) {
 
   return (
     <div className="flex flex-col gap-8 pt-10 pb-[100px] md:gap-0 md:pt-10 md:pb-0">
-      {/* 제목 + 검색 */}
-      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-10 md:border-b md:border-line md:pb-6">
-        <div className="flex flex-col gap-2 md:gap-0">
-          <h1 className="font-telegraf text-[32px] leading-none tracking-[-0.03em] md:text-[40px]">Exhibition Archive</h1>
-          <hr className="border-0 border-t-[0.5px] border-black md:hidden" />
-        </div>
+      {/* 검색 — 화면엔 제목·구분선 없이 (스크린리더용 제목만) */}
+      <h1 className="sr-only">Exhibition Archive — 한동대학교 콘텐츠융합디자인학부 졸업 작품전</h1>
+      <div className="flex md:justify-end md:pb-6">
         <SearchBox value={query} onChange={setQuery} />
       </div>
 

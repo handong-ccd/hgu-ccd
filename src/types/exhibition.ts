@@ -17,7 +17,7 @@ export type Exhibition = {
   archiveUrl?: string;
   /** 트랙 구분 없이 학부 전체로 기록된 지도교수 (2007년 이전 등) */
   advisors?: string[];
-  /** 졸업생 명단 (트랙별). advisors 가 비면 졸업생만 표시 */
+  /** 졸업생 명단 (트랙별). advisors 가 비면 졸업생만 표시, track 이 "" 면 트랙 구분 없는 통합 명단 */
   alumni?: { track: string; advisors: string[]; graduates: string[] }[];
   /** 본문. emphasis = Pretendard Medium (성경 구절 등) */
   body: { text: string; emphasis?: boolean }[];

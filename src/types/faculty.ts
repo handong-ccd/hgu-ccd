@@ -38,6 +38,8 @@ export type FacultyDetail = {
   /** Publications 제목 대신 쓸 이름 (예: Exhibitions & Publications) */
   publicationsTitle?: string;
   works?: CvEntry[];
+  /** Works 제목 대신 쓸 이름 (예: Exhibitions & Works) */
+  worksTitle?: string;
   /** 시트에 자유롭게 추가된 항목 (Affiliations, Teaching 등) — Awards 다음에 표시 */
   extra?: { title: string; entries: CvEntry[] }[];
 };
