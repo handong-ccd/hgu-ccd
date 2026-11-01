@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ExhibitionPoster } from "./ExhibitionPoster";
 import Link from "next/link";
 import type { Exhibition } from "@/types/exhibition";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
@@ -131,9 +131,7 @@ export function ExhibitionDetail({ item }: { item: Exhibition }) {
     <>
       {/* Mobile / Tablet (<1080) */}
       <article className="bg-black text-white lg:hidden">
-        <div className="relative w-full bg-neutral-900" style={{ aspectRatio: `${width} / ${height}` }}>
-          <Image src={item.image} alt={alt} fill sizes="100vw" className="object-cover" priority />
-        </div>
+        <ExhibitionPoster src={item.image} alt={alt} width={width} height={height} sizes="100vw" priority className="w-full" />
         <Container className="flex flex-col gap-[51px] py-10">
           <header className="flex flex-col gap-4 border-b border-white pb-4">
             <h1 className="font-telegraf text-[40px] leading-none uppercase">
@@ -215,12 +213,14 @@ export function ExhibitionDetail({ item }: { item: Exhibition }) {
             ) : null}
             <AllExhibitionLink />
           </div>
-          <div
-            className="relative w-1/2 max-w-[600px] shrink-0 bg-neutral-900"
-            style={{ aspectRatio: `${width} / ${height}` }}
-          >
-            <Image src={item.image} alt={alt} fill sizes="(min-width: 1280px) 600px, 50vw" className="object-cover" />
-          </div>
+          <ExhibitionPoster
+            src={item.image}
+            alt={alt}
+            width={width}
+            height={height}
+            sizes="(min-width: 1280px) 600px, 50vw"
+            className="w-1/2 max-w-[600px] shrink-0"
+          />
         </Container>
       </article>
     </>

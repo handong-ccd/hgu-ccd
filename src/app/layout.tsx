@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import "@fontsource/nanum-myeongjo/400.css";
 import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -35,7 +37,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: FIT_DESIGN_SCRIPT }} />
       </head>
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        {/* 휠 스크롤을 부드럽게 (Lenis) — 동작 줄이기 설정이면 꺼짐 */}
+        <SmoothScroll />
+        {children}
+      </body>
     </html>
   );
 }

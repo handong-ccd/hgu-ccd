@@ -1,0 +1,116 @@
+/* ── 교수 상세 인터랙션 (Figma 486:1365) ── */
+
+/* 펼침 — 내용 높이만큼 grid 행이 0fr → 1fr 로 늘어남. 접힌 내용은 안 보이고 포커스도 안 됨 */
+.faculty-expand {
+  display: grid;
+  grid-template-rows: 0fr;
+}
+
+.faculty-expand[data-expanded="true"] {
+  grid-template-rows: 1fr;
+}
+
+.faculty-expand-inner {
+  min-height: 0;
+  overflow: clip;
+}
+
+.faculty-expand[data-expanded="false"] > .faculty-expand-inner {
+  visibility: hidden;
+}
+
+/* 모바일에서만 접히는 내용(영문 소개) — 태블릿 이상은 항상 펼침 */
+@media (min-width: 768px) {
+  .faculty-expand.md-open {
+    grid-template-rows: 1fr;
+  }
+
+  .faculty-expand.md-open > .faculty-expand-inner {
+    visibility: visible;
+  }
+}
+
+.faculty-section-rule {
+  transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .faculty-expand {
+    transition: grid-template-rows 800ms cubic-bezier(.45, 0, .2, 1);
+  }
+
+  /* 접힐 때는 다 접힌 뒤에 숨김 */
+  .faculty-expand[data-expanded="false"] > .faculty-expand-inner {
+    transition: visibility 0s 800ms;
+  }
+
+  /* 정보 등장 — 한 줄 크기씩 가려진 곳에서 올라옴 */
+  [data-block-reveal-state="waiting"] .faculty-reveal-mask,
+  [data-block-reveal-state="revealing"] .faculty-reveal-mask {
+    overflow: clip;
+  }
+
+  [data-block-reveal-state="waiting"] .faculty-reveal-item {
+    transform: translate3d(0, 110%, 0);
+  }
+
+  [data-block-reveal-state="waiting"] .faculty-section-rule {
+    transform: scaleX(0);
+  }
+
+  [data-block-reveal-state="revealing"] .block-reveal-content {
+    animation: faculty-reveal-complete calc(var(--reveal-duration) + 140ms) linear var(--reveal-delay) both;
+  }
+
+  [data-block-reveal-state="revealing"] .faculty-reveal-item {
+    animation: faculty-line-reveal var(--reveal-duration) var(--reveal-easing) calc(var(--reveal-delay) + 140ms) both;
+    will-change: transform;
+  }
+
+  [data-block-reveal-state="revealing"] .faculty-section-heading {
+    animation-delay: var(--reveal-delay);
+  }
+
+  [data-block-reveal-state="revealing"] .faculty-section-rule {
+    animation: faculty-rule-reveal var(--reveal-duration) var(--reveal-easing) calc(var(--reveal-delay) + 70ms) both;
+  }
+
+  /* 펼친 내용도 누른 순간부터 항목별로 같은 효과 */
+  [data-expanded-reveal="true"] .faculty-reveal-mask {
+    overflow: clip;
+  }
+
+  [data-expanded-reveal="true"] .faculty-reveal-item {
+    animation: faculty-line-reveal var(--reveal-duration) var(--reveal-easing) var(--expanded-item-delay, 0ms) both;
+    will-change: transform;
+  }
+
+  /* 닫기 X — 두 획이 차례로 그려지고, 호버하면 반 바퀴 회전 */
+  .faculty-close-backslash,
+  .faculty-close-slash {
+    stroke-dasharray: 1;
+    animation: close-draw 900ms cubic-bezier(.45, 0, .2, 1) both;
+  }
+
+  .faculty-close-slash {
+    animation-delay: 280ms;
+  }
+
+  [data-spinning="true"] > svg {
+    animation: close-spin 1s cubic-bezier(.45, 0, .2, 1);
+  }
+}
+
+@keyframes faculty-line-reveal {
+  from { transform: translate3d(0, 110%, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes faculty-rule-reveal {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes faculty-reveal-complete {
+  from, to { opacity: 1; }
+}

@@ -19,3 +19,12 @@ export const MOTION = {
 } as const;
 
 export const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
+
+/** 스무스 스크롤(Lenis) — 페이지와 교수 상세 창에서 같은 느낌으로 사용 */
+export const SMOOTH_SCROLL_OPTIONS = {
+  autoRaf: true,
+  lerp: 0.075,
+  smoothWheel: true,
+  wheelMultiplier: 1,
+  syncTouch: false,
+} as const;

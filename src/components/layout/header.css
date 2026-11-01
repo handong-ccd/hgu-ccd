@@ -1,0 +1,25 @@
+/* GNB — 아래로 스크롤하면 위로 숨고, 위로 스크롤하면 다시 내려옴 (Figma 486:1361) */
+.site-header[data-header-hidden="true"] {
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-header {
+    transition: transform 480ms cubic-bezier(.22, 1, .36, 1);
+  }
+
+  /* 모바일 메뉴 닫기 X — 두 획이 차례로 그려지고, 호버하면 반 바퀴 회전 */
+  .menu-close-backslash,
+  .menu-close-slash {
+    stroke-dasharray: 1;
+    animation: close-draw 900ms cubic-bezier(.45, 0, .2, 1) both;
+  }
+
+  .menu-close-slash {
+    animation-delay: 280ms;
+  }
+
+  [data-spinning="true"] > .menu-close-icon {
+    animation: close-spin 1s cubic-bezier(.45, 0, .2, 1);
+  }
+}
