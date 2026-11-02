@@ -14,7 +14,7 @@ function ArchiveLink({ href, full = false }: { href: string; full?: boolean }) {
     <a
       href={href}
       {...(external && { target: "_blank", rel: "noopener noreferrer" })}
-      className={`flex items-center justify-center gap-[5.714px] border border-white px-5 py-4 transition-opacity hover:opacity-70 ${
+      className={`group flex items-center justify-center gap-[5.714px] border border-white px-5 py-4 text-white transition-colors hover:bg-white hover:text-black focus-visible:bg-white focus-visible:text-black motion-reduce:transition-none ${
         full ? "w-full" : "self-start"
       }`}
     >
@@ -23,7 +23,11 @@ function ArchiveLink({ href, full = false }: { href: string; full?: boolean }) {
       >
         Online Exhibition
       </span>
-      <ArrowUpRight size={20} color="white" />
+      <ArrowUpRight
+        size={20}
+        color="white"
+        className="transition-[filter] group-hover:invert group-focus-visible:invert motion-reduce:transition-none"
+      />
       {external && <span className="sr-only">(온라인 전시, 새 탭에서 열림)</span>}
     </a>
   );
@@ -34,12 +38,12 @@ function AllExhibitionLink() {
   return (
     <Link
       href="/exhibitions"
-      className="flex items-center gap-2.5 self-start border border-white px-5 py-4 transition-opacity hover:opacity-70"
+      className="flex items-center gap-2.5 self-start border border-white px-5 py-4 text-white transition-colors hover:bg-white hover:text-black focus-visible:bg-white focus-visible:text-black motion-reduce:transition-none"
     >
       {/* 네모 4칸 아이콘 22px */}
       <span aria-hidden className="grid size-[22px] grid-cols-2 gap-0.5">
         {[0, 1, 2, 3].map((n) => (
-          <span key={n} className="border-[1.29px] border-white" />
+          <span key={n} className="border-[1.29px] border-current" />
         ))}
       </span>
       <span className="font-telegraf text-[22.86px] leading-none uppercase [text-box:trim-both_cap_alphabetic]">
