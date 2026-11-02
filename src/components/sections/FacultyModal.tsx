@@ -62,9 +62,6 @@ function withYears(entries: CvEntry[]): CvEntry[] {
   });
 }
 
-/** 보여줄 항목 범위 [from, to) — 접힌 섹션은 앞 LIMIT 개 / 나머지(펼침 영역)로 나눠 그림 */
-type Range = { from: number; to?: number };
-
 /** 한 줄(블록)씩 아래에서 올라오는 등장 효과 단위 (block-reveal.css) */
 function Reveal({ as: Tag = "div", className = "", children }: { as?: "div" | "li"; className?: string; children: ReactNode }) {
   return (
@@ -74,14 +71,11 @@ function Reveal({ as: Tag = "div", className = "", children }: { as?: "div" | "l
   );
 }
 
-function EntryList({ entries, from = 0, to }: { entries: CvEntry[] } & Partial<Range>) {
-  // 연도 이어 붙이기는 전체 목록 기준으로 한 뒤에 자름
-  const rows = withYears(entries).slice(from, to);
-  if (!rows.length) return null;
+function EntryList({ entries }: { entries: CvEntry[] }) {
   return (
     <ul className={`flex flex-col gap-2 ${BODY}`}>
-      {rows.map((e, i) => (
-        <Reveal key={from + i} as="li" className="flex gap-3">
+      {withYears(entries).map((e, i) => (
+        <Reveal key={i} as="li" className="flex gap-3">
           <span className="w-[52px] shrink-0 md:w-[100px]">{e.year}</span>
           <span className="min-w-0 flex-1">
             <Linkify text={e.text} />
@@ -91,9 +85,6 @@ function EntryList({ entries, from = 0, to }: { entries: CvEntry[] } & Partial<R
     </ul>
   );
 }
-
-/** 처음 보여줄 항목 수 — 넘으면 제목 오른쪽 화살표로 나머지 펼치기 (Figma 6:198) */
-const LIMIT = 5;
 
 /** 드롭다운 아이콘 회전 — 1s ease-in-out (Figma 486:1365) */
 const ICON_TURN = "transition-transform duration-1000 ease-[cubic-bezier(.45,0,.2,1)] motion-reduce:transition-none";
@@ -113,33 +104,30 @@ function Chevron({ open }: { open: boolean }) {
 }
 
 /**
- * CV 섹션. 항목(total)이 LIMIT 를 넘으면 처음엔 LIMIT 개만 보여주고, 화살표 버튼으로 나머지를 펼침.
- * 나머지는 처음부터 그려 두고 grid 행 0fr → 1fr 로 부드럽게 펼침 (block-reveal.css .faculty-expand).
- * children 은 보여줄 항목 범위를 받아서 그림
+ * CV 섹션. collapsible 이면 처음엔 제목만 보이고(접힘), 제목 오른쪽 화살표로 내용을 펼침.
+ * 내용은 처음부터 그려 두고 grid 행 0fr → 1fr 로 부드럽게 펼침 (block-reveal.css .faculty-expand)
  */
 function Section({
   title,
-  total = 0,
+  collapsible = false,
   bodyClassName = "gap-2",
   children,
 }: {
   title: string;
-  total?: number;
+  collapsible?: boolean;
   /** 내용 묶음 사이 간격 — Publications 소분류 사이는 PC 40px */
   bodyClassName?: string;
-  children: ReactNode | ((range: Range) => ReactNode);
+  children: ReactNode;
 }) {
   const [open, setOpen] = useState(false);
   const [revealing, setRevealing] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const lastItem = useRef<Element | null>(null);
   const id = useId();
-  const foldable = total > LIMIT;
-  const render = (range: Range) => (typeof children === "function" ? children(range) : children);
 
   const toggle = () => {
     const next = !open;
-    // 펼칠 때 나머지 항목도 위에서부터 55ms 간격으로 올라오게
+    // 펼칠 때 항목도 위에서부터 55ms 간격으로 올라오게
     const items = panelRef.current?.querySelectorAll<HTMLElement>(".faculty-reveal-item") ?? [];
     items.forEach((item, i) => item.style.setProperty("--expanded-item-delay", `${i * 55}ms`));
     lastItem.current = items.length ? items[items.length - 1] : null;
@@ -151,12 +139,12 @@ function Section({
     <section className="flex flex-col gap-2">
       <SectionTitle
         aside={
-          foldable && (
+          collapsible && (
             <button
               type="button"
               aria-expanded={open}
               aria-controls={id}
-              aria-label={`${title} ${open ? "접기" : `전체 ${total}개 펼치기`}`}
+              aria-label={`${title} ${open ? "접기" : "펼치기"}`}
               onClick={toggle}
               className="flex size-8 shrink-0 items-center justify-center hover:opacity-70 md:size-10"
             >
@@ -167,56 +155,48 @@ function Section({
       >
         {title}
       </SectionTitle>
-      <div className={`flex flex-col ${bodyClassName}`}>{render({ from: 0, to: foldable ? LIMIT : undefined })}</div>
-      {foldable && (
+      {collapsible ? (
         <div
           id={id}
           ref={panelRef}
           data-expanded={open}
           data-expanded-reveal={revealing || undefined}
+          // 접혔을 때 제목 아래 간격(gap)까지 없앰
           className="faculty-expand -mt-2"
           onAnimationEnd={(e) => {
             if (e.target === lastItem.current && e.animationName === "faculty-line-reveal") setRevealing(false);
           }}
         >
           <div className="faculty-expand-inner">
-            <div className={`flex flex-col pt-2 ${bodyClassName}`}>{render({ from: LIMIT })}</div>
+            <div className={`flex flex-col pt-2 ${bodyClassName}`}>{children}</div>
           </div>
         </div>
+      ) : (
+        <div className={`flex flex-col ${bodyClassName}`}>{children}</div>
       )}
     </section>
   );
 }
 
-/** Publications — 소분류(group)를 가로질러 전체 순서 기준 [from, to) 범위만 */
-function Publications({ groups, from, to = Infinity }: { groups: NonNullable<FacultyDetail["publications"]> } & Range) {
-  let start = 0;
-  return groups.map((group, i) => {
-    const groupStart = start;
-    const groupEnd = (start += group.entries.length);
-    const a = Math.max(from, groupStart);
-    const b = Math.min(to, groupEnd);
-    if (a >= b) return null;
-    // 펼침 영역이 소분류 경계에서 시작하면 소분류 사이 간격(PC 40px)을 맞춤
-    const boundary = from > 0 && a === groupStart && a === from;
-    return (
-      <div key={group.label ?? i} className={`flex flex-col gap-2 ${boundary ? "md:pt-8" : ""}`}>
-        {group.label && a === groupStart && (
-          <Reveal>
-            <h4 className="font-telegraf text-[16px] leading-[1.4] uppercase md:text-[18px]">{group.label}</h4>
-          </Reveal>
-        )}
-        <EntryList entries={group.entries} from={a - groupStart} to={b - groupStart} />
-        {b === groupEnd && group.note && (
-          <Reveal>
-            <p className={BODY}>
-              <Linkify text={group.note} />
-            </p>
-          </Reveal>
-        )}
-      </div>
-    );
-  });
+/** Publications — 소분류(group)별 제목 + 목록 + 비고 */
+function Publications({ groups }: { groups: NonNullable<FacultyDetail["publications"]> }) {
+  return groups.map((group, i) => (
+    <div key={group.label ?? i} className="flex flex-col gap-2">
+      {group.label && (
+        <Reveal>
+          <h4 className="font-telegraf text-[16px] leading-[1.4] uppercase md:text-[18px]">{group.label}</h4>
+        </Reveal>
+      )}
+      <EntryList entries={group.entries} />
+      {group.note && (
+        <Reveal>
+          <p className={BODY}>
+            <Linkify text={group.note} />
+          </p>
+        </Reveal>
+      )}
+    </div>
+  ));
 }
 
 /** 모바일 소개 펼치기 화살표 (∨ / 펼치면 ∧) — Figma 419:1472 / 419:2113 */
@@ -386,60 +366,27 @@ function Detail({ person }: { person: Faculty }) {
 
       {/* 오른쪽: CV */}
       <CvColumn>
-        {/* Major → Biography → Awards → Publications → Works → Patent → Research Interest → (기타)
-            시안 44:2927·44:3598 등 순서. 모든 항목은 5개까지 보이고, 넘으면 화살표로 펼치기 (Figma 6:198) */}
-        <Section title="Major" total={d.major?.length}>
-          {(r) =>
-            d.major?.length ? (
-              d.major.some((m) => m.year) ? (
-                <EntryList entries={d.major} {...r} />
-              ) : (
-                <ul className={BODY}>
-                  {d.major.slice(r.from, r.to).map((m) => (
-                    <Reveal key={m.text} as="li">
-                      <Linkify text={m.text} />
-                    </Reveal>
-                  ))}
-                </ul>
-              )
+        {/* 참고 사이트(hgu-ccd-test-byjpark) 순서: Major → Research Interest → Biography → Awards → (기타)
+            → Publications → Patent → Works. Awards 까지는 전체 표시, 그 아래는 드롭다운으로 기본 접힘 */}
+        <Section title="Major">
+          {d.major?.length ? (
+            d.major.some((m) => m.year) ? (
+              <EntryList entries={d.major} />
             ) : (
-              r.from === 0 && (
-                <Reveal>
-                  <p className={BODY}>{person.education}</p>
-                </Reveal>
-              )
+              <ul className={BODY}>
+                {d.major.map((m) => (
+                  <Reveal key={m.text} as="li">
+                    <Linkify text={m.text} />
+                  </Reveal>
+                ))}
+              </ul>
             )
-          }
+          ) : (
+            <Reveal>
+              <p className={BODY}>{person.education}</p>
+            </Reveal>
+          )}
         </Section>
-        {d.biography?.length ? (
-          <Section title="Biography" total={d.biography.length}>
-            {(r) => <EntryList entries={d.biography!} {...r} />}
-          </Section>
-        ) : null}
-        {d.awards?.length ? (
-          <Section title="Awards" total={d.awards.length}>
-            {(r) => <EntryList entries={d.awards!} {...r} />}
-          </Section>
-        ) : null}
-        {d.publications?.length ? (
-          <Section
-            title={d.publicationsTitle ?? "Publications"}
-            total={d.publications.reduce((n, g) => n + g.entries.length, 0)}
-            bodyClassName="gap-2 md:gap-10"
-          >
-            {(r) => <Publications groups={d.publications!} {...r} />}
-          </Section>
-        ) : null}
-        {d.works?.length ? (
-          <Section title={d.worksTitle ?? "Works"} total={d.works.length}>
-            {(r) => <EntryList entries={d.works!} {...r} />}
-          </Section>
-        ) : null}
-        {d.patents?.length ? (
-          <Section title="Patent" total={d.patents.length}>
-            {(r) => <EntryList entries={d.patents!} {...r} />}
-          </Section>
-        ) : null}
         {d.researchInterest && (
           <Section title="Research Interest">
             <Reveal>
@@ -449,11 +396,36 @@ function Detail({ person }: { person: Faculty }) {
             </Reveal>
           </Section>
         )}
+        {d.biography?.length ? (
+          <Section title="Biography">
+            <EntryList entries={d.biography} />
+          </Section>
+        ) : null}
+        {d.awards?.length ? (
+          <Section title="Awards">
+            <EntryList entries={d.awards} />
+          </Section>
+        ) : null}
         {d.extra?.map((sec) => (
-          <Section key={sec.title} title={sec.title} total={sec.entries.length}>
-            {(r) => <EntryList entries={sec.entries} {...r} />}
+          <Section key={sec.title} title={sec.title}>
+            <EntryList entries={sec.entries} />
           </Section>
         ))}
+        {d.publications?.length ? (
+          <Section title={d.publicationsTitle ?? "Publications"} collapsible bodyClassName="gap-2 md:gap-10">
+            <Publications groups={d.publications} />
+          </Section>
+        ) : null}
+        {d.patents?.length ? (
+          <Section title="Patent" collapsible>
+            <EntryList entries={d.patents} />
+          </Section>
+        ) : null}
+        {d.works?.length ? (
+          <Section title={d.worksTitle ?? "Works"} collapsible>
+            <EntryList entries={d.works} />
+          </Section>
+        ) : null}
       </CvColumn>
     </div>
   );
