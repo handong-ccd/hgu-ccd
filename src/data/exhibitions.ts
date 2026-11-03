@@ -133,7 +133,7 @@ export const EXHIBITIONS: Exhibition[] = [
         "text": "‘Filling to Flow’는 하나님께 받은 지혜와 재능이 세상으로 흘러가 새로운 가치를 만드는 과정을 담은 전시입니다. 학생들은 배움과 경험으로 자신을 채우고, 이를 각자의 디자인 언어로 확장했습니다. 출애굽기 31장 3절의 말씀처럼 지혜와 총명, 지식과 기술로 충만해져 사람과 사회를 이롭게 하는 디자인을 만들어 갈 예비 디자이너들의 흐름을 선보입니다."
       }
     ],
-    "archiveUrl": "https://harlo-ii.github.io/hgu-filling-to-flowing-comingsoon/",
+    "archiveUrl": "https://hgu-ccd-2.vercel.app/",
     "image": "/images/exhibitions/2026.jpg",
     "size": {
       "width": 359,
