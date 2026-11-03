@@ -5,11 +5,14 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { Container } from "@/components/ui/Container";
 import { NETWORK_GROUPS } from "@/data/site";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { networksJsonLd, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Networks | HGU CCD",
-  description: "한동대학교 콘텐츠융합디자인학부 공식 채널과 관련 링크 모음",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Networks",
+  description: "한동대학교 콘텐츠융합디자인학부 공식 인스타그램·유튜브 채널과 졸업 전시, 학교 관련 링크 모음",
+  path: "/networks",
+});
 
 function NetworkLink({ href, label }: { href: string; label: string }) {
   const className = "underline decoration-from-font hover:opacity-60";
@@ -32,6 +35,7 @@ function NetworkLink({ href, label }: { href: string; label: string }) {
 export default function NetworksPage() {
   return (
     <>
+      <JsonLd data={networksJsonLd()} />
       {/* 페이지 맨 위 기준점 — 링크로 들어오면 여기(0)로 스크롤 (sticky 헤더가 첫 요소면 헤더 높이만큼 내려간 채로 열림) */}
       <div id="top" />
       <Header tone="light" />

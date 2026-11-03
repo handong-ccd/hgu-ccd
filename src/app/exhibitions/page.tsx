@@ -5,11 +5,15 @@ import { Header } from "@/components/layout/Header";
 import { Container } from "@/components/ui/Container";
 import { ExhibitionArchive } from "@/components/exhibitions/ExhibitionArchive";
 import { getExhibitions } from "@/lib/api/exhibitions";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { exhibitionsJsonLd, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Exhibition Archive | HGU CCD",
-  description: "한동대학교 콘텐츠융합디자인학부 졸업 작품전 아카이브",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Exhibition Archive",
+  description:
+    "한동대학교 콘텐츠융합디자인학부 역대 졸업 작품전(디그리) 아카이브 — 연도별 전시 주제, 기간·장소, 지도교수와 졸업생 명단",
+  path: "/exhibitions",
+});
 
 /** 전체 전시 목록 + 검색 — Figma PC 6:1202 / 모바일 452:2362 · 480:2830 (필터 제외) */
 export default async function ExhibitionsPage() {
@@ -17,6 +21,7 @@ export default async function ExhibitionsPage() {
 
   return (
     <>
+      <JsonLd data={exhibitionsJsonLd(exhibitions)} />
       {/* 페이지 맨 위 기준점 — 링크로 들어오면 여기(0)로 스크롤 (sticky 헤더가 첫 요소면 헤더 높이만큼 내려간 채로 열림) */}
       <div id="top" />
       <Header tone="light" />

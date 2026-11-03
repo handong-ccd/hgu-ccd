@@ -5,6 +5,8 @@ import { Header } from "@/components/layout/Header";
 import { ExhibitionDetail } from "@/components/exhibitions/ExhibitionDetail";
 import { ExhibitionPager } from "@/components/exhibitions/ExhibitionPager";
 import { getExhibition, getExhibitions } from "@/lib/api/exhibitions";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { exhibitionJsonLd, pageMetadata } from "@/lib/seo";
 
 export async function generateStaticParams() {
   const exhibitions = await getExhibitions();
@@ -15,10 +17,13 @@ export async function generateMetadata({ params }: PageProps<"/exhibitions/[year
   const { year } = await params;
   const item = await getExhibition(Number(year));
   if (!item) return {};
-  return {
-    title: `${item.name} (${item.year}) | HGU CCD`,
-    description: `${item.subtitle[0]} — ${item.subtitle[1]}`,
-  };
+  const period = [item.date, item.venue].filter(Boolean).join(", ");
+  return pageMetadata({
+    title: `${item.name} (${item.year} 졸업 작품전)`,
+    description: `${item.subtitle[0]} — ${item.subtitle[1]}${period ? ` (${period})` : ""}`,
+    path: `/exhibitions/${item.year}`,
+    image: item.image ? { url: item.image, alt: `${item.year} 졸업 작품전 ${item.name} 포스터` } : undefined,
+  });
 }
 
 export default async function ExhibitionPage({ params }: PageProps<"/exhibitions/[year]">) {
@@ -33,6 +38,7 @@ export default async function ExhibitionPage({ params }: PageProps<"/exhibitions
 
   return (
     <>
+      <JsonLd data={exhibitionJsonLd(item)} />
       {/* 페이지 맨 위 기준점 — 링크로 들어오면 여기(0)로 스크롤 (sticky 헤더가 첫 요소면 헤더 높이만큼 내려간 채로 열림) */}
       <div id="top" />
       <Header />

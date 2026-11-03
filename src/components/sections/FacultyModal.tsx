@@ -296,7 +296,7 @@ function Detail({ person }: { person: Faculty }) {
             {person.image && (
               <Image
                 src={person.image}
-                alt=""
+                alt={`${person.nameKo} 교수 사진`}
                 fill
                 sizes="(min-width: 1280px) 420px, (min-width: 1080px) 320px, 100vw"
                 className="object-cover"
