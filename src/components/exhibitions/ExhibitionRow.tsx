@@ -17,8 +17,9 @@ export function ExhibitionRow({ item, eager = false }: { item: Exhibition; eager
   const paragraphs = item.body.filter((p) => !p.emphasis);
   const href = exhibitionHref(item.year);
 
+  // 마지막 전시는 아래 선 없음 — 푸터 위 선과 겹침
   return (
-    <article className="flex items-start justify-between gap-10 border-b border-line py-10">
+    <article className="flex items-start justify-between gap-10 border-b border-line py-10 last:border-b-0">
       <div className="flex w-1/2 max-w-[650px] min-w-0 flex-col gap-10 2xl:gap-20">
         <h2 className="font-telegraf text-[40px] leading-none uppercase 2xl:text-[72px]">
           <Link href={href} className="hover:opacity-70">
