@@ -8,10 +8,18 @@ import { Exhibition } from "@/components/sections/Exhibition";
 import { Faculties } from "@/components/sections/Faculties";
 import { Hero } from "@/components/sections/Hero";
 import { Intro } from "@/components/sections/Intro";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getTracks } from "@/lib/api/curriculum";
+import { getFaculty } from "@/lib/api/faculty";
+import { homeJsonLd } from "@/lib/seo";
 
-export default function Home() {
+export default async function Home() {
+  // 구조화 데이터용 — 섹션과 같은 캐시를 써서 요청이 늘지 않음
+  const [tracks, faculty] = await Promise.all([getTracks(), getFaculty()]);
+
   return (
     <>
+      <JsonLd data={homeJsonLd(tracks, faculty)} />
       <div id="top" />
       <Header />
       <main className="flex-1">

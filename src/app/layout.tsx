@@ -4,28 +4,47 @@ import "@fontsource/nanum-myeongjo/400.css";
 import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import "lenis/dist/lenis.css";
 import "./globals.css";
-
-const SITE_TITLE = "콘텐츠융합디자인학부 | 한동대학교";
-const SITE_DESCRIPTION =
-  "한동대학교 콘텐츠융합디자인학부는 국제적 감각과 창의적 문제 해결 능력을 갖춘 크리스천 디자인 리더를 양성합니다.";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL, siteJsonLd } from "@/lib/seo";
 
 /**
  * 공유 미리보기(OG) — 이미지는 app/opengraph-image.png (Figma 337:8027, 1200×630),
  * 파비콘은 app/favicon.ico(16·32·48) · icon.png(64) · apple-icon.png(180) (Figma 337:7897 등)
- * OG 이미지 절대 주소의 기준 도메인: SITE_URL 환경변수 (없으면 Vercel 배포 주소를 Next 가 자동으로 사용)
+ * 기준 도메인·공통 문구는 lib/seo.ts (SITE_URL 환경변수 → Vercel 주소 → ccd.handong.edu)
+ * 검색 서비스 소유권 확인: GOOGLE_SITE_VERIFICATION · NAVER_SITE_VERIFICATION 환경변수 (값만, 따옴표 없이)
  */
 export const metadata: Metadata = {
-  ...(process.env.SITE_URL && { metadataBase: new URL(process.env.SITE_URL) }),
-  title: SITE_TITLE,
+  metadataBase: new URL(SITE_URL),
+  title: { default: SITE_TITLE, template: `%s | ${SITE_NAME}` },
   description: SITE_DESCRIPTION,
+  applicationName: SITE_TITLE,
+  keywords: SITE_KEYWORDS,
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: "한동대학교",
+  category: "education",
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
   openGraph: {
     type: "website",
     locale: "ko_KR",
     siteName: SITE_TITLE,
+    url: "/",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
   },
   twitter: { card: "summary_large_image", title: SITE_TITLE, description: SITE_DESCRIPTION },
+  verification: {
+    ...(process.env.GOOGLE_SITE_VERIFICATION && { google: process.env.GOOGLE_SITE_VERIFICATION }),
+    ...(process.env.NAVER_SITE_VERIFICATION && {
+      other: { "naver-site-verification": process.env.NAVER_SITE_VERIFICATION },
+    }),
+  },
+  formatDetection: { telephone: false, email: false, address: false },
 };
 
 /**
@@ -57,6 +76,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col">
         {/* 휠 스크롤을 부드럽게 (Lenis) — 동작 줄이기 설정이면 꺼짐 */}
         <SmoothScroll />
+        <JsonLd data={siteJsonLd()} />
         {children}
       </body>
     </html>
