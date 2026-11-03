@@ -1515,5 +1515,68 @@ export const FACULTY_DETAILS: Record<string, FacultyDetail> = {
       }
     ],
     "researchInterest": "Visual Arts, Communication Design, Critical Design, Design Critique Design Pedagogy"
+  },
+  "shin-wonseok": {
+    "title": "객원교수 / 컴퓨터그래픽기초, 디자인역사",
+    "contact": {
+      "email": "shinws@handong.edu"
+    },
+    "intro": "신원석 교수는 한동대학교에서 산업정보디자인(미술학사·공학사)을 전공하고, 같은 대학 일반대학원에서 문화미디어디자인으로 공학석사 학위를 받았다. 대한민국 외교부·한국연구재단 파견교수로 베트남 호치민시 반랑대학교(Van Lang University)에서 현지어로 디자인 전공강의를 하였고, 2016년부터 한동대학교 객원교수로 재직하며 중앙대학교, 숭실대학교, 고려사이버대학교 등에서 10여 년간 컴퓨터 그래픽스, UI/UX 설계, 게임 인터페이스 디자인, 캐릭터 크리에이션 등 디자인과 테크놀로지를 잇는 강의를 해왔다. 유럽 자동차용 운전자 보조 시스템(Driver Assistance System)의 UI/UX 프로토타입으로 2018 CADI 국제공모전에서 Best Creativity를 수상하였다. 최근에는 생성형 AI가 바꾸어 놓은 디자인 교육의 다음 단계를 고민하며 AI 기반 캐릭터·영상 콘텐츠 제작과 게임 NPC 페르소나 디자인을 연구하고 이를 수업에 적극 반영하고 있다.",
+    "introEn": "Professor Wonseok Shin studied Industrial Information Design (B.F.A. & B.Eng.) at Handong Global University and received his M.Eng. in Culture & Media Design from the same university's graduate school. As a professor dispatched by the Korean Ministry of Foreign Affairs and the National Research Foundation of Korea, he taught design courses in Vietnamese at Van Lang University in Ho Chi Minh City. Since 2016 he has served as a Visiting Professor at Handong Global University, and for over a decade he has taught courses bridging design and technology - computer graphics, UI/UX design, game interface design and character creation - at Chung-Ang University, Soongsil University and the Cyber University of Korea. His UI/UX prototype for an automotive Driver Assistance System received the Best Creativity award at the 2018 CADI International Competition. Exploring the next stage of design education reshaped by generative AI, he researches AI-driven character and video content creation and game NPC persona design, and actively brings them into his classes.",
+    "major": [
+      {
+        "year": "2018",
+        "text": "M.Eng. · Culture & Media Design | Graduate School, Handong Global University"
+      }
+    ],
+    "biography": [
+      {
+        "year": "2024 -",
+        "text": "Adjunct Professor | Cyber University of Korea (Computer Graphics)"
+      },
+      {
+        "year": "2021 -",
+        "text": "Lecturer | School of Software, Soongsil University (UI/UX Design)"
+      },
+      {
+        "year": "2019 -",
+        "text": "Lecturer | School of Global Arts, Chung-Ang University (Game Interface Design, Character Creation)"
+      },
+      {
+        "year": "2016 -",
+        "text": "Visiting Professor | School of Contents Convergence Design, Handong Global University"
+      },
+      {
+        "year": "2013 - 2015",
+        "text": "Dispatched Professor | Faculty of Industrial Fine Arts, Van Lang University, Ho Chi Minh City, Vietnam (Ministry of Foreign Affairs / National Research Foundation of Korea)"
+      }
+    ],
+    "awards": [
+      {
+        "year": "2018",
+        "text": "Best Creativity | CADI International Design Competition, Korea Science & Art Forum - UI/UX Design for Driver Assistance System"
+      }
+    ],
+    "extra": [
+      {
+        "title": "Affiliations",
+        "entries": [
+          {
+            "year": "2021 -",
+            "text": "Management Committee Member, The Korean Society of Science & Art (한국과학예술융합학회)"
+          }
+        ]
+      }
+    ],
+    "publications": [
+      {
+        "entries": [
+          {
+            "year": "2025",
+            "text": "“A Study on a Public Transit Mobility Support Service for the Transportation Vulnerable Using Personal Mobile Devices”, Shin, W., The Korean Society of Science & Art, Vol.43(5), pp.613-625"
+          }
+        ]
+      }
+    ]
   }
 };
