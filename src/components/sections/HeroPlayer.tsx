@@ -33,6 +33,8 @@ export function HeroPlayer({ videos }: { videos: BannerVideo[] }) {
   const transitionInProgress = useRef(false);
   const stoppedRef = useRef(false);
   const transitionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** 미리 받는 중인 대기 영상 — 이 동안은 일시정지하지 않음 */
+  const warming = useRef<HTMLVideoElement | null>(null);
 
   const current = videos[slots[activeSlot]];
   const stopped = paused || reducedMotion;
@@ -92,12 +94,51 @@ export function HeroPlayer({ videos }: { videos: BannerVideo[] }) {
   useEffect(() => {
     stoppedRef.current = stopped;
     videoRefs.current.forEach((video, slot) => {
-      if (!video) return;
+      if (!video || video === warming.current) return;
       if (stopped || (slot !== activeSlot && slot !== incomingSlot)) video.pause();
       else if (!video.ended) video.play().catch(() => {});
     });
     if (!stopped && incomingSlot === null && videoRefs.current[activeSlot]?.ended) startTransition();
   }, [activeSlot, incomingSlot, slots, startTransition, stopped]);
+
+  // 다음 영상 미리 받기 — 모바일(특히 iOS)은 preload 를 무시해서, 전환 시점에야 영상을 내려받기 시작해
+  // 3초·4초보다 늦게 넘어감. 현재 영상이 재생되기 시작하면 대기 영상을 (거의 투명한 채로) 잠깐 재생해
+  // 데이터를 받아 둔 뒤 처음으로 되감아 멈춰 둔다.
+  useEffect(() => {
+    if (stopped || videos.length < 2 || incomingSlot !== null) return;
+    const active = videoRefs.current[activeSlot];
+    const next = videoRefs.current[1 - activeSlot];
+    if (!active || !next) return;
+    let cancelled = false;
+
+    const done = () => {
+      next.removeEventListener("playing", done);
+      if (warming.current !== next) return;
+      warming.current = null;
+      // 그사이 전환이 시작됐으면 그대로 재생
+      if (transitionInProgress.current) return;
+      next.pause();
+      next.currentTime = 0;
+    };
+    const warm = () => {
+      if (cancelled || next.readyState >= 3 || warming.current) return;
+      warming.current = next;
+      next.addEventListener("playing", done);
+      next.play().catch(() => {
+        next.removeEventListener("playing", done);
+        if (warming.current === next) warming.current = null;
+      });
+    };
+
+    if (active.readyState >= 3) warm();
+    else active.addEventListener("canplay", warm, { once: true });
+    return () => {
+      cancelled = true;
+      active.removeEventListener("canplay", warm);
+      next.removeEventListener("playing", done);
+      if (warming.current === next) warming.current = null;
+    };
+  }, [activeSlot, incomingSlot, slots, stopped, videos.length]);
 
   return (
     <>
