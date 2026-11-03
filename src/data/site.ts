@@ -34,7 +34,10 @@ export const RELATED_LINKS = [
  * - download: ↓ 아이콘 (PDF 파일)
  * - external: ↗ 아이콘, 밑줄
  */
-export const DOWNLOADS = [
+/** href "#" = 파일 준비 중 (링크 비활성) */
+type DownloadLink = { label: string; href: string; kind: "download" | "external" };
+
+export const DOWNLOADS: readonly DownloadLink[] = [
   // TODO: 입학안내 책자 PDF 경로로 교체 (예: /files/admission-guide.pdf)
   // { label: "입학안내 책자", href: "#", kind: "download" },
   {
@@ -43,7 +46,7 @@ export const DOWNLOADS = [
     href: "https://www.handong.edu/ext/bbs/pdf.dcp?doc=/dcp/editor/files/2026-2_08_CCD.pdf",
     kind: "external",
   },
-] as const;
+];
 
 export const NETWORKS_HREF = "/networks";
 

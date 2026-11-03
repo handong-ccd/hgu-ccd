@@ -37,7 +37,7 @@ function SearchBox({ value, onChange }: { value: string; onChange: (v: string) =
     <form
       role="search"
       onSubmit={(e) => e.preventDefault()}
-      className="flex h-11 w-full items-center gap-2.5 rounded-full bg-[#f2f2f2] px-4 md:max-w-[420px]"
+      className="flex h-11 w-full items-center gap-2.5 rounded-full bg-[#f2f2f2] px-4 md:w-[360px] md:shrink-0"
     >
       <label htmlFor="exhibition-search" className="sr-only">
         전시 검색
@@ -77,9 +77,12 @@ export function ExhibitionArchive({ items }: { items: Exhibition[] }) {
 
   return (
     <div className="flex flex-col gap-8 pt-10 pb-[100px] md:gap-0 md:pt-10 md:pb-0">
-      {/* 검색 — 화면엔 제목·구분선 없이 (스크린리더용 제목만) */}
-      <h1 className="sr-only">Exhibition Archive — 한동대학교 콘텐츠융합디자인학부 졸업 작품전</h1>
-      <div className="flex md:justify-end md:pb-6">
+      {/* 헤딩 + 검색 — PC 는 왼쪽 제목 40px, 오른쪽 검색창, 아래 구분선 (Figma 593:1667).
+          모바일은 제목·구분선 없이 검색창만 (452:2362, 제목은 스크린리더용) */}
+      <div className="flex items-start justify-between gap-6 md:border-b md:border-line md:pb-2">
+        <h1 className="sr-only font-telegraf text-[40px] leading-none tracking-[-0.03em] whitespace-nowrap md:not-sr-only">
+          Exhibition Archive
+        </h1>
         <SearchBox value={query} onChange={setQuery} />
       </div>
 
