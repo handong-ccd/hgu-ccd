@@ -16,7 +16,7 @@ function CardBody({ person, interactive }: { person: Faculty; interactive: boole
         {person.image && (
           <Image
             src={person.image}
-            alt=""
+            alt={`${person.nameKo} 교수 사진`}
             fill
             sizes={SIZES}
             className={`object-cover ${interactive ? "transition-transform duration-500 group-hover:scale-[1.02]" : ""}`}

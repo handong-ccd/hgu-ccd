@@ -54,7 +54,7 @@ export function ExhibitionRow({ item, eager = false }: { item: Exhibition; eager
       >
         <Image
           src={item.image}
-          alt=""
+          alt={`${item.year} 졸업 작품전 ${item.name} 포스터`}
           fill
           sizes="(min-width: 1280px) 560px, 40vw"
           loading={eager ? "eager" : undefined}

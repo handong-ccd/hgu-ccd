@@ -35,7 +35,7 @@ function DesktopCard({ item }: { item: ExhibitionItem }) {
       >
         <Image
           src={item.image}
-          alt=""
+          alt={`${item.year} 졸업 작품전 ${item.name} 포스터`}
           fill
           sizes={`${width}px`}
           className="pointer-events-none object-cover transition-transform duration-500 group-hover:scale-[1.02]"
