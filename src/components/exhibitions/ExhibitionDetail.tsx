@@ -1,10 +1,26 @@
-import { ExhibitionPoster } from "./ExhibitionPoster";
+import Image from "next/image";
 import Link from "next/link";
 import type { Exhibition } from "@/types/exhibition";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { Container } from "@/components/ui/Container";
 import { DEFAULT_SIZE } from "@/components/sections/ExhibitionMobileCard";
 import { dateVenue } from "@/lib/exhibition";
+
+/** 전시 포스터 (등장 애니메이션 없음) */
+function Poster({ src, alt, width, height, sizes, priority = false }: {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  sizes: string;
+  priority?: boolean;
+}) {
+  return (
+    <div className="relative w-full bg-neutral-900" style={{ aspectRatio: `${width} / ${height}` }}>
+      <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />
+    </div>
+  );
+}
 
 /** 온라인 전시로 가는 버튼 — archiveUrl 이 있을 때만. 모바일은 전체 너비 */
 function ArchiveLink({ href, full = false }: { href: string; full?: boolean }) {
@@ -135,7 +151,7 @@ export function ExhibitionDetail({ item }: { item: Exhibition }) {
     <>
       {/* Mobile / Tablet (<1080) */}
       <article className="bg-black text-white lg:hidden">
-        <ExhibitionPoster src={item.image} alt={alt} width={width} height={height} sizes="100vw" priority className="w-full" />
+        <Poster src={item.image} alt={alt} width={width} height={height} sizes="100vw" priority />
         <Container className="flex flex-col gap-[51px] py-10">
           <header className="flex flex-col gap-4 border-b border-white pb-4">
             <h1 className="font-telegraf text-[40px] leading-none uppercase">
@@ -217,14 +233,13 @@ export function ExhibitionDetail({ item }: { item: Exhibition }) {
             ) : null}
             <AllExhibitionLink />
           </div>
-          <ExhibitionPoster
-            src={item.image}
-            alt={alt}
-            width={width}
-            height={height}
-            sizes="(min-width: 1280px) 600px, 50vw"
-            className="w-1/2 max-w-[600px] shrink-0"
-          />
+          {/* 스크롤해도 포스터는 화면에 고정 (sticky). 세로로 긴 포스터도 한 화면에 다 보이게 너비를 화면 높이에 맞춰 제한 */}
+          <div
+            className="sticky top-[100px] w-1/2 shrink-0"
+            style={{ maxWidth: `min(600px, calc((100vh - 124px) * ${width} / ${height}))` }}
+          >
+            <Poster src={item.image} alt={alt} width={width} height={height} sizes="(min-width: 1280px) 600px, 50vw" priority />
+          </div>
         </Container>
       </article>
     </>
