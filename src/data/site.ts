@@ -36,7 +36,7 @@ export const RELATED_LINKS = [
  */
 export const DOWNLOADS = [
   // TODO: 입학안내 책자 PDF 경로로 교체 (예: /files/admission-guide.pdf)
-  { label: "입학안내 책자", href: "#", kind: "download" },
+  // { label: "입학안내 책자", href: "#", kind: "download" },
   {
     label: "커리큘럼 상세",
     // 학교 홈페이지 교육과정 PDF (Figma 6:385 링크)
