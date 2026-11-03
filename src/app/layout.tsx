@@ -5,10 +5,27 @@ import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 
+const SITE_TITLE = "콘텐츠융합디자인학부 | 한동대학교";
+const SITE_DESCRIPTION =
+  "한동대학교 콘텐츠융합디자인학부는 국제적 감각과 창의적 문제 해결 능력을 갖춘 크리스천 디자인 리더를 양성합니다.";
+
+/**
+ * 공유 미리보기(OG) — 이미지는 app/opengraph-image.png (Figma 337:8027, 1200×630),
+ * 파비콘은 app/favicon.ico(16·32·48) · icon.png(64) · apple-icon.png(180) (Figma 337:7897 등)
+ * OG 이미지 절대 주소의 기준 도메인: SITE_URL 환경변수 (없으면 Vercel 배포 주소를 Next 가 자동으로 사용)
+ */
 export const metadata: Metadata = {
-  title: "HGU CCD | 한동대학교 콘텐츠융합디자인학부",
-  description:
-    "한동대학교 콘텐츠융합디자인학부는 국제적 감각과 창의적 문제 해결 능력을 갖춘 크리스천 디자인 리더를 양성합니다.",
+  ...(process.env.SITE_URL && { metadataBase: new URL(process.env.SITE_URL) }),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName: SITE_TITLE,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: { card: "summary_large_image", title: SITE_TITLE, description: SITE_DESCRIPTION },
 };
 
 /**
